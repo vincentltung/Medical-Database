@@ -49,8 +49,8 @@
     <div id="wrapper">
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
-                <li><a href="#">Query 1: create...</a></li>
-                <li><a href="#">Query 2: create...</a></li>
+                <li><a href="#query1">Create New Medical Record</a></li>
+                <li><a href="#query2">Update Contact Information</a></li>
                 <li><a href="#">Query 3: get...</a></li>
                 <li><a href="#">Query 4: update...</a></li>
                 <li><a href="#">Query 5: get...</a></li>
@@ -66,31 +66,58 @@
             <!--Would be great for an ng-view here-->
             <h1> Welcome Patient Tung!</h1>
             <hr/>
-            <p>Please select your role in the navigation bar above, then you may seek
-                appropriate information using the side navigation bar</p>
+
 				
 			
 			
-		<!-- Insert Form -->	
+		        <!-- Insert Form -->
+
+				<h2 id="query1">Create a User Medical Record
+				<small>If you do not have an electronic medical record yet, please create one for yourself in the following form</small></h2>
+		        <form class="form-horizontal" method="POST" action="patient.php">
+                    <div class="form-group">
+                        <label class="col-xs-2" for="insName">Name </label>
+                        <div class="col-xs-10">
+                            <input type="text" class="form-control" name="insName" id="insName" placeholder="Name..." />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-2" for="insAddress">Address </label>
+                        <div class="col-xs-10">
+                            <input type="text" class="form-control" name="insAddress" id="insAddress" placeholder="Address..." />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-2" for="insBirthDate">BirthDate </label>
+                        <div class="col-xs-10">
+                            <input type="date" class="form-control" name="insBirthDate" id="insBirthDate" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-2" for="insSex">Sex </label>
+                        <div class="col-xs-10">
+                            <input type="text" class="form-control" name="insSex" id="insSex" placeholder="please type a single 'm' or 'f'" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-2" for="insCareCardNo">CareCardNo </label>
+                        <div class="col-xs-10">
+                            <input type="text" class="form-control" name="insCareCardNo" id="insCareCardNo" placeholder="e.g. 555123678" />
+                        </div>
+                    </div>
+
+		            <!--refresh page when submit-->
+                    <div class="col-xs-10 col-xs-offset-2">
+		                <button type="submit" class="btn btn-primary" name="insertsubmit">Create New Medical Record </button>
+		            </div>
+		        </form>
 			
-		<p>Insert values into Patient below:</p>
-		<p><font size="5"> Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Address&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; BirthDate&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Sex&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CareCardNo</font></p>
-		<form method="POST" action="patient.php">
-		<!--refresh page when submit-->
-		
-		<p><input type="text" name="insName" size="20"><input type="text" name="insAddress" 
-		size="20"><input type="text" name="insBirthDate" size="20"><input type="text" name="insSex" size="20"> 
-		<input type="text" name="insCareCardNo" size="20">
-		<!--define two variables to pass the value-->
-      
-		<input type="submit" value="insert" name="insertsubmit"></p>
-		</form>	
-			
-			
-			
+			<br/>
+			<hr/>
+			<br/>
 		<!-- Update Form -->		
 		
-			<p> Update any contact information that might have changed: </p>
+			<h2 id="query2"> Update any contact information that might have changed: </h2>
 			
 			<p><font size="2"> Current Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; New Name</font></p>
@@ -119,7 +146,7 @@
 			//html; it's now parsing PHP
 	
 				$success = True; //keep track of errors so it redirects the page only if there are no errors
-				$db_conn = OCILogon("ora_z4r8", "a34540120", "ug");
+				$db_conn = OCILogon("ora_", "a", "ug");
 				
 				function executePlainSQL($cmdstr) { //takes a plain (no bound variables) SQL command and executes it
 					//echo "<br>running ".$cmdstr."<br>";
