@@ -18,7 +18,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">
+                <a class="navbar-brand" href="index.php">
                     <span class="alert alert-danger" style="background-color: white; padding:5px;">
                         &nbsp;&nbsp;<span class="glyphicon glyphicon-plus"></span>
                     </span>
@@ -30,10 +30,10 @@
                 <ul class="nav navbar-nav">
                     <li><a href="#">Home</a></li>
                     <li><a style="color:red;">I am a...</a></li>
-                    <li><a href="doctor.html">Doctor</a></li>
-                    <li><a href="nurse.html">Nurse</a></li>
-                    <li><a href="pharmacist.html">Pharmacist</a></li>
-                    <li class="active"><a href="patient.html">Patient</a></li>
+                    <li><a href="doctor.php">Doctor</a></li>
+                    <li><a href="nurse.php">Nurse</a></li>
+                    <li><a href="pharmacist.php">Pharmacist</a></li>
+                    <li class="active"><a href="patient.php">Patient</a></li>
                 </ul>
                 <!--<ul class="nav navbar-nav pull-right">-->
                 <!--<li>-->
@@ -49,8 +49,8 @@
     <div id="wrapper">
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
-                <li><a href="#query1">Create New Medical Record</a></li>
-                <li><a href="#query2">Update Contact Information</a></li>
+                <li><a href="#">Query 1: create...</a></li>
+                <li><a href="#">Query 2: create...</a></li>
                 <li><a href="#">Query 3: get...</a></li>
                 <li><a href="#">Query 4: update...</a></li>
                 <li><a href="#">Query 5: get...</a></li>
@@ -66,79 +66,92 @@
             <!--Would be great for an ng-view here-->
             <h1> Welcome Patient Tung!</h1>
             <hr/>
+            <p>Please select your role in the navigation bar above, then you may seek
+                appropriate information using the side navigation bar</p>
+			<br>
 
-				
+			<!------------------------------------->
+			<!----- Select Name, Address, Sex ----->	
+			<!------------------------------------->
+			<p>Please enter your Care Card Number below below to view your current info:</p>
+			<p><font size="2">CareCard Number</font></p>
+			<form method="POST" action="patient.php">	<!--refresh page when submit-->
 			
+			<p><input type="text" name="CCNconinf" size="18">			
+			<input type="submit" value="select" name="selectconinf"></p>
 			
-		        <!-- Insert Form -->
-
-				<h2 id="query1">Create a User Medical Record
-				<small>If you do not have an electronic medical record yet, please create one for yourself in the following form</small></h2>
-		        <form class="form-horizontal" method="POST" action="patient.php">
-                    <div class="form-group">
-                        <label class="col-xs-2" for="insName">Name </label>
-                        <div class="col-xs-10">
-                            <input type="text" class="form-control" name="insName" id="insName" placeholder="Name..." />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-xs-2" for="insAddress">Address </label>
-                        <div class="col-xs-10">
-                            <input type="text" class="form-control" name="insAddress" id="insAddress" placeholder="Address..." />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-xs-2" for="insBirthDate">BirthDate </label>
-                        <div class="col-xs-10">
-                            <input type="date" class="form-control" name="insBirthDate" id="insBirthDate" />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-xs-2" for="insSex">Sex </label>
-                        <div class="col-xs-10">
-                            <input type="text" class="form-control" name="insSex" id="insSex" placeholder="please type a single 'm' or 'f'" />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-xs-2" for="insCareCardNo">CareCardNo </label>
-                        <div class="col-xs-10">
-                            <input type="text" class="form-control" name="insCareCardNo" id="insCareCardNo" placeholder="e.g. 555123678" />
-                        </div>
-                    </div>
-
-		            <!--refresh page when submit-->
-                    <div class="col-xs-10 col-xs-offset-2">
-		                <button type="submit" class="btn btn-primary" name="insertsubmit">Create New Medical Record </button>
-		            </div>
-		        </form>
+			<br><br>
 			
-			<br/>
-			<hr/>
-			<br/>
-		<!-- Update Form -->		
-		
-			<h2 id="query2"> Update any contact information that might have changed: </h2>
+			<!---------------------------------->
+			<!----- Update Name or Address ----->	
+			<!---------------------------------->
+			<p>Update any contact information that might have changed: </p>
+			<p><font size="2"> CareCard Number&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; New Name</font></p>
+			<form method="POST" action="patient.php">	<!--refresh page when submit-->
 			
-			<p><font size="2"> Current Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; New Name</font></p>
-			<form method="POST" action="patient.php">
-			<!--refresh page when submit-->
-			
-			<p><input type="text" name="curName" size="18"><input type="text" name="newName" 
-			size="34">
-			<!--define two variables to pass the value-->
+			<p><input type="text" name="CCNname" size="18"><input type="text" name="newName" size="34">
 			<input type="submit" value="update" name="updatename"></p>
 			
-		<!-- Update Form 2-->		
-		
-			<p><font size="2"> Current Address&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; New Address</font></p>
-			<form method="POST" action="patient.php">
-			<!--refresh page when submit-->
+			<p><font size="2"> CareCard Number&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; New Address</font></p>
+			<form method="POST" action="patient.php">	<!--refresh page when submit-->
 			
-			<p><input type="text" name="curAdd" size="18"><input type="text" name="newAdd" 
-			size="34">
-			<!--define two variables to pass the value-->
-			<input type="submit" value="update" name="updateadd"></p>				
+			<p><input type="text" name="CCNadd" size="18"><input type="text" name="newAdd" size="34">
+			<input type="submit" value="update" name="updateadd"></p>		
+			
+			<br><br>
+			
+			<!------------------------------------->
+			<!----- See Doctors in Hospital ------->	
+			<!------------------------------------->
+			<p>Enter the postal code to see which doctors are available:</p>
+			<p><font size="2">Postal Code</font></p>
+			<form method="POST" action="patient.php">	<!--refresh page when submit-->
+			
+			<p><input type="text" name="hosPC" size="18">			
+			<input type="submit" value="select" name="selectdoc"></p>
+			
+			<br><br>
+			
+			<!------------------------------------->
+			<!----- See Prescription Record ------->	
+			<!------------------------------------->
+			<p>Please Enter your Care Card Number below to view your prescription record:</p>
+			<p><font size="2">CareCard Number</font></p>
+			<form method="POST" action="patient.php">	<!--refresh page when submit-->
+			
+			<p><input type="text" name="CCNpres" size="18">			
+			<input type="submit" value="select" name="selectpres"></p>
+			
+			<br><br>
+			
+			<!--------------------------------------->
+			<!----- See Detailed Prescription ------->	
+			<!--------------------------------------->
+			<p>Please enter your prescription ID below to view the details:</p>
+			<p><font size="2">Prescription ID</font></p>
+			<form method="POST" action="patient.php">	<!--refresh page when submit-->
+			
+			<p><input type="text" name="presID" size="18">			
+			<input type="submit" value="select" name="selectpresdet"></p>
+			
+			<br><br>
+
+			<!--------------------------------------->
+			<!----- Pharmacy Drug Lookup ------------>	
+			<!--------------------------------------->
+			<p>Enter the drug name and company to find the pharmacies with the drug in stock:</p>
+			<p><font size="2">Drug Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Drug Company</font></p>
+			<form method="POST" action="patient.php">	<!--refresh page when submit-->
+			
+			<p><input type="text" name="drugname" size="18"><input type="text" name="drugcom" size="34">
+			<input type="submit" value="select" name="pharmlist"></p>
+			
+			<br><br>						
+			
+			<!----------------------------->
+			<!--------- BEGIN PHP --------->	
+			<!----------------------------->
 			
 			<?php
 
@@ -146,7 +159,7 @@
 			//html; it's now parsing PHP
 	
 				$success = True; //keep track of errors so it redirects the page only if there are no errors
-				$db_conn = OCILogon("ora_", "a", "ug");
+				$db_conn = OCILogon("ora_XXXX", "aXXXXXXXX", "ug");
 				
 				function executePlainSQL($cmdstr) { //takes a plain (no bound variables) SQL command and executes it
 					//echo "<br>running ".$cmdstr."<br>";
@@ -174,7 +187,7 @@
 				
 				}
 				
-			function executeBoundSQL($cmdstr, $list) {
+		function executeBoundSQL($cmdstr, $list) {
 		/* Sometimes a same statement will be excuted for severl times, only
 		the value of variables need to be changed.
 		In this case you don't need to create the statement several times; 
@@ -208,94 +221,197 @@
 				$success = False;
 			}
 		}
-	
+		return $statement;
 	}
 	
+	// -----------------------------------------------
+	// --- Print functions for printing the tables ---
+	// -----------------------------------------------
 	
-	//prints results from a select statement
-	function printResult($result) { 
+	//Print function for NAME and ADDRESS
+	function printResultNameAdd($result) { //prints results from a select statement
 		echo "<br>Contact information has been updated:<br>";
 		echo "<table>";
 		echo "<tr><th>Name</th><th>Address</th></tr>";
 	
 		while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
-			echo "<tr><td>" . $row["Name"] . "</td><td>" . $row["Address"] . "</td></tr>";//or just use "echo $row[0]" 
+			echo "<tr><td>" . $row["NAME"] . "</td><td>" . $row["ADDRESS"] . "</td></tr>"; //or just use "echo $row[0]" 
 		}
-				echo "<br>Done.<br>";
+		echo "</table>";
+	
+	}
+
+	//Print function for NAME and ADDRESS and SEX
+	function printResultNameAddSex($result) { //prints results from a select statement
+		echo "<br>Here is your current contact information.<br>";
+		echo "<table>";
+		echo "<tr><th>Name</th><th>Address</th><th>Sex</th></tr>";
+	
+		while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
+			echo "<tr><td>" . $row["NAME"] . "</td><td>" . $row["ADDRESS"] . "</td><td>" . $row["SEX"] . "</td></tr>"; //or just use "echo $row[0]" 
+		}
+		echo "</table>";
+	
+	}	
+	
+	//Print function for DOCTOR and SPECIALTY
+	function printResultDocSpec($result) { //prints results from a select statement
+		echo "<br>These are the doctors at the hospital and their specialty:<br>";
+		echo "<table>";
+		echo "<tr><th>Name</th><th>Specialty</th></tr>";
+	
+		while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
+			echo "<tr><td>" . $row["NAME"] . "</td><td>" . $row["SPECIALTY"] . "</td></tr>"; //or just use "echo $row[0]" 
+		}
+		echo "</table>";
+	
+	}
+
+	//Print function for DATEPRESCRIBED, REFILLS, TOTALDAYS, TIMESPERDAY, DOSE, NAME, COMPANY
+	function printResultPres($result) { //prints results from a select statement
+		echo "<br>Successfully fetched prescription record:<br>";
+		echo "<table>";
+		echo "<tr><th>Prescription Date</th><th>Company</th><th>Drug</th><th>Refills</th><th>Prescription Period</th><th>Dosage Per Day</th><th>Dose</th></tr>";
+	
+		while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
+			echo "<tr><td>" . $row["DATEPRESCRIBED"] . "</td><td>" . $row["COMPANY"] . "</td>
+			<td>" . $row["NAME"] . "</td><td>" . $row["REFILLS"] . "</td>
+			<td>" . $row["TOTALDAYS"] . "</td><td>" . $row["TIMESPERDAY"] . "</td><td>" . $row["DOSE"] . "</td></tr>"; //or just use "echo $row[0]" 
+		}
 		echo "</table>";
 	
 	}
 	
+	//Print function for DRUG NAME, DRUG COMPANY, PHARM NAME, ADDRESS, SUPPLY
+	function printResultPharm($result) { //prints results from a select statement
+		echo "<br>Here is the list of pharmacies:<br>";
+		echo "<table>";
+		echo "<tr><th>Drug Name</th><th>Company</th><th>Address</th><th>Supply</th></tr>";
 	
+		while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
+			echo "<tr><td>" . $row["NAME"] . "</td><td>" . $row["COMPANY"] . "</td><td>" . $row["ADDRESS"] . "</td><td>" . $row["SUPPLY"] . "</td></tr>"; //or just use "echo $row[0]" 
+		}
+		echo "</table>";
 	
+	}	
 	
 	// Connect Oracle...
 	if ($db_conn) {
 
-		//If Updating Name was pressed
-		
+		// Update name
 		if (array_key_exists('updatename', $_POST)) {
-			// Update tuple using data from user
 			$tuple = array (
-				":bind1" => $_POST['curName'],
+				":bind1" => $_POST['CCNname'],
 				":bind2" => $_POST['newName']
 			);
 			$alltuples = array (
 				$tuple
 			);
-			executeBoundSQL("update patient set name=:bind2 where name=:bind1", $alltuples);
+			executeBoundSQL("update patient set name=:bind2 where carecardno=:bind1", $alltuples);
 			OCICommit($db_conn);
-			$result = executePlainSQL("select name, address from patient");
-			printResult($result);
+			
+			$result = executeBoundSQL("select name, address from patient where carecardno=:bind1", $alltuples);
+			printResultNameAdd($result);
 	
-		} 
-		//If Insert was pressed		
-		
-		else if (array_key_exists('insertsubmit', $_POST)) {
-			//Getting the values from user and insert data into the table
-			$tuple = array (
-				":bind1" => $_POST['insName'],
-				":bind2" => $_POST['insAddress'],
-				":bind3" => $_POST['insBirthDate'],
-				":bind4" => $_POST['insSex'],
-				":bind5" => $_POST['insCareCardNo']				
-			);
-			$alltuples = array (
-				$tuple
-			);
-			executeBoundSQL("insert into patient values (:bind1, :bind2, :bind3, :bind4, :bind5)", $alltuples);
-			OCICommit($db_conn);
-			$result = executePlainSQL("select name, address from patient");
-			printResult($result);
-		} 
-		
-			//Example they gave us...
-			else if (array_key_exists('insert', $_POST)) {
-					// Insert data into table...
-					executePlainSQL("insert into tab1 values (10, 'Frank')");
-					// Inserting data into table using bound variables
-					$list1 = array (
-						":bind1" => 6,
-						":bind2" => "All"
-					);
-					$list2 = array (
-						":bind1" => 7,
-						":bind2" => "John"
-					);
-					$allrows = array (
-						$list1,
-						$list2
-					);
-					executeBoundSQL("insert into tab1 values (:bind1, :bind2)", $allrows); //the function takes a list of lists
-					// Update data...
-					//executePlainSQL("update tab1 set nid=10 where nid=2");
-					// Delete data...
-					//executePlainSQL("delete from tab1 where nid=1");
-					OCICommit($db_conn);
-				}
-					
+		} else //update address
+			if (array_key_exists('updateadd', $_POST)) {
+				$tuple = array (
+					":bind1" => $_POST['CCNadd'],
+					":bind2" => $_POST['newAdd']
+				);
+				$alltuples = array (
+					$tuple
+				);
+				executeBoundSQL("update patient set address=:bind2 where carecardno=:bind1", $alltuples);
+				OCICommit($db_conn);
 				
-
+				$result = executeBoundSQL("select name, address from patient where carecardno=:bind1", $alltuples);
+				printResultNameAdd($result);
+	
+		} else //select contact info
+			if (array_key_exists('selectconinf', $_POST)) {
+				$tuple = array (
+					":bind1" => $_POST['CCNconinf']
+				);
+				$alltuples = array (
+					$tuple
+				);
+				
+				$result = executeBoundSQL("select name, address, sex from patient where carecardno=:bind1", $alltuples);
+				printResultNameAddSex($result);
+	
+		} else //select doctors
+			if (array_key_exists('selectdoc', $_POST)) {
+				$tuple = array (
+					":bind1" => $_POST['hosPC']
+				);
+				$alltuples = array (
+					$tuple
+				);
+				
+				$result = executeBoundSQL("select m.name, d.specialty 
+										from doctor d, worksat w, medicalprofessional m 
+										where d.healthcareid=w.healthcareid and 
+										w.healthcareid=m.healthcareid and m.healthcareid=d.healthcareid and 
+										w.address like '%:bind1%'", $alltuples);
+				printResultDocSpec($result);
+	
+		} else //select prescription record
+			if (array_key_exists('selectpres', $_POST)) {
+				$tuple = array (
+					":bind1" => $_POST['CCNpres']
+				);
+				$alltuples = array (
+					$tuple
+				);
+				
+				$result = executeBoundSQL("select p.dateprescribed, d.company, d.name, p.refills, p.totaldays, p.timesperday, p.dose
+										from prescription p, drug d 
+										where p.DIN = d.DIN and p.carecardno = :bind1
+										order by p.dateprescribed desc", $alltuples);
+				printResultPres($result);
+	
+		} else //select prescription detail
+			if (array_key_exists('selectpresdet', $_POST)) {
+				$tuple = array (
+					":bind1" => $_POST['presID']
+				);
+				$alltuples = array (
+					$tuple
+				);
+				
+				$result = executeBoundSQL("select p.dateprescribed, d.company, d.name, p.refills, p.totaldays, p.timesperday, p.dose 
+										from prescription p, drug d 
+										where p.DIN = d.DIN and p.prescriptionid = :bind1 
+										order by p.dateprescribed desc", $alltuples);
+				printResultPres($result);
+	
+		} else //select pharmacy list
+			if (array_key_exists('pharmlist', $_POST)) {
+				$tuple = array (
+					":bind1" => $_POST['drugname'],
+					":bind2" => $_POST['drugcom']
+				);
+				$alltuples = array (
+					$tuple
+				);
+				
+				$result = executeBoundSQL("select d.name, d.company, p.address, h.supply 
+										from drug d, pharmacist p, hasinstock h 
+										where d.DIN = h.DIN 
+										and h.licenseno = p.licenseno 
+										and d.name =:bind1
+										and d.company =:bind2", $alltuples);
+				printResultPharm($result);
+	
+		}
+					
+					
+	
+		if ($_POST && $success) {
+			//POST-REDIRECT-GET -- See http://en.wikipedia.org/wiki/Post/Redirect/Get
+			header("location: patient.php");
+		} 
 	
 		//Commit to save changes...
 		OCILogoff($db_conn);
