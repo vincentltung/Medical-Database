@@ -30,8 +30,7 @@
                 <ul class="nav navbar-nav">
                     <li><a href="#">Home</a></li>
                     <li><a style="color:red;">I am a...</a></li>
-                    <li class="active"><a href="doctor.php">Doctor</a></li>
-                    <li><a href="nurse.php">Nurse</a></li>
+                    <li class="active"><a href="doctor.php">Medical Professional</a></li>
                     <li><a href="pharmacist.php">Pharmacist</a></li>
                     <li><a href="patient.php">Patient</a></li>
                 </ul>
@@ -363,7 +362,7 @@
             //html; it's now parsing PHP
     
                 $success = True; //keep track of errors so it redirects the page only if there are no errors
-                $db_conn = OCILogon("ora_z0d9", "a38807129", "ug");
+                $db_conn = OCILogon("ora_XXXX", "aXXXXXXXX", "ug");
                 
                 function executePlainSQL($cmdstr) { //takes a plain (no bound variables) SQL command and executes it
                     //echo "<br>running ".$cmdstr."<br>";

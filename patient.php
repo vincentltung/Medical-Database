@@ -30,8 +30,7 @@
                 <ul class="nav navbar-nav">
                     <li><a href="#">Home</a></li>
                     <li><a style="color:red;">I am a...</a></li>
-                    <li><a href="doctor.php">Doctor</a></li>
-                    <li><a href="nurse.php">Nurse</a></li>
+                    <li><a href="doctor.php">Medical Professional</a></li>
                     <li><a href="pharmacist.php">Pharmacist</a></li>
                     <li class="active"><a href="patient.php">Patient</a></li>
                 </ul>
