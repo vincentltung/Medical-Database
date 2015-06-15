@@ -305,7 +305,7 @@
             
             <p><input type= "text" name="carecard" size="18">
             <!--define two variables to pass the value-->
-            <input type="submit" value="Find" name="findprecriptions"></p>
+            <input type="submit" value="Find" name="findprescriptions"></p>
 
     <!-- select Form 11 (select past medical exams)-->  
 
@@ -320,7 +320,7 @@
             <!--define two variables to pass the value-->
             <input type="submit" value="Find" name="findmedexams"></p>
 
-    <!-- select Form 12 (select past medical exams)-->  
+    <!-- select Form 12 (select a room, find patients)-->  
 
             <h2 id="query12"> Find patients in a room: </h2>
             
@@ -340,6 +340,45 @@
                 <input type= "text" name="roomno" size="18">
             <!--define two variables to pass the value-->
             <input type="submit" value="Find" name="findpplinroom"></p>
+
+    <!-- select Form 13 (select past prescriptions DOCTORS ONLY)-->  
+
+            <h2 id="query13"> Find past prescriptions: </h2>
+            
+            <p><font size="2"> 
+                doctorid</font></p>
+            <form method="POST" action="doctor.php">
+            <!--refresh page when submit-->
+            
+            <p><input type= "text" name="doctorid13" size="18">
+            <!--define two variables to pass the value-->
+            <input type="submit" value="Find" name="finddoctorsprescriptions"></p>
+   
+    <!-- select Form 14 (select medical professionals in a hospital)-->  
+
+            <h2 id="query14"> Find medical professionals: </h2>
+            
+            <p><font size="2"> 
+                hospital</font></p>
+            <form method="POST" action="doctor.php">
+            <!--refresh page when submit-->
+            
+            <p><input type= "text" name="hname14" size="18">
+            <!--define two variables to pass the value-->
+            <input type="submit" value="Find" name="findmedicalpeople"></p>
+
+    <!-- select Form 15 (select patient info: personal info, prescriptions, medical exams, hospital stays)-->  
+
+            <h2 id="query15"> Find patients information: </h2>
+            
+            <p><font size="2"> 
+                carecard</font></p>
+            <form method="POST" action="doctor.php">
+            <!--refresh page when submit-->
+            
+            <p><input type= "text" name="carecard15" size="18">
+            <!--define two variables to pass the value-->
+            <input type="submit" value="Find" name="findpatientsinfo"></p>
 
     <!-- php part--> 
     <!-- php part--> 
@@ -363,6 +402,7 @@
     
                 $success = True; //keep track of errors so it redirects the page only if there are no errors
 				$db_conn = OCILogon("ora_XXXX", "aXXXXXXXX", "ug");
+
                 
                 function executePlainSQL($cmdstr) { //takes a plain (no bound variables) SQL command and executes it
                     //echo "<br>running ".$cmdstr."<br>";
@@ -584,6 +624,49 @@
         echo "</table>";
     }
 
+    function printResult13($result) { 
+        echo "<br>Find past prescriptions:<br>";
+        echo "<table>";
+        echo "<tr><th>date prescribed</th><th>refills left</th><th>drug id</th><th>carecardno</th><th>patient name</th></tr>";
+    
+        while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
+            echo "<tr><td>" . $row["DATEPRESCRIBED"] . "</td><td>" . $row["REFILLS"] . "</td>
+            <td>" . $row["DIN"] . "</td><td>" . $row["CARECARDNO"] . "</td><td>" . $row["NAME"] . "</td></tr>";//or just use "echo $row[0]" 
+        }
+                echo "<br>Done.<br>";
+        echo "</table>";
+    }
+
+    function printResult14($result) { 
+        echo "<br>Find medical professionals:<br>";
+        echo "<table>";
+        echo "<tr><th>medical professional name</th></tr>";
+    
+        while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
+            echo "<tr><td>" . $row["NAME"] . "</td></tr>";//or just use "echo $row[0]" 
+        }
+                echo "<br>Done.<br>";
+        echo "</table>";
+    }
+
+
+    //p.name, p.address, p.dateofbirth, p.sex, m.name
+    function printResult15($result) { 
+        echo "<br>Find patients information:<br>";
+        echo "<table>";
+        echo "<tr><th>patient name</th><th>patient address</th><th>date of birth</th><th>sex</th><th>doctor name</th></tr>";
+    
+        while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
+            echo "<tr><td>" . $row["NAME"] . "</td>
+                    <td>" . $row["ADDRESS"] . "</td>
+                    <td>" . $row["DATEOFBIRTH"] . "</td>
+                    <td>" . $row["SEX"] . "</td>
+                    <td>" . $row["NAME"] . "</td></tr>";//or just use "echo $row[0]" 
+        }
+                echo "<br>Done.<br>";
+        echo "</table>";
+    }
+
     // Connect Oracle...
     if ($db_conn) {
 
@@ -770,7 +853,7 @@
     
         } 
 
-        else if (array_key_exists('findprecriptions', $_POST)) {
+        else if (array_key_exists('findprescriptions', $_POST)) {
             // Update tuple using data from user
             $tuple = array (
                 ":bind1" => $_POST['carecard']
@@ -820,7 +903,57 @@
     
         } 
 
-                
+
+        else if (array_key_exists('finddoctorsprescriptions', $_POST)) {
+            // Update tuple using data from user
+            $tuple = array (
+                ":bind1" => $_POST['doctorid13']
+            );
+            $alltuples = array (
+                $tuple
+            );
+            $result = executeBoundSQL("select p.dateprescribed, p.refills, p.din, p.carecardno, pa.name
+                                                 from prescription p, patient pa
+                                                 where p.healthcareid = :bind1
+                                                        and p.carecardno = pa.carecardno", $alltuples);
+            printResult13($result);
+    
+        } 
+
+        else if (array_key_exists('findmedicalpeople', $_POST)) {
+            // Update tuple using data from user
+            $tuple = array (
+                ":bind1" => $_POST['hname14']
+            );
+            $alltuples = array (
+                $tuple
+            );
+            $result = executeBoundSQL("select m.name
+                                                 from hospital h, worksat w, medicalprofessional m
+                                                 where h.name = :bind1
+                                                        and h.address = w.address
+                                                        and w.healthcareid = m.healthcareid", $alltuples);
+            printResult14($result);
+    
+        } 
+
+        else if (array_key_exists('findpatientsinfo', $_POST)) {
+            // Update tuple using data from user
+            $tuple = array (
+                ":bind1" => $_POST['carecard15']
+            );
+            $alltuples = array (
+                $tuple
+            );
+            $result = executeBoundSQL("select p.name, p.address, p.dateofbirth, p.sex, m.name
+                                            from patient p, seesregularly s, medicalprofessional m
+                                                 where p.carecardno=:bind1
+                                                    and p.carecardno = s.carecardno
+                                                    and s.healthcareid = m.HealthCareID", $alltuples);
+            printResult15($result);
+    
+        } 
+           
 
     
         //Commit to save changes...
