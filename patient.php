@@ -95,7 +95,13 @@
 			<form method="POST" action="patient.php">	<!--refresh page when submit-->
 			
 			<p><input type="text" name="CCNadd" size="18"><input type="text" name="newAdd" size="34">
-			<input type="submit" value="update" name="updateadd"></p>		
+			<input type="submit" value="update" name="updateadd"></p>
+
+			<p><font size="2"> CareCard Number&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; New Sex</font></p>
+            <form method="POST" action="patient.php">	<!--refresh page when submit-->
+
+            <p><input type="text" name="CCNsex" size="18"><input type="text" name="newSex" size="34">
+            <input type="submit" value="update" name="updatesex"></p>
 			
 			<br><br>
 			
@@ -327,7 +333,22 @@
 				$result = executeBoundSQL("select name, address from patient where carecardno=:bind1", $alltuples);
 				printResultNameAdd($result);
 	
-		} else //select contact info
+		} else //update address
+            if (array_key_exists('updatesex', $_POST)) {
+                $tuple = array (
+                    ":bind1" => $_POST['CCNsex'],
+                    ":bind2" => $_POST['newSex']
+                );
+                $alltuples = array (
+                    $tuple
+                );
+                executeBoundSQL("update patient set sex=:bind2 where carecardno=:bind1", $alltuples);
+                OCICommit($db_conn);
+
+                $result = executeBoundSQL("select name, address from patient where carecardno=:bind1", $alltuples);
+                printResultNameAdd($result);
+
+        } else //select contact info
 			if (array_key_exists('selectconinf', $_POST)) {
 				$tuple = array (
 					":bind1" => $_POST['CCNconinf']
@@ -352,7 +373,7 @@
 										from doctor d, worksat w, medicalprofessional m 
 										where d.healthcareid=w.healthcareid and 
 										w.healthcareid=m.healthcareid and m.healthcareid=d.healthcareid and 
-										w.address like '%:bind1%'", $alltuples);
+										w.address like '%" . $_POST['hosPC'] . "%'", $alltuples);
 				printResultDocSpec($result);
 	
 		} else //select prescription record
@@ -379,7 +400,7 @@
 					$tuple
 				);
 				
-				$result = executeBoundSQL("select p.dateprescribed, d.company, d.name, p.refills, p.totaldays, p.timesperday, p.dose 
+				$result = executeBoundSQL("select p.dateprescribed, d.company, d.name, p.refills, p.totaldays, p.timesperday, p.dose, p.carecardno
 										from prescription p, drug d 
 										where p.DIN = d.DIN and p.prescriptionid = :bind1 
 										order by p.dateprescribed desc", $alltuples);

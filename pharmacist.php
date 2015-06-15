@@ -150,6 +150,17 @@
 	
 			<br><br>
 
+			<!------------------------------------->
+            <!----- Set the number of refills------>
+            <!------------------------------------->
+            <p>Get all outstanding prescriptions:</p>
+            <form method="POST" action="pharmacist.php">	<!--refresh page when submit-->
+
+            <p>
+            <input type="submit" value="Get Prescriptions" name="getAllOutstandingPres"></p>
+
+            <br><br>
+
 			
 			<!----------------------------->
 			<!--------- BEGIN PHP --------->	
@@ -421,7 +432,23 @@
 										and din=:bind2", $alltuples);
 				printResultDrugUpdate($result);
 	
-		}
+		} else //get all outstanding prescriptions
+            if (array_key_exists('getAllOutstandingPres', $_POST)) {
+                $tuple = array (
+
+                );
+                $alltuples = array (
+                    $tuple
+                );
+
+
+               $result = executeBoundSQL("select p.dateprescribed, d.company, d.name, p.refills, p.totaldays, p.timesperday, p.dose
+                                        from prescription p, drug d
+                                        where p.DIN = d.DIN and p.refills > 0
+                                        order by p.dateprescribed desc", $alltuples);
+                printResultPres($result);
+
+        }
 			
 			
 			
