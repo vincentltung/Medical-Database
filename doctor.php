@@ -885,23 +885,27 @@
         else if (array_key_exists('findpplinroom', $_POST)) {
             // Update tuple using data from user
             $tuple = array (
-                ":bind1" => $_POST['date'],
-                ":bind2" => $_POST['hname1'],
-                ":bind3" => $_POST['roomno']
+                ":bind1" => substr($_POST['date'], 0, -6),
+                ":bind2" => ltrim(substr($_POST['date'], 5, -3),'0'),
+                ":bind3" => ltrim(substr($_POST['date'], 8),'0'),               
+                ":bind4" => $_POST['hname1'],
+                ":bind5" => $_POST['roomno']
             );
             $alltuples = array (
                 $tuple
             );
             $result = executeBoundSQL("select p.name, sa.RoomNo
                                                  from staysat sa, hospital h, patient p
-                                                 where sa.FromDate = :bind1
-                                                        and h.name = :bind2
+                                                 where Extract(year from sa.FromDate) = :bind1
+                                                        and Extract(month from sa.fromdate) = :bind2
+                                                        and Extract (day from sa.fromdate) = :bind3
+                                                        and h.name = :bind4
                                                         and h.address = sa.address
                                                         and sa.carecardno = p.carecardno
-                                                        and sa.roomno = :bind3", $alltuples);
+                                                        and sa.roomno = :bind5", $alltuples);
             printResult12($result);
     
-        } 
+        }
 
 
         else if (array_key_exists('finddoctorsprescriptions', $_POST)) {
