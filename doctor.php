@@ -75,148 +75,274 @@
 
     <!-- Update Form 1 (update medical exam results)-->  
 
-            <h2 id="query1"> Update a result of a medical exam: </h2>
-            
-            <p><font size="2"> Patient Carecard&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; HealthCareID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Result</font></p>
-            <form method="POST" action="doctor.php">
+            <h2 id="query1"> Input Results of a Medical Exam 
+                <small>To be inputted by the doctor who administered the exam</small></h2>
+            <form class="form-inline" method="POST" action="doctor.php">
             <!--refresh page when submit-->
+
+                <div class= "form-group">
+                    <label class="sr-only" for="carecard1">Patients Care Card</label>
+                    <input type="text" class="form-control" name="carecard1" id="carecard1" placeholder="Patients Care Card">
+                </div>
+
+                <div class= "form-group">
+                    <label class="sr-only" for="doctorid1">HealthCareID</label>
+                    <input type="text" class="form-control" name="doctorid1" id="doctorid1" placeholder="Doctor ID">
+                </div>
+
+                <div class= "form-group">
+                    <label class="sr-only" for="resultstatement">Result</label>
+                    <input type="text" class="form-control" name="resultstatement" id="resultstatement" placeholder="Result">
+                </div>
+
+                 <button type="submit" class="btn btn-primary" name="updateresult">Update</button>
+            </form>
             
-            <p><input type="text" name="carecard" size="18">
-                <input type="text" name="doctorid" size="18">
-                <input type= "text" name="resultstatement" size="34">
-            <!--define two variables to pass the value-->
-            <input type="submit" value="update" name="updateresult"></p>
+            <br/>
+            <hr/>
+            <br/>
 
     
     <!-- Update Form 2 (Move Patient to new room)-->  
 
             <h2 id="query2"> Move Patient into a new room: </h2>
-            
-            <p><font size="2"> Patient Carecard&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Address&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Room Number&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Duration</font></p>
-            <form method="POST" action="doctor.php">
-            <!--refresh page when submit-->
-            
-            <p><input type="text" name="carecard" size="18">
-                <input type="text" name="address" size="34">
-            <!--    <input type= "text" name="date" size="18">
-                <input type= "text" name= "time" size = "10">-->
-                <input type= "text" name= "roomno" size = "10">
-                <input type= "text" name= "duration" size = "5"></p>
-            <!--define two variables to pass the value-->
 
-            <p><font size="2"> Reason &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-                <!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Date Previously admitted
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; New Date-->   
-            </font></p>
-            
-            <p><input type= "text" name= "reason" size = "34">
-            <!--    <input type= "text" name="date1" size="18">
-                <input type= "text" name= "time1" size = "10">
-                <input type= "text" name="date2" size="18">
-                <input type= "text" name= "time2" size = "10">-->
-            <input type="submit" value="update" name="updateroom"></p>
+            <form class="form-horizontal" method="POST" action="doctor.php">
 
+                <div class= "form-group">
+                    <label class="col-xs-2" for="carecard2">Patient Carecard</label>
+                    <div class="col-xs-10">
+                    <input type="text" class="form-control" name="carecard2" id="carecard2" placeholder="Patients Care Card">
+                </div>
+                </div>
+
+                <div class= "form-group">
+                    <label class="col-xs-2" for="address2">Address</label>
+                    <div class="col-xs-10">
+                    <input type="text" class="form-control" name="address2" id="address2" placeholder="Address">
+                </div>
+                </div>
+                
+                <div class= "form-group">
+                    <label class="col-xs-2" for="date2">Date</label>
+                    <div class="col-xs-10">
+                    <input type="date" class="form-control" name="date2" id="date2">
+                </div>
+                </div>
+
+                <div class= "form-group">
+                    <label class="col-xs-2" for="time2">Time</label>
+                    <div class="col-xs-10">
+                    <input type="time" class="form-control" name="time2" id="time2">
+                </div>
+                </div>
+
+                <div class= "form-group">
+                    <label class="col-xs-2" for="roomno2">Room Number</label>
+                    <div class="col-xs-10">
+                    <input type="text" class="form-control" name="roomno2" id="roomno2" placeholder="Room Number">
+                </div>
+            </div>
+
+                <div class= "form-group">
+                    <label class="col-xs-2" for="reason2">Reason</label>
+                    <div class="col-xs-10">
+                    <input type="text" class="form-control" name="reason2" id="reason2" placeholder="Reason">
+                </div>
+            </div>
+            
+            <div class="col-xs-10 col-xs-offset-2">
+                    <button type="submit" class="btn btn-primary" name="insertroom">Change</button>
+            </div>
+            </form>
+            
+            <br/>
+            <hr/>
+            <br/>
     
     <!-- Update Form 3 (update doctors specialty)-->  
 
             <h2 id="query3"> Change a doctors specialty: </h2>
-            
-            <p><font size="2"> Doctors ID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; New Specialty</font></p>
-            <form method="POST" action="doctor.php">
-            <!--refresh page when submit-->
-            
-            <p><input type="text" name="doctorid" size="18">
-                <input type= "text" name="specialty" size="34">
-            <!--define two variables to pass the value-->
-            <input type="submit" value="update" name="updatedoctor"></p>
 
+            <form class="form-inline" method="POST" action="doctor.php">
 
+                <div class= "form-group">
+                    <label class="sr-only" for="doctorid3">Doctor ID</label>
+                    <input type="text" class="form-control" name="doctorid3" id="doctorid3" placeholder="Doctor ID">
+                </div>
+
+                <div class= "form-group">
+                    <label class="sr-only" for="specialty3">New Specialty</label>
+                    <input type="text" class="form-control" name="specialty3" id="specialty3" placeholder="New Specialty">
+                </div>
+
+                    <button type="submit" class="btn btn-primary" name="updatedoctor">Change</button>
+            </form>
+            
+            <br/>
+            <hr/>
+            <br/>
     <!-- Update Form 4 (update nurses ward)-->  
 
             <h2 id="query4"> Change a nurses ward: </h2>
-            
-            <p><font size="2"> Nurse ID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; New Ward</font></p>
-            <form method="POST" action="doctor.php">
-            <!--refresh page when submit-->
-            
-            <p><input type="text" name="nurseid" size="18">
-                <input type= "text" name="ward" size="34">
-            <!--define two variables to pass the value-->
-            <input type="submit" value="update" name="updatenurse"></p>
 
-    <!-- insert Form 5 (insert new prescription)-->  
+            <form class="form-inline" method="POST" action="doctor.php">
+                
+                <div class= "form-group">
+                    <label class="sr-only" for="nurseid4">Nurse ID</label>
+                    <input type="text" class="form-control" name="nurseid4" id="nurseid4" placeholder="Nurse ID">
+                </div>
+
+                <div class= "form-group">
+                    <label class="sr-only" for="ward4">New Ward</label>
+                    <input type="text" class="form-control" name="ward4" id="ward4" placeholder="New Ward">
+                </div>
+
+                    <button type="submit" class="btn btn-primary" name="updatenurse">Change</button>
+            </form>
+            
+            <br/>
+            <hr/>
+            <br/>
+
+   <!-- insert Form 5 (insert new prescription)-->  
 
             <h2 id="query5"> New prescription: </h2>
             
-            <p><font size="2"> Prescription ID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Date&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Refills&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Total days &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; times per day &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; dose&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DIN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Patient carecard &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DoctorID &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; License number</font></p>
-            <form method="POST" action="doctor.php">
-            <!--refresh page when submit-->
+            <form class= "form-horizontal" method="POST" action="doctor.php">  
+                
+                <div class="form-group">
+                    <label class="col-xs-2" for="prescriptionid5">Prescription ID </label>
+                    <div class="col-xs-10">
+                        <input type="text" class="form-control" name="prescriptionid5" id="prescriptionid5" />
+                    </div>
+                </div> 
+
+                <div class="form-group">
+                    <label class="col-xs-2" for="date5">Date </label>
+                    <div class="col-xs-10">
+                        <input type="date" class="form-control" name="date5" id="date5" />
+                    </div>
+                </div>        
+
+                <div class="form-group">
+                    <label class="col-xs-2" for="refills5">Number of Refills </label>
+                    <div class="col-xs-10">
+                        <input type="text" class="form-control" name="refills5" id="refills5" />
+                    </div>
+                </div> 
+
+                <div class="form-group">
+                    <label class="col-xs-2" for="totaldays5">Total Days </label>
+                    <div class="col-xs-10">
+                        <input type="text" class="form-control" name="totaldays5" id="totaldays5" />
+                    </div>
+                </div> 
+
+                <div class="form-group">
+                    <label class="col-xs-2" for="timesperday5">Times per Day </label>
+                    <div class="col-xs-10">
+                        <input type="text" class="form-control" name="timesperday5" id="timesperday5" />
+                    </div>
+                </div> 
+
+                <div class="form-group">
+                    <label class="col-xs-2" for="dose5">Dose </label>
+                    <div class="col-xs-10">
+                        <input type="text" class="form-control" name="dose5" id="dose5" />
+                    </div>
+                </div> 
+
+                <div class="form-group">
+                    <label class="col-xs-2" for="din5">Drug ID </label>
+                    <div class="col-xs-10">
+                        <input type="text" class="form-control" name="din5" id="din5" />
+                    </div>
+                </div> 
+
+                <div class="form-group">
+                    <label class="col-xs-2" for="carecard5">Patient Care Card </label>
+                    <div class="col-xs-10">
+                        <input type="text" class="form-control" name="carecard5" id="carecard5" />
+                    </div>
+                </div> 
+
+                <div class="form-group">
+                    <label class="col-xs-2" for="doctorid5">Doctor ID </label>
+                    <div class="col-xs-10">
+                        <input type="text" class="form-control" name="doctorid5" id="doctorid5" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-xs-2" for="licenseno5">License Number </label>
+                    <div class="col-xs-10">
+                        <input type="text" class="form-control" name="licenseno5" id="licenseno5" />
+                    </div>
+                </div> 
+
+                 <div class="col-xs-10 col-xs-offset-2">
+                        <button type="submit" class="btn btn-primary" name="createprescription">Create New Prescription</button>
+                    </div>
+                </form>
             
-            <p><input type="text" name="prescriptionid" size="18">
-                <input type= "date" name="date" size="18">
-                <input type= "text" name="refills" size="18">
-                <input type= "text" name="totaldays" size="18">
-                <input type= "text" name="timesperday" size="18">
-                <input type= "text" name="dose" size="18">
-                <input type= "text" name="din" size="18">
-                <input type= "text" name="carecard" size="18">
-                <input type= "text" name="doctorid" size="18">
-                <input type= "text" name="Licenseno" size="18">
-            <!--define two variables to pass the value-->
-            <input type="submit" value="create" name="createprescription"></p>
+            <br/>
+            <hr/>
+            <br/>
 
     <!-- Insert Form 6 (insert new exam)-->  
 
             <h2 id="query6"> Schedule a Medical Exam: </h2>
-            
-            <p><font size="2"> 
-                Type of exam
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                care card
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                date
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                doctor id</font></p>
-            <form method="POST" action="doctor.php">
-            <!--refresh page when submit-->
-            
-            <p><input type="text" name="examtype" size="18">
-                <input type= "text" name="carecard" size="18">
-                <input type= "date" name="date" size="18">
-                <input type= "text" name="doctorid" size="18">
-            <!--define two variables to pass the value-->
-            <input type="submit" value="create" name="createmedexam"></p>
 
+            <form class="form-horizontal" method="POST" action="doctor.php">
+
+                    <div class="form-group">
+                        <label class="col-xs-2" for="examtype6">Type of Exam </label>
+                        <div class="col-xs-10">
+                            <input type="text" class="form-control" name="examtype6" id="examtype6" placeholder="Exam Type" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-2" for="carecard6">Patients Care Card </label>
+                        <div class="col-xs-10">
+                            <input type="text" class="form-control" name="carecard6" id="carecard6" placeholder="Patients Care Card" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-2" for="date6">Date </label>
+                        <div class="col-xs-10">
+                            <input type="date" class="form-control" name="date6" id="date6" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-2" for="time6">Time </label>
+                        <div class="col-xs-10">
+                            <input type="time" class="form-control" name="time6" id="time6" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-2" for="doctorid6">Doctor ID </label>
+                        <div class="col-xs-10">
+                            <input type="text" class="form-control" name="doctorid6" id="doctorid6" placeholder="Doctor ID" />
+                        </div>
+                    </div>
+
+                    <!--refresh page when submit-->
+                    <div class="col-xs-10 col-xs-offset-2">
+                        <button type="submit" class="btn btn-primary" name="createmedexam">Create New Medical Exam </button>
+                    </div>
+                </form>
+            
+            <br/>
+            <hr/>
+            <br/>
 
 
     <!-- Insert Form 7 (insert new patient)-->  
 
             <h2 id="query7">Create a User Medical Record
                 <small>If you do not have an electronic medical record yet, please create one for yourself in the following form</small></h2>
-                <form class="form-horizontal" method="POST" action="patient.php">
+                <form class="form-horizontal" method="POST" action="doctor.php">
                     <div class="form-group">
                         <label class="col-xs-2" for="insName">Name </label>
                         <div class="col-xs-10">
@@ -260,125 +386,282 @@
 
     <!-- Insert Form 8 (insert new seesreg)-->  
 
-            <h2 id="query8"> Assign a Regualar Doctor: </h2>
+            <h2 id="query8"> Assign a Regular Doctor </h2>
             
-            <p><font size="2"> 
-                date
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                care card
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                doctor id</font></p>
-            <form method="POST" action="doctor.php">
-            <!--refresh page when submit-->
+            <form class="form-inline" method="POST" action="doctor.php">
             
-            <p><input type= "date" name="date" size="18">
-                <input type= "text" name="carecard" size="18">
-                <input type= "text" name="doctorid" size="18">
-            <!--define two variables to pass the value-->
-            <input type="submit" value="create" name="createseesreg"></p>
-   
+            <div class= "form-group">
+                <label class="sr-only" for="date8">Date</label>
+                <input type="date" class="form-control" name="date8" id="date8">
+            </div>
 
-    <!-- select Form 9 (select people who stayed at a hospital)-->  
+            <div class= "form-group">
+                <label class="sr-only" for="carecard8">Patients Care Card</label>
+                <input type="text" class="form-control" name="carecard8" id="carecard8" placeholder="Patients Care Card">
+            </div>
 
-            <h2 id="query9"> Find hospitals patient stay: </h2>
-            
-            <p><font size="2"> 
-                Hospital name</font></p>
-            <form method="POST" action="doctor.php">
-            <!--refresh page when submit-->
-            
-            <p><input type= "text" name="hname" size="34">
-            <!--define two variables to pass the value-->
-            <input type="submit" value="Find" name="findstays"></p>
+            <div class= "form-group">
+                <label class="sr-only" for="doctorid8">Doctor ID</label>
+                <input type="text" class="form-control" name="doctorid8" id="doctorid8" placeholder="Doctor ID">
+            </div>
 
+            <button type="submit" class="btn btn-primary" name="createseesreg">Record </button>
 
-    <!-- select Form 10 (select patients prescription)-->  
-
-            <h2 id="query10"> Find patients prescription: </h2>
+            </form>
             
-            <p><font size="2"> 
-                carecard</font></p>
-            <form method="POST" action="doctor.php">
-            <!--refresh page when submit-->
-            
-            <p><input type= "text" name="carecard" size="18">
-            <!--define two variables to pass the value-->
-            <input type="submit" value="Find" name="findprescriptions"></p>
-
-    <!-- select Form 11 (select past medical exams)-->  
-
-            <h2 id="query11"> Find patients medical exams: </h2>
-            
-            <p><font size="2"> 
-                carecard</font></p>
-            <form method="POST" action="doctor.php">
-            <!--refresh page when submit-->
-            
-            <p><input type= "text" name="carecard" size="18">
-            <!--define two variables to pass the value-->
-            <input type="submit" value="Find" name="findmedexams"></p>
+            <br/>
+            <hr/>
+            <br/>   
 
     <!-- select Form 12 (select a room, find patients)-->  
 
             <h2 id="query12"> Find patients in a room: </h2>
-            
-            <p><font size="2"> 
-                date
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                hospital name
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                room number</font></p>
-            <form method="POST" action="doctor.php">
-            <!--refresh page when submit-->
-            
-            <p><input type= "date" name="date" size="18">
-                <input type= "text" name="hname1" size="18">
-                <input type= "text" name="roomno" size="18">
-            <!--define two variables to pass the value-->
-            <input type="submit" value="Find" name="findpplinroom"></p>
 
+            <form class="form-inline" method="POST" action="doctor.php">
+            
+            <div class= "form-group">
+                <label class="sr-only" for="date12">Date</label>
+                <input type="date" class="form-control" name="date12" id="date12">
+            </div>
+
+            <div class= "form-group">
+                <label class="sr-only" for="hname12">Hospital Name</label>
+                <input type="text" class="form-control" name="hname12" id="hname12" placeholder="Hospital Name">
+            </div>
+
+            <div class= "form-group">
+                <label class="sr-only" for="roomno12">Room Number</label>
+                <input type="text" class="form-control" name="roomno12" id="roomno12" placeholder="Room Number">
+            </div>
+            
+            <button type="submit" class="btn btn-primary" name="findpplinroom">Find</button>
+
+            </form>
+            
+            <br/>
+            <hr/>
+            <br/> 
     <!-- select Form 13 (select past prescriptions DOCTORS ONLY)-->  
 
             <h2 id="query13"> Find past prescriptions: </h2>
             
-            <p><font size="2"> 
-                doctorid</font></p>
-            <form method="POST" action="doctor.php">
-            <!--refresh page when submit-->
+            <form class="form-inline" method="POST" action="doctor.php">
             
-            <p><input type= "text" name="doctorid13" size="18">
-            <!--define two variables to pass the value-->
-            <input type="submit" value="Find" name="finddoctorsprescriptions"></p>
+            <div class= "form-group">
+                <label class="sr-only" for="doctorid13">Doctor ID</label>
+                <input type="text" class="form-control" name="doctorid13" id="doctorid13" placeholder="Doctor ID">
+            </div>
+            
+            <button type="submit" class="btn btn-primary" name="finddoctorsprescription">Search</button>
+
+            </form>
+            
+            <br/>
+            <hr/>
+            <br/>
    
     <!-- select Form 14 (select medical professionals in a hospital)-->  
 
-            <h2 id="query14"> Find medical professionals: </h2>
-            
-            <p><font size="2"> 
-                hospital</font></p>
-            <form method="POST" action="doctor.php">
-            <!--refresh page when submit-->
-            
-            <p><input type= "text" name="hname14" size="18">
-            <!--define two variables to pass the value-->
-            <input type="submit" value="Find" name="findmedicalpeople"></p>
+            <h2 id="query14"> Find Information about the Hospital: </h2>
 
-    <!-- select Form 15 (select patient info: personal info, prescriptions, medical exams, hospital stays)-->  
+            <form class="form-horizontal" method="POST" action="doctor.php">
+            
+            <div class= "form-group">
+                <label class="sr-only" for="hname14">Hospital Name</label>
+                <input type="text" class="form-control" name="hname14" id="hname14" placeholder="Hospital Name">
+            </div>
 
-            <h2 id="query15"> Find patients information: </h2>
+            <div class="form-inline">
+                <div class="form-group">
+                    <div class="col-xs-10">
+                    <button type="submit" class="btn btn-primary" name="findmedicalpeople">Find All Medical Professionals</button>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-xs-10">
+                    <button type="submit" class="btn btn-primary" name="findstays">Find Everyone Who Stayed Here</button>
+                    </div>
+                </div>
+            </div>
+
+            </form>
             
-            <p><font size="2"> 
-                carecard</font></p>
-            <form method="POST" action="doctor.php">
-            <!--refresh page when submit-->
+            <br/>
+            <hr/>
+            <br/>
+
+    <!-- select Form 9 (select people who stayed at a hospital) 
+
+            <h2 id="query9"> Find People who have Stayed in a Hospital: </h2>
             
-            <p><input type= "text" name="carecard15" size="18">
-            <!--define two variables to pass the value-->
-            <input type="submit" value="Find" name="findpatientsinfo"></p>
+            <form class="form-inline" method="POST" action="doctor.php">
+            
+            <div class= "form-group">
+                <label class="sr-only" for="hname9">Hospital Name</label>
+                <input type="text" class="form-control" name="hname9" id="hname9" placeholder="Hospital Name">
+            </div>
+            
+            <button type="submit" class="btn btn-primary" name="findstays">Find people</button>
+
+            </form>
+            
+            <br/>
+            <hr/>
+            <br/>--> 
+
+    <!-- select Form 15 (select patient info: personal info, prescriptions, medical exams, hospital stays)
+
+            <h2 id="query15"> Find Patients Information: </h2>
+
+            <form class="form-inline" method="POST" action="doctor.php">
+            
+            <div class= "form-group">
+                <label class="sr-only" for="carecard15">Patients Care Card</label>
+                <input type="text" class="form-control" name="carecard15" id="carecard15" placeholder="Patients Care Card">
+            </div>
+            
+            <button type="submit" class="btn btn-primary" name="findpatientsinfo">Search</button>
+
+            </form>
+            
+            <br/>
+            <hr/>
+            <br/>-->
+
+    <!-- select Form 16 (select patient info: personal info, prescriptions, medical exams, hospital stays)-->  
+
+            <h2 id="query16"> Patient Information: </h2>
+
+            <form class="form-horizontal" method="POST" action="doctor.php">
+            
+            <div class= "form-group">
+                <label class="sr-only" for="carecard16">Patients Care Card</label>
+                <div class="col-xs-10">
+                <input type="text" class="form-control" name="carecard16" id="carecard16" placeholder="Patients Care Card">
+                </div>
+            </div>
+
+
+            <div class="form-inline">
+                <div class="form-group">
+                    <div class="col-xs-10">
+                    <button type="submit" class="btn btn-primary" name="findpatientsinfo">Get Patients General Information</button>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-xs-10">
+                    <button type="submit" class="btn btn-primary" name="findprescriptions">Get Patients Past Prescriptions</button>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-xs-10">
+                    <button type="submit" class="btn btn-primary" name="findmedexams">Get Patients Past Medical Exams</button>
+                    </div>
+                </div>
+            </div>
+
+            <br/>
+
+            <div class="form-group">
+                    <div class="col-xs-10">
+                    <button type="submit" class="btn btn-primary" name="deletepatientinfo">Delete Patients Record</button>
+                    </div>
+                </div>
+
+            <br/>
+
+            <div class= "form-inline">
+            <div class= "form-group">
+                <label class="sr-only" for="pname16">Patients New Name</label>
+                <div class="col-xs-10">
+                <input type="text" class="form-control" name="pname16" id="pname16" placeholder="Patients New Name">
+                </div>
+            </div>
+            
+            <button type="submit" class="btn btn-primary" name="updatepname">Update Patients Name</button>
+            </div>
+
+            <div class= "form-inline">
+            <div class= "form-group">
+                <label class="sr-only" for="paddress16">Patients New Address</label>
+                <div class="col-xs-10">
+                <input type="text" class="form-control" name="paddress16" id="paddress16" placeholder="Patients New Address">
+                </div>
+            </div>
+            
+            <button type="submit" class="btn btn-primary" name="updatepaddress">Update Patients Address</button>
+            </div>
+
+            <div class= "form-inline">
+            <div class= "form-group">
+                <label class="sr-only" for="pbirthdate16">Patients New Birthday</label>
+                <div class="col-xs-10">
+                <input type="date" class="form-control" name="pbirthdate16" id="pbirthdate16">
+                </div>
+            </div>
+            
+            <button type="submit" class="btn btn-primary" name="updatepbirthdate">Update Patients Birthdate</button>
+            </div>
+
+            <div class= "form-inline">
+            <div class= "form-group">
+                <label class="sr-only" for="psex16">Patients New Sex</label>
+                <div class="col-xs-10">
+                <input type="text" class="form-control" name="psex16" id="psex16" placeholder="Patients New Sex">
+                </div>
+            </div>
+            
+            <button type="submit" class="btn btn-primary" name="updatepsex">Update Patients Sex</button>
+            </div>
+
+
+            </form>
+            
+            <br/>
+            <hr/>
+            <br/>
+
+
+    <!-- select Form 10 (select patients prescription)  
+
+            <h2 id="query10"> Find patients prescription: </h2>
+
+             <form class="form-inline" method="POST" action="doctor.php">
+            
+            <div class= "form-group">
+                <label class="sr-only" for="carecard10">Patients Care Card</label>
+                <input type="text" class="form-control" name="carecard10" id="carecard10" placeholder="Patients Care Card">
+            </div>
+            
+            <button type="submit" class="btn btn-primary" name="findprescriptions">Search</button>
+
+            </form>
+            
+            <br/>
+            <hr/>
+            <br/>-->
+
+    <!-- select Form 11 (select past medical exams) 
+
+            <h2 id="query11"> Find patients medical exams: </h2>
+           
+            <form class="form-inline" method="POST" action="doctor.php">
+            
+            <div class= "form-group">
+                <label class="sr-only" for="carecard11">Patients Care Card</label>
+                <input type="text" class="form-control" name="carecard11" id="carecard11" placeholder="Patients Care Card">
+            </div>
+            
+            <button type="submit" class="btn btn-primary" name="findmedexams">Search</button>
+
+            </form>
+            
+            <br/>
+            <hr/>
+            <br/> -->
 
     <!-- php part--> 
     <!-- php part--> 
@@ -475,10 +758,10 @@
     function printResult1($result) { 
         echo "<br>Exam result has been updated:<br>";
         echo "<table>";
-        echo "<tr><th>Result</th><th>ExamType</th><th>AdministeredBy</th></tr>";
+        echo "<tr><th>Date</th><th>Result</th><th>ExamType</th><th>AdministeredBy</th></tr>";
     
         while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
-            echo "<tr><td>" . $row["RESULT"] . "</td><td>" . $row["EXAMTYPE"] . "</td><td>" . $row["ADMINISTEREDBY"] . "</td></tr>";//or just use "echo $row[0]" 
+            echo "<tr><td>" . $row["FROMDATE"] . "</td><td>" . $row["RESULT"] . "</td><td>" . $row["EXAMTYPE"] . "</td><td>" . $row["ADMINISTEREDBY"] . "</td></tr>";//or just use "echo $row[0]" 
         }
                 echo "<br>Done.<br>";
         echo "</table>";
@@ -488,10 +771,10 @@
     function printResult2($result) { 
         echo "<br>Room has been updated:<br>";
         echo "<table>";
-        echo "<tr><th>CareCardNo</th><th>RoomNo</th><th>Duration</th><th>Reason</th></tr>";
+        echo "<tr><th>CareCardNo</th><th>RoomNo</th><th>Date</th><th>Reason</th></tr>";
     
         while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
-            echo "<tr><td>" . $row["CARECARDNO"] . "</td><td>" . $row["ROOMNO"] . "</td><td>" . $row["DURATION"] . "</td><td>" . $row["REASON"] . "</td></tr>";//or just use "echo $row[0]" 
+            echo "<tr><td>" . $row["CARECARDNO"] . "</td><td>" . $row["ROOMNO"] . "</td><td>" . $row["FROMDATE"] . "</td><td>" . $row["REASON"] . "</td></tr>";//or just use "echo $row[0]" 
         }
                 echo "<br>Done.<br>";
         echo "</table>";
@@ -501,10 +784,10 @@
     function printResult3($result) { 
         echo "<br>Doctors specialty has been changed:<br>";
         echo "<table>";
-        echo "<tr><th>doctor id</th><th>specialty</th></tr>";
+        echo "<tr><th>doctors name</th><th>specialty</th></tr>";
     
         while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
-            echo "<tr><td>" . $row["HEALTHCAREID"] . "</td><td>" . $row["SPECIALTY"] . "</td></tr>";//or just use "echo $row[0]" 
+            echo "<tr><td>" . $row["NAME"] . "</td><td>" . $row["SPECIALTY"] . "</td></tr>";//or just use "echo $row[0]" 
         }
                 echo "<br>Done.<br>";
         echo "</table>";
@@ -513,10 +796,10 @@
     function printResult4($result) { 
         echo "<br>Nurses ward has been changed:<br>";
         echo "<table>";
-        echo "<tr><th>nurse id</th><th>ward</th></tr>";
+        echo "<tr><th>nurse name</th><th>ward</th></tr>";
     
         while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
-            echo "<tr><td>" . $row["HEALTHCAREID"] . "</td><td>" . $row["WARD"] . "</td></tr>";//or just use "echo $row[0]" 
+            echo "<tr><td>" . $row["NAME"] . "</td><td>" . $row["WARD"] . "</td></tr>";//or just use "echo $row[0]" 
         }
                 echo "<br>Done.<br>";
         echo "</table>";
@@ -537,10 +820,11 @@
     function printResult6($result) { 
         echo "<br>Exam has been Scheduled:<br>";
         echo "<table>";
-        echo "<tr><th>result</th><th>examtype</th><th>carecardno</th><th>doctorid</th></tr>";
+        echo "<tr><th>result</th><th>carecardno</th><th>examtype</th><th>doctorid</th><th>date</th></tr>";
     
         while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
-            echo "<tr><td>" . $row["RESULT"] . "</td><td>" . $row["EXAMTYPE"] . "</td><td>" . $row["CARECARDNO"] . "</td><td>" . $row["ADMINISTEREDBY"] . "</td></tr>";//or just use "echo $row[0]" 
+            echo "<tr><td>" . $row["RESULT"] . "</td><td>" . $row["CARECARDNO"] . "</td><td>" . $row["EXAMTYPE"] . "</td>
+                <td>" . $row["ADMINISTEREDBY"] . "</td><td>" . $row["FROMDATE"] . "</td></tr>";//or just use "echo $row[0]" 
         }
                 echo "<br>Done.<br>";
         echo "</table>";
@@ -549,10 +833,11 @@
     function printResult7($result) { 
         echo "<br>Contact information has been updated:<br>";
         echo "<table>";
-        echo "<tr><th>Name</th><th>Address</th></tr>";
+        echo "<tr><th>Name</th><th>Address</th><th>birthdate</th><th>sex</th><th>carecard</th></tr>";
     
         while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
-            echo "<tr><td>" . $row["NAME"] . "</td><td>" . $row["ADDRESS"] . "</td></tr>";//or just use "echo $row[0]" 
+            echo "<tr><td>" . $row["NAME"] . "</td><td>" . $row["ADDRESS"] . "</td>
+                <td>" . $row["DATEOFBIRTH"] . "</td><td>" . $row["SEX"] . "</td><td>" . $row["CARECARDNO"] . "</td></tr>";//or just use "echo $row[0]" 
         }
                 echo "<br>Done.<br>";
         echo "</table>";
@@ -588,10 +873,10 @@
     function printResult10($result) { 
         echo "<br>Find Prescription:<br>";
         echo "<table>";
-        echo "<tr><th>prescriptionid</th><th>carecard</th><th>refills</th><th>din</th></tr>";
+        echo "<tr><th>date prescibed</th><th>prescriptionid</th><th>carecard</th><th>refills</th><th>din</th></tr>";
     
         while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
-            echo "<tr><td>" . $row["PRESCRIPTIONID"] . "</td><td>" . $row["CARECARDNO"] . "</td><td>" . $row["REFILLS"] . "</td><td>" . $row["DIN"] . "</td></tr>";//or just use "echo $row[0]" 
+            echo "<tr><td>" . $row["DATEPRESCRIBED"] . "</td><td>" . $row["PRESCRIPTIONID"] . "</td><td>" . $row["CARECARDNO"] . "</td><td>" . $row["REFILLS"] . "</td><td>" . $row["DIN"] . "</td></tr>";//or just use "echo $row[0]" 
         }
                 echo "<br>Done.<br>";
         echo "</table>";
@@ -640,10 +925,22 @@
     function printResult14($result) { 
         echo "<br>Find medical professionals:<br>";
         echo "<table>";
-        echo "<tr><th>medical professional name</th></tr>";
+        echo "<tr><th>doctor name</th><th>specialty</th></tr>";
     
         while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
-            echo "<tr><td>" . $row["NAME"] . "</td></tr>";//or just use "echo $row[0]" 
+            echo "<tr><td>" . $row["NAME"] . "</td><td>" . $row["SPECIALTY"] . "</td></tr>";//or just use "echo $row[0]" 
+        }
+                echo "<br>Done.<br>";
+        echo "</table>";
+    }
+
+    function printResult17($result) { 
+        echo "<br>Find medical professionals:<br>";
+        echo "<table>";
+        echo "<tr><th>nurse name</th><th>ward</th></tr>";
+    
+        while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
+            echo "<tr><td>" . $row["NAME"] . "</td><td>" . $row["WARD"] . "</td></tr>";//or just use "echo $row[0]" 
         }
                 echo "<br>Done.<br>";
         echo "</table>";
@@ -675,8 +972,8 @@
         if (array_key_exists('updateresult', $_POST)) {
             // Update tuple using data from user
             $tuple = array (
-                ":bind1" => $_POST['carecard'],
-                ":bind2" => $_POST['doctorid'],
+                ":bind1" => $_POST['carecard1'],
+                ":bind2" => $_POST['doctorid1'],
                 ":bind3" => $_POST['resultstatement']
             );
             $alltuples = array (
@@ -684,38 +981,43 @@
             );
             executeBoundSQL("update takesmedexam set result=:bind3, administeredby=:bind2 
                                 where result='Exam to be completed' and carecardno=:bind1 
-                                        and administeredby is NULL", $alltuples);
+                                        and administeredby is NULL 
+                                        and exists 
+                                                (select * from doctor where HealthCareID = :bind2)", $alltuples);
             OCICommit($db_conn);
-            $result = executePlainSQL("select Result, ExamType, AdministeredBy from TakesMedExam");
+            $result = executePlainSQL("select FromDate, Result, ExamType, AdministeredBy from TakesMedExam Order by FromDate");
             printResult1($result);
     
         } 
 
 
-        else if (array_key_exists('updateroom', $_POST)) {
-            // Update tuple using data from user
+        else if (array_key_exists('insertroom', $_POST)) {
+            // Insert tuple using date from user
             $tuple = array (
-                ":bind1" => $_POST['carecard'],
-                ":bind2" => $_POST['address'],
-               // ":bind3" => $_POST['date1'],
-               // ":bind4" => $_POST['time2'],
-                ":bind5" => $_POST['roomno'],
-                ":bind6" => $_POST['reason'],
-                ":bind7" => $_POST['duration']
-                //":bind8" => $_POST['date2'],
-                //":bind9" => $_POST['time2']
+                ":bind1" => $_POST['carecard2'],
+                ":bind2" => $_POST['address2'],
+                ":bind3" => str_replace("-", "/","TO_DATE('" . $_POST['date2'] . " " . $_POST['time2'] . "','yyyy/mm/dd hh24:mi')"),
+                ":bind4" => $_POST['roomno2'],
+                ":bind5" => $_POST['reason2'],
             );
+            
             $alltuples = array (
                 $tuple
             );
-            //FromDate=:bind3 . " " . :bind4, 
-            //where date=:bind8 ." ". :bind9
-            executeBoundSQL("update StaysAt set RoomNo=:bind5, 
-                                                Duration=:bind7,
-                                                Reason=:bind6
-                                        where CareCardNo=:bind1 and address=:bind2", $alltuples);
+
+            executePlainSQL("insert into staysat values (" . $tuple[":bind1"] . ", " . $tuple[":bind4"]
+                         . ", '" . $tuple[":bind2"] . "', " . $tuple[":bind3"] . ", '" . $tuple[":bind5"]
+                          . "', " . "0)");
             OCICommit($db_conn);
-            $result = executePlainSQL("select CareCardNo, RoomNo, Duration, Reason from StaysAt");
+
+            $result = executePlainSQL("select CareCardNo, RoomNo,FromDate, Reason 
+                                        from staysat 
+                                        where carecardno = " . $tuple[":bind1"] .
+                                        " and address = '" . $tuple[":bind2"] .
+                                        "' and fromdate = " .  $tuple[":bind3"] .
+                                        " and roomno = " . $tuple[":bind4"] .
+                                        " and reason = '" . $tuple[":bind5"] . "'"
+                                        );
             printResult2($result);
     
         } 
@@ -724,8 +1026,8 @@
         else if (array_key_exists('updatedoctor', $_POST)) {
             // Update tuple using data from user
             $tuple = array (
-                ":bind1" => $_POST['doctorid'],
-                ":bind2" => $_POST['specialty']
+                ":bind1" => $_POST['doctorid3'],
+                ":bind2" => $_POST['specialty3']
             );
             $alltuples = array (
                 $tuple
@@ -733,7 +1035,9 @@
             executeBoundSQL("update doctor set specialty=:bind2 
                                 where HealthCareID=:bind1", $alltuples);
             OCICommit($db_conn);
-            $result = executePlainSQL("select * from Doctor");
+            $result = executePlainSQL("select distinct m.name, d.specialty from Doctor d, medicalprofessional m
+                                            where m.healthcareid = d.healthcareid
+                                            order by m.name");
             printResult3($result);
     
         } 
@@ -741,8 +1045,8 @@
         else if (array_key_exists('updatenurse', $_POST)) {
             // Update tuple using data from user
                         $tuple = array (
-                ":bind1" => $_POST['nurseid'],
-                ":bind2" => $_POST['ward']
+                ":bind1" => $_POST['nurseid4'],
+                ":bind2" => $_POST['ward4']
             );
             $alltuples = array (
                 $tuple
@@ -750,10 +1054,12 @@
             executeBoundSQL("update nurse set ward=:bind2 
                                 where HealthCareID=:bind1", $alltuples);
             OCICommit($db_conn);
-            $result = executePlainSQL("select * from nurse");
+            $result = executePlainSQL("select distinct m.name, n.ward from nurse n, medicalprofessional m
+                                            where m.healthcareid = n.healthcareid
+                                            order by m.name");
             printResult4($result);
     
-        } 
+        }
 
 
         //INSERT   
@@ -761,16 +1067,16 @@
         else if (array_key_exists('createprescription', $_POST)) {
             //Getting the values from user and insert data into the table
             $tuple = array (
-                ":bind1" => $_POST['prescriptionid'],
-                ":bind2" => $_POST['date'],
-                ":bind3" => $_POST['refills'],
-                ":bind4" => $_POST['totaldays'],
-                ":bind5" => $_POST['timesperday'],
-                ":bind6" => $_POST['dose'],  
-                ":bind7" => $_POST['din'],
-                ":bind8" => $_POST['carecard'],
-                ":bind9" => $_POST['doctorid'],
-                ":bind10" => $_POST['Licenseno']      
+                ":bind1" => $_POST['prescriptionid5'],
+                ":bind2" => $_POST['date5'],
+                ":bind3" => $_POST['refills5'],
+                ":bind4" => $_POST['totaldays5'],
+                ":bind5" => $_POST['timesperday5'],
+                ":bind6" => $_POST['dose5'],  
+                ":bind7" => $_POST['din5'],
+                ":bind8" => $_POST['carecard5'],
+                ":bind9" => $_POST['doctorid5'],
+                ":bind10" => $_POST['licenseno5']      
             );
             $alltuples = array (
                 $tuple
@@ -784,20 +1090,28 @@
         else if (array_key_exists('createmedexam', $_POST)) {
             // Update tuple using data from user
             $tuple = array (
-                ":bind1" => $_POST['examtype'],
-                ":bind2" => $_POST['carecard'],
-                ":bind3" => $_POST['date'],
-                ":bind4" => $_POST['doctorid']
+                ":bind1" => $_POST['examtype6'],
+                ":bind2" => $_POST['carecard6'],
+                ":bind3" => str_replace("-", "/","TO_DATE('" . $_POST['date6'] . " " . $_POST['time6'] . "','yyyy/mm/dd hh24:mi')"),
+                ":bind4" => $_POST['doctorid6']
             );
             $alltuples = array (
                 $tuple
             );
-            executeBoundSQL("insert into takesmedexam values ('Exam to be completed', :bind1, :bind2, :bind3, :bind4)", $alltuples);
+            executePlainSQL("insert into takesmedexam values ('Exam to be completed', '" . $tuple[":bind1"] . "', "
+                        . $tuple[":bind2"] . ", " . $tuple[":bind3"] . ", " . $tuple[":bind4"] . ")");
             OCICommit($db_conn);
-            $result = executePlainSQL("select * from takesmedexam");
+            
+            $result = executePlainSQL("select Result, CareCardNo, ExamType, FromDate, AdministeredBy
+                                        from takesmedexam 
+                                        where carecardno = " . $tuple[":bind2"] .
+                                        " and ExamType = '" . $tuple[":bind1"] .
+                                        "' and FromDate = " .  $tuple[":bind3"] .
+                                        " and AdministeredBy = " . $tuple[":bind4"]
+                                        );
             printResult6($result);
     
-        } 
+        }  
 
         else if (array_key_exists('createpatient', $_POST)) {
             //Getting the values from user and insert data into the table
@@ -813,16 +1127,16 @@
             );
             executeBoundSQL("insert into patient values (:bind1, :bind2, :bind3, :bind4, :bind5)", $alltuples);
             OCICommit($db_conn);
-            $result = executePlainSQL("select name, address from patient");
+            $result = executeBoundSQL("select * from patient where carecardno=:bind1", $alltuples);
             printResult7($result);
         } 
 
         else if (array_key_exists('createseesreg', $_POST)) {
             // Update tuple using data from user
             $tuple = array (
-                ":bind1" => $_POST['date'],
-                ":bind2" => $_POST['doctorid'],
-                ":bind3" => $_POST['carecard']
+                ":bind1" => $_POST['date8'],
+                ":bind2" => $_POST['doctorid8'],
+                ":bind3" => $_POST['carecard8']
             );
             $alltuples = array (
                 $tuple
@@ -841,7 +1155,7 @@
         else if (array_key_exists('findstays', $_POST)) {
             // Update tuple using data from user
             $tuple = array (
-                ":bind1" => $_POST['hname']
+                ":bind1" => $_POST['hname14']
             );
             $alltuples = array (
                 $tuple
@@ -856,13 +1170,15 @@
         else if (array_key_exists('findprescriptions', $_POST)) {
             // Update tuple using data from user
             $tuple = array (
-                ":bind1" => $_POST['carecard']
+                ":bind1" => $_POST['carecard16']
             );
             $alltuples = array (
                 $tuple
             );
-            $result = executeBoundSQL("select prescriptionid, carecardno, refills, DIN
-                                                 from prescription", $alltuples);
+            $result = executeBoundSQL("select dateprescribed, prescriptionid, carecardno, refills, DIN
+                                                 from prescription 
+                                                 where carecardno=:bind1
+                                                 order by dateprescribed DESC", $alltuples);
             printResult10($result);
     
         } 
@@ -870,14 +1186,15 @@
         else if (array_key_exists('findmedexams', $_POST)) {
             // Update tuple using data from user
             $tuple = array (
-                ":bind1" => $_POST['carecard']
+                ":bind1" => $_POST['carecard16']
             );
             $alltuples = array (
                 $tuple
             );
             $result = executeBoundSQL("select result, examtype, carecardno, FromDate, administeredby
                                                  from takesmedexam 
-                                                 where carecardno = :bind1", $alltuples);
+                                                 where carecardno = :bind1
+                                                 order by FromDate DESC", $alltuples);
             printResult11($result);
     
         } 
@@ -885,11 +1202,11 @@
         else if (array_key_exists('findpplinroom', $_POST)) {
             // Update tuple using data from user
             $tuple = array (
-                ":bind1" => substr($_POST['date'], 0, -6),
-                ":bind2" => ltrim(substr($_POST['date'], 5, -3),'0'),
-                ":bind3" => ltrim(substr($_POST['date'], 8),'0'),               
-                ":bind4" => $_POST['hname1'],
-                ":bind5" => $_POST['roomno']
+                ":bind1" => substr($_POST['date12'], 0, -6),
+                ":bind2" => ltrim(substr($_POST['date12'], 5, -3),'0'),
+                ":bind3" => ltrim(substr($_POST['date12'], 8),'0'),               
+                ":bind4" => $_POST['hname12'],
+                ":bind5" => $_POST['roomno12']
             );
             $alltuples = array (
                 $tuple
@@ -932,19 +1249,28 @@
             $alltuples = array (
                 $tuple
             );
-            $result = executeBoundSQL("select m.name
-                                                 from hospital h, worksat w, medicalprofessional m
+            $result = executeBoundSQL("select m.name, d.specialty
+                                                 from hospital h, worksat w, medicalprofessional m, doctor d
                                                  where h.name = :bind1
                                                         and h.address = w.address
-                                                        and w.healthcareid = m.healthcareid", $alltuples);
+                                                        and w.healthcareid = m.healthcareid
+                                                        and m.healthcareid=d.healthcareid", $alltuples);
+            
+            $result = executeBoundSQL("select m.name, n.ward
+                                                 from hospital h, worksat w, medicalprofessional m, nurse n
+                                                 where h.name = :bind1
+                                                        and h.address = w.address
+                                                        and w.healthcareid = m.healthcareid
+                                                        and m.healthcareid=n.healthcareid", $alltuples);
             printResult14($result);
+            printResult17($result);
     
         } 
 
         else if (array_key_exists('findpatientsinfo', $_POST)) {
             // Update tuple using data from user
             $tuple = array (
-                ":bind1" => $_POST['carecard15']
+                ":bind1" => $_POST['carecard16']
             );
             $alltuples = array (
                 $tuple
@@ -956,6 +1282,89 @@
                                                     and s.healthcareid = m.HealthCareID", $alltuples);
             printResult15($result);
     
+        } 
+
+        else if (array_key_exists('updatepname', $_POST)) {
+            // Update tuple using data from user
+                        $tuple = array (
+                ":bind1" => $_POST['carecard16'],
+                ":bind2" => $_POST['pname16']
+            );
+            $alltuples = array (
+                $tuple
+            );
+            executeBoundSQL("update patient set name=:bind2 
+                                where CareCardNo=:bind1", $alltuples);
+            OCICommit($db_conn);
+            $result = executeBoundSQL("select * from patient where carecardno=:bind1", $alltuples);
+            printResult7($result);
+    
+        }
+
+        else if (array_key_exists('updatepaddress', $_POST)) {
+            // Update tuple using data from user
+                        $tuple = array (
+                ":bind1" => $_POST['carecard16'],
+                ":bind2" => $_POST['paddress16']
+            );
+            $alltuples = array (
+                $tuple
+            );
+            executeBoundSQL("update patient set address=:bind2 
+                                where CareCardNo=:bind1", $alltuples);
+            OCICommit($db_conn);
+            $result = executeBoundSQL("select * from patient where carecardno=:bind1", $alltuples);
+            printResult7($result);
+    
+        }
+
+        else if (array_key_exists('updatepbirthdate', $_POST)) {
+            // Update tuple using data from user
+                        $tuple = array (
+                ":bind1" => $_POST['carecard16'],
+                ":bind2" => $_POST['pbirthdate16']
+            );
+            $alltuples = array (
+                $tuple
+            );
+            executeBoundSQL("update patient set dateofbirth=:bind2 
+                                where CareCardNo=:bind1", $alltuples);
+            OCICommit($db_conn);
+            $result = executeBoundSQL("select * from patient where carecardno=:bind1", $alltuples);
+            printResult7($result);
+    
+        }
+
+        else if (array_key_exists('updatepsex', $_POST)) {
+            // Update tuple using data from user
+                        $tuple = array (
+                ":bind1" => $_POST['carecard16'],
+                ":bind2" => $_POST['psex16']
+            );
+            $alltuples = array (
+                $tuple
+            );
+            executeBoundSQL("update patient set sex=:bind2 
+                                where CareCardNo=:bind1", $alltuples);
+            OCICommit($db_conn);
+            $result = executeBoundSQL("select * from patient where carecardno=:bind1", $alltuples);
+            printResult7($result);
+    
+        }
+
+        else if (array_key_exists('deletepatientinfo', $_POST)) {
+             // Delete Patient Query
+                        $tuple = array (
+                ":bind1" => $_POST['carecard16'],
+            );
+            $alltuples = array (
+                $tuple
+            );
+            executeBoundSQL("delete from patient where carecardno = :bind1", $alltuples);
+            OCICommit($db_conn);
+            
+            echo "<br>Patient got deleted</br>";
+   
         } 
            
 
@@ -1005,26 +1414,6 @@
         Default mode is OCI_BOTH.  */
         ?>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            <p>Please select your role in the navigation bar above, then you may seek
-                appropriate information using the side navigation bar</p>
             <!--End page content-->
             <!---->
             <!---->

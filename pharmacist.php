@@ -25,7 +25,7 @@
                     &nbsp;&nbsp;
                     MedRecDb
                 </a>
-            </div>
+			</div>
             <div class="navbar-collapse collapse" id="menu">
                 <ul class="nav navbar-nav">
                     <li><a href="#">Home</a></li>
@@ -48,12 +48,15 @@
     <div id="wrapper">
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
-                <li><a href="#">Query 1: create...</a></li>
-                <li><a href="#">Query 2: create...</a></li>
-                <li><a href="#">Query 3: get...</a></li>
-                <li><a href="#">Query 4: update...</a></li>
-                <li><a href="#">Query 5: get...</a></li>
-                <li><a href="#">Query 6: calculate...</a></li>
+                <li><a href="#">Query 1: List Prescription Record</a></li>
+                <li><a href="#">Query 2: List Drugs In Stock</a></li>
+                <li><a href="#">Query 3: Find Stock Amount</a></li>
+                <li><a href="#">Query 4: Add New Drug</a></li>
+                <li><a href="#">Query 5: Update Stock</a></li>
+                <li><a href="#">Query 6: Set Refills</a></li>
+				<li><a href="#">Query 7: All Outstanding Prescriptions</a></li>
+				<li><a href="#">Query 8: Find Number of Pharmacists with Drugs In Stock</a></li>
+				<li><a href="#">Query 9: Find Drugs Not In Stock</a></li>
             </ul>
         </div>
     </div>
@@ -62,109 +65,205 @@
         <div class="col-xs-12 col-sm-8 col-sm-offset-4" id="content">
             <!---->
             <!--All Page content goes between these Two Lines-->
-            <!--Would be great for an ng-view here-->
+            <!-- Header -->
             <h1> Welcome Pharmacist Fang!</h1>
             <hr/>
-			<p>Please select your role in the navigation bar above, then you may seek
-                appropriate information using the side navigation bar</p>
-			<br>
+
 			
-			<!------------------------------------->
+			<!-------------------------------------->
 			<!----- List Patient Prescription ----->	
-			<!------------------------------------->
-			<p>Enter the patient's Care Card Number to list prescriptions:</p>
-			<p><font size="2">CareCard Number</font></p>
-			<form method="POST" action="pharmacist.php">	<!--refresh page when submit-->
+			<!-------------------------------------->
+			<h2 id="query1">List prescription record (by date):</h2>
+            <form class="form-inline" method="POST" action="pharmacist.php">
 			
-			<p><input type="text" name="CCNpres" size="18">			
-			<input type="submit" value="select" name="selectpres"></p>
+				<div class= "form-group">
+                    <label class="sr-only" for="CCNpres">Patient's Care Card</label>
+                    <input type="text" class="form-control" name="CCNpres" id="CCNpres" placeholder="Patient's Care Card">
+                </div>
 			
-			<br><br>		
+                 <button type="submit" class="btn btn-primary" name="selectpres">Select</button>	
+				 
+            </form>
+            
+            <br/>
+            <hr/>
+            <br/>	
 			
-			<!------------------------------------->
+			<!--------------------------------------->
 			<!----- List In Stock Drugs ----------->	
+			<!--------------------------------------->
+			<h2 id="query2">List of drugs in stock:</h2>
+            <form class="form-inline" method="POST" action="pharmacist.php">
+			
+				<div class= "form-group">
+                    <label class="sr-only" for="pharmno">Pharmacist License</label>
+                    <input type="text" class="form-control" name="pharmno" id="pharmno" placeholder="Pharmacist License">
+                </div>
+			
+                 <button type="submit" class="btn btn-primary" name="selectinstock">Select</button>	
+				 
+            </form>
+            
+            <br/>
+            <hr/>
+            <br/>
+			
+			<!--------------------------------------------->
+			<!----- Find amount of Drug in Stock  ---->	
+			<!--------------------------------------------->
+			<h2 id="query3">Find the amount of drug you have in supply:</h2>
+            <form class="form-inline" method="POST" action="pharmacist.php">
+			
+				<div class= "form-group">
+                    <label class="sr-only" for="pharmacistID2">Pharmacist License</label>
+                    <input type="text" class="form-control" name="pharmacistID2" id="pharmacistID2" placeholder="Pharmacist License">
+                </div>
+			
+				<div class= "form-group">
+                    <label class="sr-only" for="drugID2">Drug ID</label>
+                    <input type="text" class="form-control" name="drugID2" id="drugID2" placeholder="Drug ID">
+                </div>
+				
+                 <button type="submit" class="btn btn-primary" name="selectDrugInStock">Find</button>	
+				 
+            </form>
+            
+            <br/>
+            <hr/>
+            <br/>		
+			
 			<!------------------------------------->
-			<p>Enter pharmacist license number to see list of drugs in stock:</p>
-			<p><font size="2">Pharmacist License</font></p>
-			<form method="POST" action="pharmacist.php">	<!--refresh page when submit-->
-			
-			<p><input type="text" name="pharmno" size="18">			
-			<input type="submit" value="select" name="selectinstock"></p>
-			
-			<br><br>				
-			
+			<!----- Add a new Drug ------------>	
 			<!------------------------------------->
-			<!----- Find amount of Drug in Stock  ->	
-			<!------------------------------------->
-			<p>Find the amount of drug you have in supply:</p>
-			<p><font size="2"> PharmacistID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DrugID</font></p>
-			<form method="POST" action="pharmacist.php">	<!--refresh page when submit-->
+			<h2 id="query4">Add a new drug and stock amount:</h2>
+            <form class="form-inline" method="POST" action="pharmacist.php">
 			
-			<p><input type="text" name="pharmacistID2" size="18">
-			<input type="text" name="drugID2" size="34">
-			<input type="submit" value="Find" name="selectDrugInStock"></p>
+				<div class= "form-group">
+                    <label class="sr-only" for="pharmacistID">Pharmacist License</label>
+                    <input type="text" class="form-control" name="pharmacistID" id="pharmacistID" placeholder="Pharmacist License">
+                </div>
 			
-			<br><br>
-			
-			<!------------------------------------->
-			<!----- Add a new Drug ---------------->	
-			<!------------------------------------->
-			<p>Add a new drug to your storage:</p>
-			<p><font size="2"> PharmacistID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DrugID
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; NumberOfStock</font></p>
-			<form method="POST" action="pharmacist.php">	<!--refresh page when submit-->
-			
-			<p><input type="text" name="pharmacistID" size="18">
-			<input type="text" name="drugID" size="20">
-			<input type="text" name="numberInStock" size="10">
-			<input type="submit" value="Add" name="newDrugAdd"></p>
-			
-			<br><br>
+				<div class= "form-group">
+                    <label class="sr-only" for="drugID">Drug ID</label>
+                    <input type="text" class="form-control" name="drugID" id="drugID" placeholder="Drug ID">
+                </div>
+	
+				<div class= "form-group">
+                    <label class="sr-only" for="numberinStock">Stock Amount</label>
+                    <input type="text" class="form-control" name="numberInStock" id="numberInStock" placeholder="Stock Amount">
+                </div>	
+	
+                 <button type="submit" class="btn btn-primary" name="newDrugAdd">Add</button>	
+				 
+            </form>
+            
+            <br/>
+            <hr/>
+            <br/>			
 			
 			<!------------------------------------------>
-			<!----- Changing Number of Drugs ----------->	
+			<!----- Changing Number of Drugs ----->	
 			<!------------------------------------------>
-			<p>Enter your pharmacist license number, drug ID, and the new stock amount:</p>
-			<p><font size="2"> PharmacistID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DrugID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Number of Stock</font></p>
-			<form method="POST" action="pharmacist.php">	<!--refresh page when submit-->
+			<h2 id="query5">Change the number of drugs in stock:</h2>
+            <form class="form-inline" method="POST" action="pharmacist.php">
 			
-			<p><input type="text" name="chpharmno" size="18">
-			<input type="text" name="chdrugno" size="16">
-			<input type="text" name="chnum" size="10">
-			<input type="submit" value="update" name="updatenum"></p>
+				<div class= "form-group">
+                    <label class="sr-only" for="chpharmno">Pharmacist License</label>
+                    <input type="text" class="form-control" name="chpharmno" id="chpharmno" placeholder="Pharmacist License">
+                </div>
 			
-			<br><br>
-			
+				<div class= "form-group">
+                    <label class="sr-only" for="chdrugno">Drug ID</label>
+                    <input type="text" class="form-control" name="chdrugno" id="chdrugno" placeholder="Drug ID">
+                </div>
+	
+				<div class= "form-group">
+                    <label class="sr-only" for="chnum">New Stock Amount</label>
+                    <input type="text" class="form-control" name="chnum" id="chnum" placeholder="New Stock Amount">
+                </div>	
+	
+                 <button type="submit" class="btn btn-primary" name="updatenum">Update</button>	
+				 
+            </form>
+            
+            <br/>
+            <hr/>
+            <br/>			
+
 			<!------------------------------------->
 			<!----- Set the number of refills------>	
 			<!------------------------------------->
-			<p>Set the number of refills:</p>
-			<p><font size="2"> Prescription ID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; NumberOfRefills</font></p>
-			<form method="POST" action="pharmacist.php">	<!--refresh page when submit-->
+			<h2 id="query6">Set the number of refills:</h2>
+            <form class="form-inline" method="POST" action="pharmacist.php">
 			
-			<p><input type="text" name="prescriptionID" size="18">
-			<input type="text" name="numberOfRefills" size="34">
-			<input type="submit" value="Update" name="setNumberOfRefills"></p>
-	
-			<br><br>
+				<div class= "form-group">
+                    <label class="sr-only" for="prescriptionID">Prescription ID</label>
+                    <input type="text" class="form-control" name="prescriptionID" id="prescriptionID" placeholder="Prescription ID">
+                </div>
+			
+				<div class= "form-group">
+                    <label class="sr-only" for="numberOfRefills">Refills</label>
+                    <input type="text" class="form-control" name="numberOfRefills" id="numberOfRefills" placeholder="Refills">
+                </div>
+				
+                 <button type="submit" class="btn btn-primary" name="setNumberOfRefills">Update</button>	
+				 
+            </form>
+            
+            <br/>
+            <hr/>
+            <br/>			
 
 			<!------------------------------------->
             <!----- Set the number of refills------>
             <!------------------------------------->
-            <p>Get all outstanding prescriptions:</p>
-            <form method="POST" action="pharmacist.php">	<!--refresh page when submit-->
-
-            <p>
-            <input type="submit" value="Get Prescriptions" name="getAllOutstandingPres"></p>
-
-            <br><br>
-
+			<h2 id="query7">Get all outstanding prescriptions:</h2>
+            <form class="form-inline" method="POST" action="pharmacist.php">			
 			
-			<!----------------------------->
+				<button type="submit" class="btn btn-primary" name="getAllOutstandingPres">Get Prescription</button>
+			
+			</form>
+            
+            <br/>
+            <hr/>
+            <br/>
+			
+			<!-------------------------------------------------------->
+            <!----- Find number of pharmacists with drug ------>
+            <!-------------------------------------------------------->
+			<h2 id="query8">Find number of pharmacists with each drug in stock:</h2>
+            <form class="form-inline" method="POST" action="pharmacist.php">			
+			
+                 <button type="submit" class="btn btn-primary" name="findNumPharm">Find</button>	
+
+			</form>
+            
+            <br/>
+            <hr/>
+            <br/>
+			
+			<!------------------------------------------------------>
+            <!----- List of drugs you don't have in stock ------>
+            <!------------------------------------------------------>
+			<h2 id="query9">List of drugs not in stock:</h2>
+            <form class="form-inline" method="POST" action="pharmacist.php">			
+	
+				<div class= "form-group">
+                    <label class="sr-only" for="pharmno2">Pharmacist License</label>
+                    <input type="text" class="form-control" name="pharmno2" id="pharmno2" placeholder="Pharmacist License">
+                </div>
+	
+				<button type="submit" class="btn btn-primary" name="getNotInStock">List</button>
+			
+			</form>
+            
+            <br/>
+            <hr/>
+            <br/>
+			
+			<!-------------------------------->
 			<!--------- BEGIN PHP --------->	
-			<!----------------------------->
+			<!-------------------------------->
 			
 			<?php
 
@@ -319,6 +418,34 @@
 		
 		
 	}
+	
+	//Print function for DRUG and NUMBER OR PHARMACISTS
+	function printResultNumPharm($result) { //prints results from a select statement
+		echo "<br>The following drugs are available at this many pharmacists:<br>";
+		echo "<table>";
+		echo "<tr><th>Drug Name</th><th>Number of Pharmacists</th></tr>";
+	
+		while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
+			echo "<tr><td>" . $row["NAME"] . "</td><td>" . $row["COUNT(*)"] . "</td></tr>"; //or just use "echo $row[0]" 
+		}
+		echo "</table>";
+		
+		
+	}
+	
+	//Print function for DRUG and COMPANY
+	function printResultDrugComp($result) { //prints results from a select statement
+		echo "<br>These are the drugs that you do not have in stock:<br>";
+		echo "<table>";
+		echo "<tr><th>Drug Name</th><th>Company Name</th></tr>";
+	
+		while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
+			echo "<tr><td>" . $row["NAME"] . "</td><td>" . $row["COMPANY"] . "</td></tr>"; //or just use "echo $row[0]" 
+		}
+		echo "</table>";
+		
+		
+	}
 		
 		// Connect Oracle...
 	if ($db_conn) {
@@ -447,6 +574,38 @@
                                         where p.DIN = d.DIN and p.refills > 0
                                         order by p.dateprescribed desc", $alltuples);
                 printResultPres($result);
+
+		} else //find number of pharmacists with each drug
+            if (array_key_exists('findNumPharm', $_POST)) {
+                $tuple = array (
+
+                );
+                $alltuples = array (
+                    $tuple
+                );
+
+               $result = executeBoundSQL("select d.name, count(*)
+																		from drug d, hasinstock h
+																		where d.din = h.din
+																		group by d.name", $alltuples);
+                printResultNumPharm($result);
+
+		} else //find drugs that are not in stock
+			if (array_key_exists('getNotInStock', $_POST)) {
+				$tuple = array (
+					":bind1" => $_POST['pharmno2']
+				);
+				$alltuples = array (
+					$tuple
+				);
+				
+				$result = executeBoundSQL("select d2.name, d2.company
+													from drug d2
+													where d2.din not in (select d.din
+																					from drug d, hasinstock h, pharmacist p
+																					where d.din = h.din and p.licenseno = h.licenseno
+																					and p.licenseno = :bind1)", $alltuples);
+				printResultDrugComp($result);
 
         }
 			
