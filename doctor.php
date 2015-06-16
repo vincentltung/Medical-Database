@@ -81,7 +81,7 @@
 	
             <h2 id="query7">Create a User Medical Record
                 <small>If you do not have an electronic medical record yet, please create one for yourself in the following form</small></h2>
-                <form class="form-horizontal" method="POST" action="patient.php">
+                <form class="form-horizontal" method="POST" action="doctor.php">
                     <div class="form-group">
                         <label class="col-xs-2" for="insName">Name </label>
                         <div class="col-xs-10">
@@ -1090,7 +1090,7 @@
             );
             executeBoundSQL("insert into patient values (:bind1, :bind2, :bind3, :bind4, :bind5)", $alltuples);
             OCICommit($db_conn);
-            $result = executeBoundSQL("select * from patient where carecardno=:bind1", $alltuples);
+            $result = executeBoundSQL("select * from patient where carecardno=:bind5", $alltuples);
             printResult7($result);
         } 
 

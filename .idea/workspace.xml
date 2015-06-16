@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c17c28b6-cc49-419b-b235-da3f1e4d0782" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/patient.php" afterPath="$PROJECT_DIR$/patient.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doctor.php" afterPath="$PROJECT_DIR$/doctor.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="CS304-Project.iws" />
@@ -53,21 +53,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="patient.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="patient.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/patient.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6631098" vertical-offset="390" max-vertical-offset="9390">
-              <caret line="55" column="42" selection-start-line="0" selection-start-column="0" selection-end-line="620" selection-end-column="7" />
+            <state vertical-scroll-proportion="-6.6666665" vertical-offset="7380" max-vertical-offset="9390">
+              <caret line="504" column="36" selection-start-line="504" selection-start-column="36" selection-end-line="504" selection-end-column="36" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="doctor.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="doctor.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/doctor.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-7.6296296" vertical-offset="3619" max-vertical-offset="15735">
-              <caret line="255" column="12" selection-start-line="255" selection-start-column="12" selection-end-line="255" selection-end-column="12" />
+            <state vertical-scroll-proportion="0.5152439" vertical-offset="9397" max-vertical-offset="21300">
+              <caret line="649" column="16" selection-start-line="649" selection-start-column="16" selection-end-line="649" selection-end-column="16" />
               <folding />
             </state>
           </provider>
@@ -76,58 +76,9 @@
       <file leaf-file-name="pharmacist.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pharmacist.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-4.296296" vertical-offset="7279" max-vertical-offset="7935">
-              <caret line="493" column="69" selection-start-line="493" selection-start-column="69" selection-end-line="493" selection-end-column="69" />
+            <state vertical-scroll-proportion="216.81482" vertical-offset="6874" max-vertical-offset="10320">
+              <caret line="68" column="34" selection-start-line="68" selection-start-column="34" selection-end-line="68" selection-end-column="34" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/README.md">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="420">
-              <caret line="22" column="30" selection-start-line="22" selection-start-column="30" selection-end-line="22" selection-end-column="30" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="pharmacist.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pharmacist.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-15.583333" vertical-offset="616" max-vertical-offset="1380">
-              <caret line="66" column="40" selection-start-line="66" selection-start-column="40" selection-end-line="66" selection-end-column="40" />
-              <folding>
-                <element signature="n#style#0;n#span#0;n#a#0;n#div#0;n#div#0;n#nav#0;n#header#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#a#0;n#li#1;n#ul#0;n#div#1;n#div#0;n#nav#0;n#header#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="nurse.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/nurse.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-11.208333" vertical-offset="721" max-vertical-offset="1380">
-              <caret line="66" column="35" selection-start-line="66" selection-start-column="35" selection-end-line="66" selection-end-column="35" />
-              <folding>
-                <element signature="n#style#0;n#span#0;n#a#0;n#div#0;n#div#0;n#nav#0;n#header#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#a#0;n#li#1;n#ul#0;n#div#1;n#div#0;n#nav#0;n#header#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="patient.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/patient.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-25.0" vertical-offset="0" max-vertical-offset="1380">
-              <caret line="40" column="30" selection-start-line="40" selection-start-column="30" selection-end-line="40" selection-end-column="30" />
-              <folding>
-                <element signature="n#style#0;n#span#0;n#a#0;n#div#0;n#div#0;n#nav#0;n#header#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#a#0;n#li#1;n#ul#0;n#div#1;n#div#0;n#nav#0;n#header#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -135,8 +86,8 @@
       <file leaf-file-name="custom.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/css/custom.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1327" max-vertical-offset="2055">
-              <caret line="119" column="5" selection-start-line="119" selection-start-column="5" selection-end-line="119" selection-end-column="5" />
+            <state vertical-scroll-proportion="-15.0" vertical-offset="525" max-vertical-offset="2055">
+              <caret line="62" column="19" selection-start-line="62" selection-start-column="19" selection-end-line="62" selection-end-column="19" />
               <folding />
             </state>
           </provider>
@@ -150,14 +101,14 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/css/custom.css" />
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/doctor.html" />
         <option value="$PROJECT_DIR$/pharmacist.html" />
         <option value="$PROJECT_DIR$/nurse.html" />
+        <option value="$PROJECT_DIR$/css/custom.css" />
         <option value="$PROJECT_DIR$/patient.html" />
-        <option value="$PROJECT_DIR$/doctor.php" />
         <option value="$PROJECT_DIR$/patient.php" />
+        <option value="$PROJECT_DIR$/doctor.php" />
       </list>
     </option>
   </component>
@@ -358,17 +309,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pharmacist.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-15.583333" vertical-offset="616" max-vertical-offset="1380">
-          <caret line="66" column="40" selection-start-line="66" selection-start-column="40" selection-end-line="66" selection-end-column="40" />
-          <folding>
-            <element signature="n#style#0;n#span#0;n#a#0;n#div#0;n#div#0;n#nav#0;n#header#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#a#0;n#li#1;n#ul#0;n#div#1;n#div#0;n#nav#0;n#header#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/nurse.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-11.208333" vertical-offset="721" max-vertical-offset="1380">
@@ -377,25 +317,6 @@
             <element signature="n#style#0;n#span#0;n#a#0;n#div#0;n#div#0;n#nav#0;n#header#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#a#0;n#li#1;n#ul#0;n#div#1;n#div#0;n#nav#0;n#header#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/patient.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-25.0" vertical-offset="0" max-vertical-offset="1380">
-          <caret line="40" column="30" selection-start-line="40" selection-start-column="30" selection-end-line="40" selection-end-column="30" />
-          <folding>
-            <element signature="n#style#0;n#span#0;n#a#0;n#div#0;n#div#0;n#nav#0;n#header#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#a#0;n#li#1;n#ul#0;n#div#1;n#div#0;n#nav#0;n#header#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="420">
-          <caret line="22" column="30" selection-start-line="22" selection-start-column="30" selection-end-line="22" selection-end-column="30" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -412,32 +333,62 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/css/custom.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1327" max-vertical-offset="2055">
-          <caret line="119" column="5" selection-start-line="119" selection-start-column="5" selection-end-line="119" selection-end-column="5" />
+        <state vertical-scroll-proportion="-15.0" vertical-offset="525" max-vertical-offset="2055">
+          <caret line="62" column="19" selection-start-line="62" selection-start-column="19" selection-end-line="62" selection-end-column="19" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pharmacist.php">
+    <entry file="file://$PROJECT_DIR$/patient.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.296296" vertical-offset="7279" max-vertical-offset="7935">
-          <caret line="493" column="69" selection-start-line="493" selection-start-column="69" selection-end-line="493" selection-end-column="69" />
-          <folding />
+        <state vertical-scroll-proportion="0.25037935" vertical-offset="0" max-vertical-offset="1380">
+          <caret line="11" column="54" selection-start-line="11" selection-start-column="54" selection-end-line="11" selection-end-column="54" />
+          <folding>
+            <element signature="n#style#0;n#span#0;n#a#0;n#div#0;n#div#0;n#nav#0;n#header#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#li#1;n#ul#0;n#div#1;n#div#0;n#nav#0;n#header#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/doctor.php">
+    <entry file="file://$PROJECT_DIR$/pharmacist.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.6296296" vertical-offset="3619" max-vertical-offset="15735">
-          <caret line="255" column="12" selection-start-line="255" selection-start-column="12" selection-end-line="255" selection-end-column="12" />
+        <state vertical-scroll-proportion="0.5675266" vertical-offset="616" max-vertical-offset="1380">
+          <caret line="66" column="40" selection-start-line="66" selection-start-column="40" selection-end-line="66" selection-end-column="40" />
+          <folding>
+            <element signature="n#style#0;n#span#0;n#a#0;n#div#0;n#div#0;n#nav#0;n#header#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#li#1;n#ul#0;n#div#1;n#div#0;n#nav#0;n#header#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.50151974" vertical-offset="0" max-vertical-offset="658">
+          <caret line="22" column="30" selection-start-line="22" selection-start-column="30" selection-end-line="22" selection-end-column="30" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/patient.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6631098" vertical-offset="390" max-vertical-offset="9390">
-          <caret line="55" column="42" selection-start-line="0" selection-start-column="0" selection-end-line="620" selection-end-column="7" />
+        <state vertical-scroll-proportion="-6.6666665" vertical-offset="7380" max-vertical-offset="9390">
+          <caret line="504" column="36" selection-start-line="504" selection-start-column="36" selection-end-line="504" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pharmacist.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="216.81482" vertical-offset="6874" max-vertical-offset="10320">
+          <caret line="68" column="34" selection-start-line="68" selection-start-column="34" selection-end-line="68" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/doctor.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5152439" vertical-offset="9397" max-vertical-offset="21300">
+          <caret line="649" column="16" selection-start-line="649" selection-start-column="16" selection-end-line="649" selection-end-column="16" />
           <folding />
         </state>
       </provider>
