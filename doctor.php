@@ -48,15 +48,18 @@
     <div id="wrapper">
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
-                <li><a href="#">Query 1: Input Exam Results</a></li>
-                <li><a href="#">Query 2: Move Patient</a></li>
-                <li><a href="#">Query 3: Change Doctors Specialty</a></li>
-                <li><a href="#">Query 4: Change Nurses Ward</a></li>
-                <li><a href="#">Query 5: New prescription</a></li>
-                <li><a href="#">Query 6: Schedule Medical Exam</a></li>
-                <li><a href="#">Query 7: Create New Medical Record</a></li>
-                <li><a href="#">Query 8: Create New Relationship</a></li>
-                <li><a href="#">Query 9: Find Hospitals list of patients</a></li>
+                <li><a href="#">Query 1: Create New Medical Record</a></li>
+                <li><a href="#">Query 2: Patient Information</a></li>
+                <li><a href="#">Query 3: Move Patient Into a New Room</a></li>
+                <li><a href="#">Query 4: Schedule a Medical Exam</a></li>
+                <li><a href="#">Query 5: Input Results of a Medical Exam</a></li>
+                <li><a href="#">Query 6: Make a new Prescription</a></li>
+                <li><a href="#">Query 7: Assign a Regular Doctor</a></li>
+                <li><a href="#">Query 8: Find Information about a Hospital</a></li>
+                <li><a href="#">Query 9: Find Patients in a Room</a></li>
+                <li><a href="#">Query 10: Change Doctors Specialty</a></li>
+                <li><a href="#">Query 11: Change Nurses Ward</a></li>
+                <li><a href="#">Query 12: Find Past Prescriptions</a></li>
             </ul>
         </div>
     </div>
@@ -71,278 +74,14 @@
 
 
 
-                <!-- Insert Form -->
-
-    <!-- Update Form 1 (update medical exam results)-->  
-
-            <h2 id="query1"> Input Results of a Medical Exam 
-                <small>To be inputted by the doctor who administered the exam</small></h2>
-            <form class="form-inline" method="POST" action="doctor.php">
-            <!--refresh page when submit-->
-
-                <div class= "form-group">
-                    <label class="sr-only" for="carecard1">Patients Care Card</label>
-                    <input type="text" class="form-control" name="carecard1" id="carecard1" placeholder="Patients Care Card">
-                </div>
-
-                <div class= "form-group">
-                    <label class="sr-only" for="doctorid1">HealthCareID</label>
-                    <input type="text" class="form-control" name="doctorid1" id="doctorid1" placeholder="Doctor ID">
-                </div>
-
-                <div class= "form-group">
-                    <label class="sr-only" for="resultstatement">Result</label>
-                    <input type="text" class="form-control" name="resultstatement" id="resultstatement" placeholder="Result">
-                </div>
-
-                 <button type="submit" class="btn btn-primary" name="updateresult">Update</button>
-            </form>
-            
-            <br/>
-            <hr/>
-            <br/>
-
-    
-    <!-- Update Form 2 (Move Patient to new room)-->  
-
-            <h2 id="query2"> Move Patient into a new room: </h2>
-
-            <form class="form-horizontal" method="POST" action="doctor.php">
-
-                <div class= "form-group">
-                    <label class="col-xs-2" for="carecard2">Patient Carecard</label>
-                    <div class="col-xs-10">
-                    <input type="text" class="form-control" name="carecard2" id="carecard2" placeholder="Patients Care Card">
-                </div>
-                </div>
-
-                <div class= "form-group">
-                    <label class="col-xs-2" for="address2">Address</label>
-                    <div class="col-xs-10">
-                    <input type="text" class="form-control" name="address2" id="address2" placeholder="Address">
-                </div>
-                </div>
-                
-                <div class= "form-group">
-                    <label class="col-xs-2" for="date2">Date</label>
-                    <div class="col-xs-10">
-                    <input type="date" class="form-control" name="date2" id="date2">
-                </div>
-                </div>
-
-                <div class= "form-group">
-                    <label class="col-xs-2" for="time2">Time</label>
-                    <div class="col-xs-10">
-                    <input type="time" class="form-control" name="time2" id="time2">
-                </div>
-                </div>
-
-                <div class= "form-group">
-                    <label class="col-xs-2" for="roomno2">Room Number</label>
-                    <div class="col-xs-10">
-                    <input type="text" class="form-control" name="roomno2" id="roomno2" placeholder="Room Number">
-                </div>
-            </div>
-
-                <div class= "form-group">
-                    <label class="col-xs-2" for="reason2">Reason</label>
-                    <div class="col-xs-10">
-                    <input type="text" class="form-control" name="reason2" id="reason2" placeholder="Reason">
-                </div>
-            </div>
-            
-            <div class="col-xs-10 col-xs-offset-2">
-                    <button type="submit" class="btn btn-primary" name="insertroom">Change</button>
-            </div>
-            </form>
-            
-            <br/>
-            <hr/>
-            <br/>
-    
-    <!-- Update Form 3 (update doctors specialty)-->  
-
-            <h2 id="query3"> Change a doctors specialty: </h2>
-
-            <form class="form-inline" method="POST" action="doctor.php">
-
-                <div class= "form-group">
-                    <label class="sr-only" for="doctorid3">Doctor ID</label>
-                    <input type="text" class="form-control" name="doctorid3" id="doctorid3" placeholder="Doctor ID">
-                </div>
-
-                <div class= "form-group">
-                    <label class="sr-only" for="specialty3">New Specialty</label>
-                    <input type="text" class="form-control" name="specialty3" id="specialty3" placeholder="New Specialty">
-                </div>
-
-                    <button type="submit" class="btn btn-primary" name="updatedoctor">Change</button>
-            </form>
-            
-            <br/>
-            <hr/>
-            <br/>
-    <!-- Update Form 4 (update nurses ward)-->  
-
-            <h2 id="query4"> Change a nurses ward: </h2>
-
-            <form class="form-inline" method="POST" action="doctor.php">
-                
-                <div class= "form-group">
-                    <label class="sr-only" for="nurseid4">Nurse ID</label>
-                    <input type="text" class="form-control" name="nurseid4" id="nurseid4" placeholder="Nurse ID">
-                </div>
-
-                <div class= "form-group">
-                    <label class="sr-only" for="ward4">New Ward</label>
-                    <input type="text" class="form-control" name="ward4" id="ward4" placeholder="New Ward">
-                </div>
-
-                    <button type="submit" class="btn btn-primary" name="updatenurse">Change</button>
-            </form>
-            
-            <br/>
-            <hr/>
-            <br/>
-
-   <!-- insert Form 5 (insert new prescription)-->  
-
-            <h2 id="query5"> New prescription: </h2>
-            
-            <form class= "form-horizontal" method="POST" action="doctor.php">  
-                
-                <div class="form-group">
-                    <label class="col-xs-2" for="prescriptionid5">Prescription ID </label>
-                    <div class="col-xs-10">
-                        <input type="text" class="form-control" name="prescriptionid5" id="prescriptionid5" />
-                    </div>
-                </div> 
-
-                <div class="form-group">
-                    <label class="col-xs-2" for="date5">Date </label>
-                    <div class="col-xs-10">
-                        <input type="date" class="form-control" name="date5" id="date5" />
-                    </div>
-                </div>        
-
-                <div class="form-group">
-                    <label class="col-xs-2" for="refills5">Number of Refills </label>
-                    <div class="col-xs-10">
-                        <input type="text" class="form-control" name="refills5" id="refills5" />
-                    </div>
-                </div> 
-
-                <div class="form-group">
-                    <label class="col-xs-2" for="totaldays5">Total Days </label>
-                    <div class="col-xs-10">
-                        <input type="text" class="form-control" name="totaldays5" id="totaldays5" />
-                    </div>
-                </div> 
-
-                <div class="form-group">
-                    <label class="col-xs-2" for="timesperday5">Times per Day </label>
-                    <div class="col-xs-10">
-                        <input type="text" class="form-control" name="timesperday5" id="timesperday5" />
-                    </div>
-                </div> 
-
-                <div class="form-group">
-                    <label class="col-xs-2" for="dose5">Dose </label>
-                    <div class="col-xs-10">
-                        <input type="text" class="form-control" name="dose5" id="dose5" />
-                    </div>
-                </div> 
-
-                <div class="form-group">
-                    <label class="col-xs-2" for="din5">Drug ID </label>
-                    <div class="col-xs-10">
-                        <input type="text" class="form-control" name="din5" id="din5" />
-                    </div>
-                </div> 
-
-                <div class="form-group">
-                    <label class="col-xs-2" for="carecard5">Patient Care Card </label>
-                    <div class="col-xs-10">
-                        <input type="text" class="form-control" name="carecard5" id="carecard5" />
-                    </div>
-                </div> 
-
-                <div class="form-group">
-                    <label class="col-xs-2" for="doctorid5">Doctor ID </label>
-                    <div class="col-xs-10">
-                        <input type="text" class="form-control" name="doctorid5" id="doctorid5" />
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="col-xs-2" for="licenseno5">License Number </label>
-                    <div class="col-xs-10">
-                        <input type="text" class="form-control" name="licenseno5" id="licenseno5" />
-                    </div>
-                </div> 
-
-                 <div class="col-xs-10 col-xs-offset-2">
-                        <button type="submit" class="btn btn-primary" name="createprescription">Create New Prescription</button>
-                    </div>
-                </form>
-            
-            <br/>
-            <hr/>
-            <br/>
-
-    <!-- Insert Form 6 (insert new exam)-->  
-
-            <h2 id="query6"> Schedule a Medical Exam: </h2>
-
-            <form class="form-horizontal" method="POST" action="doctor.php">
-
-                    <div class="form-group">
-                        <label class="col-xs-2" for="examtype6">Type of Exam </label>
-                        <div class="col-xs-10">
-                            <input type="text" class="form-control" name="examtype6" id="examtype6" placeholder="Exam Type" />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-xs-2" for="carecard6">Patients Care Card </label>
-                        <div class="col-xs-10">
-                            <input type="text" class="form-control" name="carecard6" id="carecard6" placeholder="Patients Care Card" />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-xs-2" for="date6">Date </label>
-                        <div class="col-xs-10">
-                            <input type="date" class="form-control" name="date6" id="date6" />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-xs-2" for="time6">Time </label>
-                        <div class="col-xs-10">
-                            <input type="time" class="form-control" name="time6" id="time6" />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-xs-2" for="doctorid6">Doctor ID </label>
-                        <div class="col-xs-10">
-                            <input type="text" class="form-control" name="doctorid6" id="doctorid6" placeholder="Doctor ID" />
-                        </div>
-                    </div>
-
-                    <!--refresh page when submit-->
-                    <div class="col-xs-10 col-xs-offset-2">
-                        <button type="submit" class="btn btn-primary" name="createmedexam">Create New Medical Exam </button>
-                    </div>
-                </form>
-            
-            <br/>
-            <hr/>
-            <br/>
-
-
+<!-- Insert Form -->
+	<!---------------------------------------------------------------->
     <!-- Insert Form 7 (insert new patient)-->  
-
+	<!---------------------------------------------------------------->
+	
             <h2 id="query7">Create a User Medical Record
                 <small>If you do not have an electronic medical record yet, please create one for yourself in the following form</small></h2>
-                <form class="form-horizontal" method="POST" action="doctor.php">
+                <form class="form-horizontal" method="POST" action="patient.php">
                     <div class="form-group">
                         <label class="col-xs-2" for="insName">Name </label>
                         <div class="col-xs-10">
@@ -383,154 +122,11 @@
             <br/>
             <hr/>
             <br/>
-
-    <!-- Insert Form 8 (insert new seesreg)-->  
-
-            <h2 id="query8"> Assign a Regular Doctor </h2>
-            
-            <form class="form-inline" method="POST" action="doctor.php">
-            
-            <div class= "form-group">
-                <label class="sr-only" for="date8">Date</label>
-                <input type="date" class="form-control" name="date8" id="date8">
-            </div>
-
-            <div class= "form-group">
-                <label class="sr-only" for="carecard8">Patients Care Card</label>
-                <input type="text" class="form-control" name="carecard8" id="carecard8" placeholder="Patients Care Card">
-            </div>
-
-            <div class= "form-group">
-                <label class="sr-only" for="doctorid8">Doctor ID</label>
-                <input type="text" class="form-control" name="doctorid8" id="doctorid8" placeholder="Doctor ID">
-            </div>
-
-            <button type="submit" class="btn btn-primary" name="createseesreg">Record </button>
-
-            </form>
-            
-            <br/>
-            <hr/>
-            <br/>   
-
-    <!-- select Form 12 (select a room, find patients)-->  
-
-            <h2 id="query12"> Find patients in a room: </h2>
-
-            <form class="form-inline" method="POST" action="doctor.php">
-            
-            <div class= "form-group">
-                <label class="sr-only" for="date12">Date</label>
-                <input type="date" class="form-control" name="date12" id="date12">
-            </div>
-
-            <div class= "form-group">
-                <label class="sr-only" for="hname12">Hospital Name</label>
-                <input type="text" class="form-control" name="hname12" id="hname12" placeholder="Hospital Name">
-            </div>
-
-            <div class= "form-group">
-                <label class="sr-only" for="roomno12">Room Number</label>
-                <input type="text" class="form-control" name="roomno12" id="roomno12" placeholder="Room Number">
-            </div>
-            
-            <button type="submit" class="btn btn-primary" name="findpplinroom">Find</button>
-
-            </form>
-            
-            <br/>
-            <hr/>
-            <br/> 
-    <!-- select Form 13 (select past prescriptions DOCTORS ONLY)-->  
-
-            <h2 id="query13"> Find past prescriptions: </h2>
-            
-            <form class="form-inline" method="POST" action="doctor.php">
-            
-            <div class= "form-group">
-                <label class="sr-only" for="doctorid13">Doctor ID</label>
-                <input type="text" class="form-control" name="doctorid13" id="doctorid13" placeholder="Doctor ID">
-            </div>
-            
-            <button type="submit" class="btn btn-primary" name="finddoctorsprescription">Search</button>
-
-            </form>
-            
-            <br/>
-            <hr/>
-            <br/>
-   
-    <!-- select Form 14 (select medical professionals in a hospital)-->  
-
-            <h2 id="query14"> Find Information about the Hospital: </h2>
-
-            <form class="form-horizontal" method="POST" action="doctor.php">
-            
-            <div class= "form-group">
-                <label class="sr-only" for="hname14">Hospital Name</label>
-                <input type="text" class="form-control" name="hname14" id="hname14" placeholder="Hospital Name">
-            </div>
-
-            <div class="form-inline">
-                <div class="form-group">
-                    <div class="col-xs-10">
-                    <button type="submit" class="btn btn-primary" name="findmedicalpeople">Find All Medical Professionals</button>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="col-xs-10">
-                    <button type="submit" class="btn btn-primary" name="findstays">Find Everyone Who Stayed Here</button>
-                    </div>
-                </div>
-            </div>
-
-            </form>
-            
-            <br/>
-            <hr/>
-            <br/>
-
-    <!-- select Form 9 (select people who stayed at a hospital) 
-
-            <h2 id="query9"> Find People who have Stayed in a Hospital: </h2>
-            
-            <form class="form-inline" method="POST" action="doctor.php">
-            
-            <div class= "form-group">
-                <label class="sr-only" for="hname9">Hospital Name</label>
-                <input type="text" class="form-control" name="hname9" id="hname9" placeholder="Hospital Name">
-            </div>
-            
-            <button type="submit" class="btn btn-primary" name="findstays">Find people</button>
-
-            </form>
-            
-            <br/>
-            <hr/>
-            <br/>--> 
-
-    <!-- select Form 15 (select patient info: personal info, prescriptions, medical exams, hospital stays)
-
-            <h2 id="query15"> Find Patients Information: </h2>
-
-            <form class="form-inline" method="POST" action="doctor.php">
-            
-            <div class= "form-group">
-                <label class="sr-only" for="carecard15">Patients Care Card</label>
-                <input type="text" class="form-control" name="carecard15" id="carecard15" placeholder="Patients Care Card">
-            </div>
-            
-            <button type="submit" class="btn btn-primary" name="findpatientsinfo">Search</button>
-
-            </form>
-            
-            <br/>
-            <hr/>
-            <br/>-->
-
+			
+	<!---------------------------------------------------------------->
     <!-- select Form 16 (select patient info: personal info, prescriptions, medical exams, hospital stays)-->  
-
+	<!---------------------------------------------------------------->
+	
             <h2 id="query16"> Patient Information: </h2>
 
             <form class="form-horizontal" method="POST" action="doctor.php">
@@ -623,61 +219,421 @@
             <br/>
             <hr/>
             <br/>
+			
+	<!---------------------------------------------------------------->
+    <!-- Update Form 2 (Move Patient to new room)-->  
+	<!---------------------------------------------------------------->
+	
+            <h2 id="query2"> Move Patient into a new room: </h2>
 
+            <form class="form-horizontal" method="POST" action="doctor.php">
 
-    <!-- select Form 10 (select patients prescription)  
+                <div class= "form-group">
+                    <label class="col-xs-2" for="carecard2">Patient Carecard</label>
+                    <div class="col-xs-10">
+                    <input type="text" class="form-control" name="carecard2" id="carecard2" placeholder="Patients Care Card">
+                </div>
+                </div>
 
-            <h2 id="query10"> Find patients prescription: </h2>
+                <div class= "form-group">
+                    <label class="col-xs-2" for="address2">Address</label>
+                    <div class="col-xs-10">
+                    <input type="text" class="form-control" name="address2" id="address2" placeholder="Address">
+                </div>
+                </div>
+                
+                <div class= "form-group">
+                    <label class="col-xs-2" for="date2">Date</label>
+                    <div class="col-xs-10">
+                    <input type="date" class="form-control" name="date2" id="date2">
+                </div>
+                </div>
 
-             <form class="form-inline" method="POST" action="doctor.php">
-            
-            <div class= "form-group">
-                <label class="sr-only" for="carecard10">Patients Care Card</label>
-                <input type="text" class="form-control" name="carecard10" id="carecard10" placeholder="Patients Care Card">
+                <div class= "form-group">
+                    <label class="col-xs-2" for="time2">Time</label>
+                    <div class="col-xs-10">
+                    <input type="time" class="form-control" name="time2" id="time2">
+                </div>
+                </div>
+
+                <div class= "form-group">
+                    <label class="col-xs-2" for="roomno2">Room Number</label>
+                    <div class="col-xs-10">
+                    <input type="text" class="form-control" name="roomno2" id="roomno2" placeholder="Room Number">
+                </div>
+            </div>
+
+                <div class= "form-group">
+                    <label class="col-xs-2" for="reason2">Reason</label>
+                    <div class="col-xs-10">
+                    <input type="text" class="form-control" name="reason2" id="reason2" placeholder="Reason">
+                </div>
             </div>
             
-            <button type="submit" class="btn btn-primary" name="findprescriptions">Search</button>
-
+            <div class="col-xs-10 col-xs-offset-2">
+                    <button type="submit" class="btn btn-primary" name="insertroom">Change</button>
+            </div>
             </form>
             
             <br/>
             <hr/>
-            <br/>-->
+            <br/>
+			
+	<!---------------------------------------------------------------->    
+    <!-- Insert Form 6 (insert new exam)-->  
+	<!---------------------------------------------------------------->
+	
+            <h2 id="query6"> Schedule a Medical Exam: </h2>
 
-    <!-- select Form 11 (select past medical exams) 
+            <form class="form-horizontal" method="POST" action="doctor.php">
 
-            <h2 id="query11"> Find patients medical exams: </h2>
-           
+                    <div class="form-group">
+                        <label class="col-xs-2" for="examtype6">Type of Exam </label>
+                        <div class="col-xs-10">
+                            <input type="text" class="form-control" name="examtype6" id="examtype6" placeholder="Exam Type" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-2" for="carecard6">Patients Care Card </label>
+                        <div class="col-xs-10">
+                            <input type="text" class="form-control" name="carecard6" id="carecard6" placeholder="Patients Care Card" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-2" for="date6">Date </label>
+                        <div class="col-xs-10">
+                            <input type="date" class="form-control" name="date6" id="date6" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-2" for="time6">Time </label>
+                        <div class="col-xs-10">
+                            <input type="time" class="form-control" name="time6" id="time6" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-2" for="doctorid6">Doctor ID </label>
+                        <div class="col-xs-10">
+                            <input type="text" class="form-control" name="doctorid6" id="doctorid6" placeholder="Doctor ID" />
+                        </div>
+                    </div>
+
+                    <!--refresh page when submit-->
+                    <div class="col-xs-10 col-xs-offset-2">
+                        <button type="submit" class="btn btn-primary" name="createmedexam">Create New Medical Exam </button>
+                    </div>
+                </form>
+            
+            <br/>
+            <hr/>
+            <br/>
+			
+	<!---------------------------------------------------------------->
+    <!-- Update Form 1 (update medical exam results)-->  
+	<!---------------------------------------------------------------->
+	
+            <h2 id="query1"> Input Results of a Medical Exam 
+                <small>To be inputted by the doctor who administered the exam</small></h2>
+            <form class="form-inline" method="POST" action="doctor.php">
+            <!--refresh page when submit-->
+
+                <div class= "form-group">
+                    <label class="sr-only" for="carecard1">Patients Care Card</label>
+                    <input type="text" class="form-control" name="carecard1" id="carecard1" placeholder="Patients Care Card">
+                </div>
+
+                <div class= "form-group">
+                    <label class="sr-only" for="doctorid1">HealthCareID</label>
+                    <input type="text" class="form-control" name="doctorid1" id="doctorid1" placeholder="Doctor ID">
+                </div>
+
+                <div class= "form-group">
+                    <label class="sr-only" for="resultstatement">Result</label>
+                    <input type="text" class="form-control" name="resultstatement" id="resultstatement" placeholder="Result">
+                </div>
+
+                 <button type="submit" class="btn btn-primary" name="updateresult">Update</button>
+            </form>
+            
+            <br/>
+            <hr/>
+            <br/>
+			
+	<!---------------------------------------------------------------->
+    <!-- insert Form 5 (insert new prescription)-->  
+	<!---------------------------------------------------------------->
+	
+            <h2 id="query5"> New prescription: </h2>
+            
+            <form class= "form-horizontal" method="POST" action="doctor.php">  
+                
+                <div class="form-group">
+                    <label class="col-xs-2" for="prescriptionid5">Prescription ID </label>
+                    <div class="col-xs-10">
+                        <input type="text" class="form-control" name="prescriptionid5" id="prescriptionid5" />
+                    </div>
+                </div> 
+
+                <div class="form-group">
+                    <label class="col-xs-2" for="date5">Date </label>
+                    <div class="col-xs-10">
+                        <input type="date" class="form-control" name="date5" id="date5" />
+                    </div>
+                </div>        
+
+                <div class="form-group">
+                    <label class="col-xs-2" for="refills5">Number of Refills </label>
+                    <div class="col-xs-10">
+                        <input type="text" class="form-control" name="refills5" id="refills5" />
+                    </div>
+                </div> 
+
+                <div class="form-group">
+                    <label class="col-xs-2" for="totaldays5">Total Days </label>
+                    <div class="col-xs-10">
+                        <input type="text" class="form-control" name="totaldays5" id="totaldays5" />
+                    </div>
+                </div> 
+
+                <div class="form-group">
+                    <label class="col-xs-2" for="timesperday5">Times per Day </label>
+                    <div class="col-xs-10">
+                        <input type="text" class="form-control" name="timesperday5" id="timesperday5" />
+                    </div>
+                </div> 
+
+                <div class="form-group">
+                    <label class="col-xs-2" for="dose5">Dose </label>
+                    <div class="col-xs-10">
+                        <input type="text" class="form-control" name="dose5" id="dose5" />
+                    </div>
+                </div> 
+
+                <div class="form-group">
+                    <label class="col-xs-2" for="din5">Drug ID </label>
+                    <div class="col-xs-10">
+                        <input type="text" class="form-control" name="din5" id="din5" />
+                    </div>
+                </div> 
+
+                <div class="form-group">
+                    <label class="col-xs-2" for="carecard5">Patient Care Card </label>
+                    <div class="col-xs-10">
+                        <input type="text" class="form-control" name="carecard5" id="carecard5" />
+                    </div>
+                </div> 
+
+                <div class="form-group">
+                    <label class="col-xs-2" for="doctorid5">Doctor ID </label>
+                    <div class="col-xs-10">
+                        <input type="text" class="form-control" name="doctorid5" id="doctorid5" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-xs-2" for="licenseno5">License Number </label>
+                    <div class="col-xs-10">
+                        <input type="text" class="form-control" name="licenseno5" id="licenseno5" />
+                    </div>
+                </div> 
+
+                 <div class="col-xs-10 col-xs-offset-2">
+                        <button type="submit" class="btn btn-primary" name="createprescription">Create New Prescription</button>
+                    </div>
+                </form>
+            
+            <br/>
+            <hr/>
+            <br/>
+			
+	<!---------------------------------------------------------------->
+    <!-- Insert Form 8 (insert new seesreg)-->  
+	<!---------------------------------------------------------------->
+	
+            <h2 id="query8"> Assign a Regular Doctor </h2>
+            
             <form class="form-inline" method="POST" action="doctor.php">
             
             <div class= "form-group">
-                <label class="sr-only" for="carecard11">Patients Care Card</label>
-                <input type="text" class="form-control" name="carecard11" id="carecard11" placeholder="Patients Care Card">
+                <label class="sr-only" for="date8">Date</label>
+                <input type="date" class="form-control" name="date8" id="date8">
             </div>
-            
-            <button type="submit" class="btn btn-primary" name="findmedexams">Search</button>
+
+            <div class= "form-group">
+                <label class="sr-only" for="carecard8">Patients Care Card</label>
+                <input type="text" class="form-control" name="carecard8" id="carecard8" placeholder="Patients Care Card">
+            </div>
+
+            <div class= "form-group">
+                <label class="sr-only" for="doctorid8">Doctor ID</label>
+                <input type="text" class="form-control" name="doctorid8" id="doctorid8" placeholder="Doctor ID">
+            </div>
+
+            <button type="submit" class="btn btn-primary" name="createseesreg">Record </button>
 
             </form>
             
             <br/>
             <hr/>
-            <br/> -->
+            <br/>   
+			
+	<!---------------------------------------------------------------->
+    <!-- select Form 14 (select medical professionals in a hospital)-->  
+	<!---------------------------------------------------------------->
+	
+            <h2 id="query14"> Find Information about the Hospital: </h2>
 
-    <!-- php part--> 
-    <!-- php part--> 
-    <!-- php part--> 
-    <!-- php part--> 
-    <!-- php part--> 
-    <!-- php part--> 
-    <!-- php part--> 
-    <!-- php part--> 
-    <!-- php part--> 
-    <!-- php part--> 
-    <!-- php part--> 
-    <!-- php part--> 
-    <!-- php part--> 
-    <!-- php part--> 
-    <!-- php part--> 
+            <form class="form-horizontal" method="POST" action="doctor.php">
+            
+            <div class= "form-group">
+                <label class="sr-only" for="hname14">Hospital Name</label>
+                <input type="text" class="form-control" name="hname14" id="hname14" placeholder="Hospital Name">
+            </div>
+
+            <div class="form-inline">
+                <div class="form-group">
+                    <div class="col-xs-10">
+                    <button type="submit" class="btn btn-primary" name="findmedicalpeople">Find All Medical Professionals</button>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-xs-10">
+                    <button type="submit" class="btn btn-primary" name="findstays">Find Everyone Who Stayed Here</button>
+                    </div>
+                </div>
+            </div>
+
+            </form>
+            
+            <br/>
+            <hr/>
+            <br/>
+			
+	<!---------------------------------------------------------------->
+    <!-- select Form 12 (select a room, find patients)-->  
+	<!---------------------------------------------------------------->
+	
+            <h2 id="query12"> Find patients in a room: </h2>
+
+            <form class="form-inline" method="POST" action="doctor.php">
+            
+            <div class= "form-group">
+                <label class="sr-only" for="date12">Date</label>
+                <input type="date" class="form-control" name="date12" id="date12">
+            </div>
+
+            <div class= "form-group">
+                <label class="sr-only" for="hname12">Hospital Name</label>
+                <input type="text" class="form-control" name="hname12" id="hname12" placeholder="Hospital Name">
+            </div>
+
+            <div class= "form-group">
+                <label class="sr-only" for="roomno12">Room Number</label>
+                <input type="text" class="form-control" name="roomno12" id="roomno12" placeholder="Room Number">
+            </div>
+            
+            <button type="submit" class="btn btn-primary" name="findpplinroom">Find</button>
+
+            </form>
+            
+            <br/>
+            <hr/>
+            <br/> 
+			
+	<!---------------------------------------------------------------->
+    <!-- Update Form 3 (update doctors specialty)-->  
+	<!---------------------------------------------------------------->
+	
+            <h2 id="query3"> Change a doctors specialty: </h2>
+
+            <form class="form-inline" method="POST" action="doctor.php">
+
+                <div class= "form-group">
+                    <label class="sr-only" for="doctorid3">Doctor ID</label>
+                    <input type="text" class="form-control" name="doctorid3" id="doctorid3" placeholder="Doctor ID">
+                </div>
+
+                <div class= "form-group">
+                    <label class="sr-only" for="specialty3">New Specialty</label>
+                    <input type="text" class="form-control" name="specialty3" id="specialty3" placeholder="New Specialty">
+                </div>
+
+                    <button type="submit" class="btn btn-primary" name="updatedoctor">Change</button>
+            </form>
+            
+            <br/>
+            <hr/>
+            <br/>
+			
+	<!---------------------------------------------------------------->			
+    <!-- Update Form 4 (update nurses ward)-->  
+	<!---------------------------------------------------------------->
+	
+            <h2 id="query4"> Change a nurses ward: </h2>
+
+            <form class="form-inline" method="POST" action="doctor.php">
+                
+                <div class= "form-group">
+                    <label class="sr-only" for="nurseid4">Nurse ID</label>
+                    <input type="text" class="form-control" name="nurseid4" id="nurseid4" placeholder="Nurse ID">
+                </div>
+
+                <div class= "form-group">
+                    <label class="sr-only" for="ward4">New Ward</label>
+                    <input type="text" class="form-control" name="ward4" id="ward4" placeholder="New Ward">
+                </div>
+
+                    <button type="submit" class="btn btn-primary" name="updatenurse">Change</button>
+            </form>
+            
+            <br/>
+            <hr/>
+            <br/>
+			
+	<!---------------------------------------------------------------->
+    <!-- select Form 13 (select past prescriptions DOCTORS ONLY)-->  
+	<!---------------------------------------------------------------->
+	
+            <h2 id="query13"> Find past prescriptions: </h2>
+            
+            <form class="form-inline" method="POST" action="doctor.php">
+            
+            <div class= "form-group">
+                <label class="sr-only" for="doctorid13">Doctor ID</label>
+                <input type="text" class="form-control" name="doctorid13" id="doctorid13" placeholder="Doctor ID">
+            </div>
+            
+            <button type="submit" class="btn btn-primary" name="finddoctorsprescription">Search</button>
+
+            </form>
+            
+            <br/>
+            <hr/>
+            <br/>
+			
+	<!--------------------------------------------------------->  
+	<!-- select Form 19 Find drug that is taken by all patients -->		
+	<!--------------------------------------------------------->
+			
+			<h2 id="query9">Find drug that is taken by all patients:</h2>
+            <form class="form-inline" method="POST" action="doctor.php">			
+			
+                 <button type="submit" class="btn btn-primary" name="finddrugall">Find</button>	
+
+			</form>
+            
+            <br/>
+            <hr/>
+            <br/>
+			
+			
+			<!-------------------------------->		
+			<!-------------------------------->
+			<!--------- BEGIN PHP --------->	
+			<!-------------------------------->
+			<!-------------------------------->
+	
             <?php
 
             //this tells the system that it's no longer just parsing 
@@ -753,8 +709,11 @@
     
     
 
-    //PRINTS
+	// -----------------------------------------------
+	// --- Print functions for printing the tables ---
+	// -----------------------------------------------
 
+	
     function printResult1($result) { 
         echo "<br>Exam result has been updated:<br>";
         echo "<table>";
@@ -763,7 +722,6 @@
         while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
             echo "<tr><td>" . $row["FROMDATE"] . "</td><td>" . $row["RESULT"] . "</td><td>" . $row["EXAMTYPE"] . "</td><td>" . $row["ADMINISTEREDBY"] . "</td></tr>";//or just use "echo $row[0]" 
         }
-                echo "<br>Done.<br>";
         echo "</table>";
     
     }
@@ -776,7 +734,6 @@
         while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
             echo "<tr><td>" . $row["CARECARDNO"] . "</td><td>" . $row["ROOMNO"] . "</td><td>" . $row["FROMDATE"] . "</td><td>" . $row["REASON"] . "</td></tr>";//or just use "echo $row[0]" 
         }
-                echo "<br>Done.<br>";
         echo "</table>";
     
     }
@@ -789,7 +746,6 @@
         while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
             echo "<tr><td>" . $row["NAME"] . "</td><td>" . $row["SPECIALTY"] . "</td></tr>";//or just use "echo $row[0]" 
         }
-                echo "<br>Done.<br>";
         echo "</table>";
     }
    
@@ -801,7 +757,6 @@
         while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
             echo "<tr><td>" . $row["NAME"] . "</td><td>" . $row["WARD"] . "</td></tr>";//or just use "echo $row[0]" 
         }
-                echo "<br>Done.<br>";
         echo "</table>";
     }
     
@@ -813,7 +768,6 @@
         while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
             echo "<tr><td>" . $row["PRESCRIPTIONID"] . "</td><td>" . $row["CARECARDNO"] . "</td><td>" . $row["REFILLS"] . "</td></tr>";//or just use "echo $row[0]" 
         }
-                echo "<br>Done.<br>";
         echo "</table>";
     }
 
@@ -826,7 +780,6 @@
             echo "<tr><td>" . $row["RESULT"] . "</td><td>" . $row["CARECARDNO"] . "</td><td>" . $row["EXAMTYPE"] . "</td>
                 <td>" . $row["ADMINISTEREDBY"] . "</td><td>" . $row["FROMDATE"] . "</td></tr>";//or just use "echo $row[0]" 
         }
-                echo "<br>Done.<br>";
         echo "</table>";
     }
 
@@ -839,7 +792,6 @@
             echo "<tr><td>" . $row["NAME"] . "</td><td>" . $row["ADDRESS"] . "</td>
                 <td>" . $row["DATEOFBIRTH"] . "</td><td>" . $row["SEX"] . "</td><td>" . $row["CARECARDNO"] . "</td></tr>";//or just use "echo $row[0]" 
         }
-                echo "<br>Done.<br>";
         echo "</table>";
     
     }
@@ -852,7 +804,6 @@
         while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
             echo "<tr><td>" . $row["SINCE"] . "</td><td>" . $row["HEALTHCAREID"] . "</td><td>" . $row["CARECARDNO"] . "</td></tr>";//or just use "echo $row[0]" 
         }
-                echo "<br>Done.<br>";
         echo "</table>";
     
     }
@@ -865,7 +816,6 @@
         while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
             echo "<tr><td>" . $row["NAME"] . "</td><td>" . $row["CARECARDNO"] . "</td></tr>";//or just use "echo $row[0]" 
         }
-                echo "<br>Done.<br>";
         echo "</table>";
     
     }
@@ -878,7 +828,6 @@
         while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
             echo "<tr><td>" . $row["DATEPRESCRIBED"] . "</td><td>" . $row["PRESCRIPTIONID"] . "</td><td>" . $row["CARECARDNO"] . "</td><td>" . $row["REFILLS"] . "</td><td>" . $row["DIN"] . "</td></tr>";//or just use "echo $row[0]" 
         }
-                echo "<br>Done.<br>";
         echo "</table>";
     
     }
@@ -892,7 +841,6 @@
             echo "<tr><td>" . $row["RESULT"] . "</td><td>" . $row["EXAMTYPE"] . "</td>
             <td>" . $row["CARECARDNO"] . "</td><td>" . $row["FROMDATE"] . "</td><td>" . $row["ADMINISTEREDBY"] . "</td></tr>";//or just use "echo $row[0]" 
         }
-                echo "<br>Done.<br>";
         echo "</table>";
     
     }
@@ -905,7 +853,6 @@
         while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
             echo "<tr><td>" . $row["NAME"] . "</td><td>" . $row["ROOMNO"] . "</td></tr>";//or just use "echo $row[0]" 
         }
-                echo "<br>Done.<br>";
         echo "</table>";
     }
 
@@ -918,7 +865,6 @@
             echo "<tr><td>" . $row["DATEPRESCRIBED"] . "</td><td>" . $row["REFILLS"] . "</td>
             <td>" . $row["DIN"] . "</td><td>" . $row["CARECARDNO"] . "</td><td>" . $row["NAME"] . "</td></tr>";//or just use "echo $row[0]" 
         }
-                echo "<br>Done.<br>";
         echo "</table>";
     }
 
@@ -930,19 +876,16 @@
         while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
             echo "<tr><td>" . $row["NAME"] . "</td><td>" . $row["SPECIALTY"] . "</td></tr>";//or just use "echo $row[0]" 
         }
-                echo "<br>Done.<br>";
         echo "</table>";
     }
 
     function printResult17($result) { 
-        echo "<br>Find medical professionals:<br>";
         echo "<table>";
         echo "<tr><th>nurse name</th><th>ward</th></tr>";
     
         while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
             echo "<tr><td>" . $row["NAME"] . "</td><td>" . $row["WARD"] . "</td></tr>";//or just use "echo $row[0]" 
         }
-                echo "<br>Done.<br>";
         echo "</table>";
     }
 
@@ -960,15 +903,34 @@
                     <td>" . $row["SEX"] . "</td>
                     <td>" . $row["NAME"] . "</td></tr>";//or just use "echo $row[0]" 
         }
-                echo "<br>Done.<br>";
         echo "</table>";
     }
+	
+    //d.name
+    function printResult16($result) { 
+        echo "<br>List of drug(s) taken by all patients:<br>";
+        echo "<table>";
+        echo "<tr><th>Drug Name</th></tr>";
+    
+        while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
+            echo "<tr><td>" . $row["NAME"] . "</td>
+                    </tr>";//or just use "echo $row[0]" 
+        }
+        echo "</table>";
+    }	
 
+	
+	// -----------------------------------------------
+	// --- Button Behaviour -----------------------
+	// -----------------------------------------------
+	
     // Connect Oracle...
     if ($db_conn) {
 
+		//-----------
         //UPDATES
-
+		//-----------
+		
         if (array_key_exists('updateresult', $_POST)) {
             // Update tuple using data from user
             $tuple = array (
@@ -1061,9 +1023,10 @@
     
         }
 
-
+		//----------
         //INSERT   
-        
+ 		//----------
+		
         else if (array_key_exists('createprescription', $_POST)) {
             //Getting the values from user and insert data into the table
             $tuple = array (
@@ -1148,9 +1111,9 @@
     
         } 
 
-
+		//-------
         //FIND
-
+		//-------
 
         else if (array_key_exists('findstays', $_POST)) {
             // Update tuple using data from user
@@ -1225,7 +1188,7 @@
         }
 
 
-        else if (array_key_exists('finddoctorsprescriptions', $_POST)) {
+        else if (array_key_exists('finddoctorsprescription', $_POST)) {
             // Update tuple using data from user
             $tuple = array (
                 ":bind1" => $_POST['doctorid13']
@@ -1365,7 +1328,26 @@
             
             echo "<br>Patient got deleted</br>";
    
-        } 
+		} else 
+            if (array_key_exists('finddrugall', $_POST)) {
+                $tuple = array (
+
+                );
+                $alltuples = array (
+                    $tuple
+                );
+
+               $result = executeBoundSQL("SELECT name 
+																	FROM Drug d  
+																	WHERE NOT EXISTS (SELECT *
+																	FROM Patient pa
+																	WHERE NOT EXISTS (SELECT * 
+																	FROM Prescription pr 
+																	WHERE pa.carecardno = pr.carecardno 
+																	AND pr.DIN = d.DIN))", $alltuples);
+                printResult16($result);
+
+		}
            
 
     
