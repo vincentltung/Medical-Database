@@ -418,66 +418,90 @@
 		echo "</table>";
 	
 	}	
-	
+
+	//Print not-integer type error
+	function printIntegerError() {
+	    echo "<div class='alert alert-danger'>You typed a non-integer where you were supposed to type an integer!</div>";
+	}
+
 	// Connect Oracle...
 	if ($db_conn) {
 
 		// Update name
 		if (array_key_exists('updatename', $_POST)) {
-			$tuple = array (
-				":bind1" => $_POST['CCNupdate'],
-				":bind2" => $_POST['newName']
-			);
-			$alltuples = array (
-				$tuple
-			);
-			executeBoundSQL("update patient set name=:bind2 where carecardno=:bind1", $alltuples);
-			OCICommit($db_conn);
-			
-			$result = executeBoundSQL("select name, address from patient where carecardno=:bind1", $alltuples);
-			printResultNameAddSex($result);
-	
-		} else //update address
-			if (array_key_exists('updateadd', $_POST)) {
-				$tuple = array (
-					":bind1" => $_POST['CCNupdate'],
-					":bind2" => $_POST['newAdd']
-				);
-				$alltuples = array (
-					$tuple
-				);
-				executeBoundSQL("update patient set address=:bind2 where carecardno=:bind1", $alltuples);
-				OCICommit($db_conn);
-				
-				$result = executeBoundSQL("select name, address from patient where carecardno=:bind1", $alltuples);
-				printResultNameAddSex($result);
-	
-		} else //update address
-            if (array_key_exists('updatesex', $_POST)) {
+            if (ctype_digit($_POST['CCNupdate'])) {
+
                 $tuple = array (
                     ":bind1" => $_POST['CCNupdate'],
-                    ":bind2" => $_POST['newSex']
+                    ":bind2" => $_POST['newName']
                 );
                 $alltuples = array (
                     $tuple
                 );
-                executeBoundSQL("update patient set sex=:bind2 where carecardno=:bind1", $alltuples);
+                executeBoundSQL("update patient set name=:bind2 where carecardno=:bind1", $alltuples);
                 OCICommit($db_conn);
 
                 $result = executeBoundSQL("select name, address from patient where carecardno=:bind1", $alltuples);
-                printResultNameAddSex($result);
+			printResultNameAddSex($result);
+            } else {
+                printIntegerError();
+            }
+	
+		} else //update address
+			if (array_key_exists('updateadd', $_POST)) {
+                if (ctype_digit($_POST['CCNupdate'])) {
+
+                    $tuple = array (
+                        ":bind1" => $_POST['CCNupdate'],
+                        ":bind2" => $_POST['newAdd']
+                    );
+                    $alltuples = array (
+                        $tuple
+                    );
+                    executeBoundSQL("update patient set address=:bind2 where carecardno=:bind1", $alltuples);
+                    OCICommit($db_conn);
+
+                    $result = executeBoundSQL("select name, address from patient where carecardno=:bind1", $alltuples);
+                    printResultNameAddSex($result);
+                } else {
+                    printIntegerError();
+                }
+	
+		} else //update address
+            if (array_key_exists('updatesex', $_POST)) {
+                if (ctype_digit($_POST['CCNupdate'])) {
+
+                    $tuple = array (
+                        ":bind1" => $_POST['CCNupdate'],
+                        ":bind2" => $_POST['newSex']
+                    );
+                    $alltuples = array (
+                        $tuple
+                    );
+                    executeBoundSQL("update patient set sex=:bind2 where carecardno=:bind1", $alltuples);
+                    OCICommit($db_conn);
+
+                    $result = executeBoundSQL("select name, address from patient where carecardno=:bind1", $alltuples);
+                    printResultNameAddSex($result);
+                } else {
+                    printIntegerError();
+                }
 
         } else //select contact info
 			if (array_key_exists('selectconinf', $_POST)) {
-				$tuple = array (
-					":bind1" => $_POST['CCNconinf']
-				);
-				$alltuples = array (
-					$tuple
-				);
-				
-				$result = executeBoundSQL("select name, address, sex from patient where carecardno=:bind1", $alltuples);
-				printResultNameAddSex($result);
+			    if (ctype_digit($_POST['CCNconinf'])) {
+                    $tuple = array (
+                        ":bind1" => $_POST['CCNconinf']
+                    );
+                    $alltuples = array (
+                        $tuple
+                    );
+
+                    $result = executeBoundSQL("select name, address, sex from patient where carecardno=:bind1", $alltuples);
+                    printResultNameAddSex($result);
+				} else {
+                    printIntegerError();
+                }
 	
 		} else //select doctors
 			if (array_key_exists('selectdoc', $_POST)) {
@@ -499,52 +523,64 @@
 	
 		} else //select prescription record
 			if (array_key_exists('selectpres', $_POST)) {
-				$tuple = array (
-					":bind1" => $_POST['CCNpres']
-				);
-				$alltuples = array (
-					$tuple
-				);
-				
-				$result = executeBoundSQL("select p.dateprescribed, d.company, d.name, p.refills, p.totaldays, p.timesperday, p.dose
-										from prescription p, drug d 
-										where p.DIN = d.DIN and p.carecardno = :bind1
-										order by p.dateprescribed desc", $alltuples);
-				printResultPres($result);
+			    if (ctype_digit($_POST['CNNpres'])) {
+                    $tuple = array (
+                        ":bind1" => $_POST['CCNpres']
+                    );
+                    $alltuples = array (
+                        $tuple
+                    );
+
+                    $result = executeBoundSQL("select p.dateprescribed, d.company, d.name, p.refills, p.totaldays, p.timesperday, p.dose
+                                            from prescription p, drug d
+                                            where p.DIN = d.DIN and p.carecardno = :bind1
+                                            order by p.dateprescribed desc", $alltuples);
+                    printResultPres($result);
+                } else {
+                    printIntegerError();
+                }
 	
 		} else //select prescription detail
 			if (array_key_exists('selectpresdet', $_POST)) {
-				$tuple = array (
-					":bind1" => $_POST['presID']
-				);
-				$alltuples = array (
-					$tuple
-				);
-				
-				$result = executeBoundSQL("select p.dateprescribed, d.company, d.name, " . $_POST['presOptions'] . " as presOption, p.carecardno
-										from prescription p, drug d 
-										where p.DIN = d.DIN and p.prescriptionid = :bind1 
-										order by p.dateprescribed desc", $alltuples);
-				printResultPresOption($result, $_POST['presOptions']);
+			    if (ctype_digit($_POST['presID'])) {
+                    $tuple = array (
+                        ":bind1" => $_POST['presID']
+                    );
+                    $alltuples = array (
+                        $tuple
+                    );
+
+                    $result = executeBoundSQL("select p.dateprescribed, d.company, d.name, " . $_POST['presOptions'] . " as presOption, p.carecardno
+                                            from prescription p, drug d
+                                            where p.DIN = d.DIN and p.prescriptionid = :bind1
+                                            order by p.dateprescribed desc", $alltuples);
+                    printResultPresOption($result, $_POST['presOptions']);
+				} else {
+                    printIntegerError();
+                }
 	
 		} else //select pharmacy list
 			if (array_key_exists('pharmlist', $_POST)) {
-				$tuple = array (
-					":bind1" => $_POST['presStock']
-				);
-				$alltuples = array (
-					$tuple
-				);
-				
-				$result = executeBoundSQL("select d.name, d.company, p.name as pname, p.phone, p.address, h.supply
-										from prescription pr, drug d, pharmacist p, hasinstock h
-										where d.name in (select d2.name
-										           from drug d2
-										           where pr.DIN = d2.DIN and pr.prescriptionId = :bind1)
-										and h.supply > 0
-										and h.DIN = d.DIN
-										and h.licenseno = p.licenseno", $alltuples);
-				printResultPharm($result);
+			    if (ctype_digit($_POST['presStock'])) {
+                    $tuple = array (
+                        ":bind1" => $_POST['presStock']
+                    );
+                    $alltuples = array (
+                        $tuple
+                    );
+
+                    $result = executeBoundSQL("select d.name, d.company, p.name as pname, p.phone, p.address, h.supply
+                                            from prescription pr, drug d, pharmacist p, hasinstock h
+                                            where d.name in (select d2.name
+                                                       from drug d2
+                                                       where pr.DIN = d2.DIN and pr.prescriptionId = :bind1)
+                                            and h.supply > 0
+                                            and h.DIN = d.DIN
+                                            and h.licenseno = p.licenseno", $alltuples);
+                    printResultPharm($result);
+				} else {
+				    printIntegerError();
+				}
 	
 		}
 					
