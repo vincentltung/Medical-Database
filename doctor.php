@@ -48,18 +48,18 @@
     <div id="wrapper">
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
-                <li><a href="#">Query 1: Create New Medical Record</a></li>
-                <li><a href="#">Query 2: Patient Information</a></li>
-                <li><a href="#">Query 3: Move Patient Into a New Room</a></li>
-                <li><a href="#">Query 4: Schedule a Medical Exam</a></li>
-                <li><a href="#">Query 5: Input Results of a Medical Exam</a></li>
-                <li><a href="#">Query 6: Make a new Prescription</a></li>
-                <li><a href="#">Query 7: Assign a Regular Doctor</a></li>
-                <li><a href="#">Query 8: Find Information about a Hospital</a></li>
-                <li><a href="#">Query 9: Find Patients in a Room</a></li>
-                <li><a href="#">Query 10: Change Doctors Specialty</a></li>
-                <li><a href="#">Query 11: Change Nurses Ward</a></li>
-                <li><a href="#">Query 12: Find Past Prescriptions</a></li>
+                <li><a href="#query7">Query 1: Create New Medical Record</a></li>
+                <li><a href="#query16">Query 2: Patient Information</a></li>
+                <li><a href="#query2">Query 3: Move Patient Into a New Room</a></li>
+                <li><a href="#query6">Query 4: Schedule a Medical Exam</a></li>
+                <li><a href="#query1">Query 5: Input Results of a Medical Exam</a></li>
+                <li><a href="#query5">Query 6: Make a new Prescription</a></li>
+                <li><a href="#query8">Query 7: Assign a Regular Doctor</a></li>
+                <li><a href="#query14">Query 8: Find Information about a Hospital</a></li>
+                <li><a href="#query12">Query 9: Find Patients in a Room</a></li>
+                <li><a href="#query3">Query 10: Change Doctors Specialty</a></li>
+                <li><a href="#query4">Query 11: Change Nurses Ward</a></li>
+                <li><a href="#query9">Query 12: Find Past Prescriptions</a></li>
             </ul>
         </div>
     </div>
@@ -811,10 +811,10 @@
     function printResult9($result) { 
         echo "<br>Find people who have stayed in this hospital:<br>";
         echo "<table>";
-        echo "<tr><th>hospital name</th><th>carecard</th></tr>";
+        echo "<tr><th>hospital name</th><th>carecard</th><th>date stayed</th></tr>";
     
         while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
-            echo "<tr><td>" . $row["NAME"] . "</td><td>" . $row["CARECARDNO"] . "</td></tr>";//or just use "echo $row[0]" 
+            echo "<tr><td>" . $row["NAME"] . "</td><td>" . $row["CARECARDNO"] . "</td><td>" . $row["FROMDATE"] . "</td></tr>";//or just use "echo $row[0]" 
         }
         echo "</table>";
     
@@ -856,6 +856,17 @@
         echo "</table>";
     }
 
+    function printResult20($resulta) { 
+        echo "<br>Max people for this room:<br>";
+        echo "<table>";
+    
+        while ($row = OCI_Fetch_Array($resulta, OCI_BOTH)) {
+            echo "<tr><td>" . $row["MAXPATIENTS"] . "</td></tr>";//or just use "echo $row[0]" 
+        }
+        echo "</table>";
+    }
+
+
     function printResult13($result) { 
         echo "<br>Find past prescriptions:<br>";
         echo "<table>";
@@ -894,17 +905,27 @@
     function printResult15($result) { 
         echo "<br>Find patients information:<br>";
         echo "<table>";
-        echo "<tr><th>patient name</th><th>patient address</th><th>date of birth</th><th>sex</th><th>Regular Doctor</th></tr>";
+        echo "<tr><th>patient name</th><th>patient address</th><th>date of birth</th><th>sex</th></tr>";
     
         while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
             echo "<tr><td>" . $row["PNAME"] . "</td>
                     <td>" . $row["ADDRESS"] . "</td>
                     <td>" . $row["DATEOFBIRTH"] . "</td>
-                    <td>" . $row["SEX"] . "</td>
-                    <td>" . $row["MNAME"] . "</td></tr>";//or just use "echo $row[0]" 
+                    <td>" . $row["SEX"] . "</td></tr>";//or just use "echo $row[0]" 
         }
         echo "</table>";
     }
+
+    function printResult21($result) { 
+        echo "<br>Regular Doctor:<br>";
+        echo "<table>";
+    
+        while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
+            echo "<tr><td>" . $row["MNAME"] . "</td></tr>";//or just use "echo $row[0]" 
+        }
+        echo "</table>";
+    }
+
 	
     //d.name
     function printResult16($result) { 
@@ -1169,9 +1190,10 @@
             $alltuples = array (
                 $tuple
             );
-            $result = executeBoundSQL("select p.Name, p.CareCardNo 
+            $result = executeBoundSQL("select distinct p.Name, p.CareCardNo, sa.fromdate 
                                             from StaysAt sa, patient p, hospital h 
-                                            where h.address = sa.address and sa.carecardno= p.carecardno and h.name = :bind1", $alltuples);
+                                            where h.address = sa.address and sa.carecardno= p.carecardno and h.name = :bind1
+                                            order by sa.fromdate DESC", $alltuples);
             printResult9($result);
     
         } else{
@@ -1240,7 +1262,15 @@
                                                         and h.address = sa.address
                                                         and sa.carecardno = p.carecardno
                                                         and sa.roomno = :bind5", $alltuples);
+            
+            $resulta = executeBoundSQL("select distinct r.maxpatients
+                                            from room r, staysat sa, hospital h
+                                            where h.name = :bind4
+                                                and h.address = sa.address
+                                                and sa.address = r.address
+                                                and r.roomno = :bind5", $alltuples);
             printResult12($result);
+            printResult20($resulta);
     
         } else {
             printStringorIntegerError();
@@ -1259,7 +1289,9 @@
             $result = executeBoundSQL("select p.dateprescribed, p.refills, p.din, p.carecardno, pa.name
                                                  from prescription p, patient pa
                                                  where p.healthcareid = :bind1
-                                                        and p.carecardno = pa.carecardno", $alltuples);
+                                                        and p.carecardno = pa.carecardno
+                                                order by p.dateprescribed", $alltuples);
+            
             printResult13($result);
     
         } else{
@@ -1306,12 +1338,17 @@
             $alltuples = array (
                 $tuple
             );
-            $result = executeBoundSQL("select p.name as pname, p.address, p.dateofbirth, p.sex, m.name as mname
-                                            from patient p, seesregularly s, medicalprofessional m
+            $result = executeBoundSQL("select p.name as pname, p.address, p.dateofbirth, p.sex
+                                            from patient p
+                                                 where p.carecardno=:bind1", $alltuples);
+            
+            $resulta = executeBoundSQL("select m.name as mname
+                                            from patient p, medicalprofessional m, seesregularly s
                                                  where p.carecardno=:bind1
                                                     and p.carecardno = s.carecardno
                                                     and s.healthcareid = m.HealthCareID", $alltuples);
             printResult15($result);
+            printResult21($resulta);
     
         } else{
             printIntegerError();
