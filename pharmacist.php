@@ -48,15 +48,15 @@
     <div id="wrapper">
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
-                <li><a href="#">Query 1: List Prescription Record</a></li>
-                <li><a href="#">Query 2: List Drugs In Stock</a></li>
-                <li><a href="#">Query 3: Find Stock Amount</a></li>
-                <li><a href="#">Query 4: Add New Drug</a></li>
-                <li><a href="#">Query 5: Update Stock</a></li>
-                <li><a href="#">Query 6: Set Refills</a></li>
-				<li><a href="#">Query 7: All Outstanding Prescriptions</a></li>
-				<li><a href="#">Query 8: Find Number of Pharmacists with Drugs In Stock</a></li>
-				<li><a href="#">Query 9: Find Drugs Not In Stock</a></li>
+                <li><a href="#query1">Query 1: List Prescription Record</a></li>
+                <li><a href="#query2">Query 2: List Drugs In Stock</a></li>
+                <li><a href="#query3">Query 3: Find Stock Amount</a></li>
+                <li><a href="#query4">Query 4: Add New Drug</a></li>
+                <li><a href="#query5">Query 5: Update Stock</a></li>
+                <li><a href="#query6">Query 6: Set Refills</a></li>
+				<li><a href="#query7">Query 7: All Outstanding Prescriptions</a></li>
+				<li><a href="#query8">Query 8: Find Number of Pharmacists with Drugs In Stock</a></li>
+				<li><a href="#query9">Query 9: Find Drugs Not In Stock</a></li>
             </ul>
         </div>
     </div>
@@ -446,120 +446,157 @@
 		
 		
 	}
+	
+	//Print not-integer type error
+	function printIntegerError() {
+	    echo "<div class='alert alert-danger'>You typed a non-integer where you were supposed to type an integer!</div>";
+	}	
 		
 		// Connect Oracle...
 	if ($db_conn) {
 
-		// Inserting a new Drug
+		// Inserting a new Drug (Included type check)
 		if (array_key_exists('newDrugAdd', $_POST)) {
-			$tuple = array (
-				":bind1" => $_POST['pharmacistID'],
-				":bind2" => $_POST['drugID'],
-				":bind3" => $_POST['numberInStock']
-			);
-			$alltuples = array (
-				$tuple
-			);
-			executeBoundSQL("insert into hasinstock values (:bind1, :bind2, :bind3)", $alltuples);
-			OCICommit($db_conn);
-			
-			$result = executeBoundSQL("select licenseno, din, supply
-			from hasinstock
-			where licenseno=:bind1
-			and din=:bind2
-			and supply=:bind3", $alltuples);
-
-			printResultDrugAdd($result);
-			
-		} else // Finding amount of drug in stock
-		if (array_key_exists('selectDrugInStock', $_POST)) {
-			$tuple = array (
-				":bind1" => $_POST['pharmacistID2'],
-				":bind2" => $_POST['drugID2']
-			);
-			$alltuples = array (
-				$tuple
-			);
-			
-			$result = executeBoundSQL("select d.DIN, Name, Company, Supply
-			from hasinstock h, drug d
-			where d.DIN = h.DIN
-			and licenseno =:bind1
-			and h.DIN=:bind2", $alltuples);
-
-			printResultDrugStockSelect($result);
-			
-		} else // Updating number of refills
-			if (array_key_exists('setNumberOfRefills', $_POST)) {
-			$tuple = array (
-				":bind1" => $_POST['prescriptionID'],
-				":bind2" => $_POST['numberOfRefills']
-			);
-			$alltuples = array (
-				$tuple
-			);
-			executeBoundSQL("update prescription 
-							set refills=:bind2 
-							where prescriptionID =:bind1", $alltuples);
-			OCICommit($db_conn);
-			
-			$result = executeBoundSQL("select PrescriptionID, Refills
-			from prescription
-			where PrescriptionID =:bind1", $alltuples);
-
-			printResultPrescriptionUpdate($result);
-			
-		} else //select prescription list
-			if (array_key_exists('selectpres', $_POST)) {
-				$tuple = array (
-					":bind1" => $_POST['CCNpres']
-				);
-				$alltuples = array (
-					$tuple
-				);
+			if (ctype_digit($_POST['pharmacistID']) && ctype_digit($_POST['drugID']) && ctype_digit($_POST['numberInStock'])) {
 				
-				$result = executeBoundSQL("select p.dateprescribed, d.company, d.name, p.refills, p.totaldays, p.timesperday, p.dose
-										from prescription p, drug d 
-										where p.DIN = d.DIN and p.carecardno = :bind1
-										order by p.dateprescribed desc", $alltuples);
-				printResultPres($result);
-	
-		} else //select drugs instock
-			if (array_key_exists('selectinstock', $_POST)) {
 				$tuple = array (
-					":bind1" => $_POST['pharmno']
+					":bind1" => $_POST['pharmacistID'],
+					":bind2" => $_POST['drugID'],
+					":bind3" => $_POST['numberInStock']
 				);
 				$alltuples = array (
 					$tuple
 				);
-				
-				$result = executeBoundSQL("select d.company, d.name, h.supply
-										from pharmacist p, drug d, hasinstock h
-										where h.DIN = d.DIN and h.licenseno = p.licenseno and h.licenseno = :bind1", $alltuples);
-				printResultInStock($result);
-	
-		} else //update number of stock
-			if (array_key_exists('updatenum', $_POST)) {
-				$tuple = array (
-				":bind1" => $_POST['chpharmno'],
-				":bind2" => $_POST['chdrugno'],
-				":bind3" => $_POST['chnum']
-				);
-				$alltuples = array (
-					$tuple
-				);
-				executeBoundSQL("update hasinstock set supply=:bind3
-										where licenseno=:bind1 
-										and din=:bind2", $alltuples);
+				executeBoundSQL("insert into hasinstock values (:bind1, :bind2, :bind3)", $alltuples);
 				OCICommit($db_conn);
 				
 				$result = executeBoundSQL("select licenseno, din, supply
-										from hasinstock
-										where licenseno=:bind1 
-										and din=:bind2", $alltuples);
-				printResultDrugUpdate($result);
+				from hasinstock
+				where licenseno=:bind1
+				and din=:bind2
+				and supply=:bind3", $alltuples);
 	
-		} else //get all outstanding prescriptions
+				printResultDrugAdd($result);
+				
+			} else {
+				printIntegerError();
+			}
+			
+		} else // Finding amount of drug in stock (Included type check)
+		if (array_key_exists('selectDrugInStock', $_POST)) {
+			if (ctype_digit($_POST['pharmacistID2']) && ctype_digit($_POST['drugID2'])) {
+				
+				$tuple = array (
+					":bind1" => $_POST['pharmacistID2'],
+					":bind2" => $_POST['drugID2']
+				);
+				$alltuples = array (
+					$tuple
+				);
+				
+				$result = executeBoundSQL("select d.DIN, Name, Company, Supply
+				from hasinstock h, drug d
+				where d.DIN = h.DIN
+				and licenseno =:bind1
+				and h.DIN=:bind2", $alltuples);
+	
+				printResultDrugStockSelect($result);
+				
+			} else {
+				printIntegerError();
+			}
+			
+		} else // Updating number of refills (Included type check)
+			if (array_key_exists('setNumberOfRefills', $_POST)) {
+				if (ctype_digit($_POST['prescriptionID']) && ctype_digit($_POST['numberOfRefills'])) {
+					$tuple = array (
+						":bind1" => $_POST['prescriptionID'],
+						":bind2" => $_POST['numberOfRefills']
+					);
+					$alltuples = array (
+						$tuple
+					);
+					executeBoundSQL("update prescription 
+									set refills=:bind2 
+									where prescriptionID =:bind1", $alltuples);
+					OCICommit($db_conn);
+					
+					$result = executeBoundSQL("select PrescriptionID, Refills
+					from prescription
+					where PrescriptionID =:bind1", $alltuples);
+		
+					printResultPrescriptionUpdate($result);
+					
+				} else {
+					printIntegerError();
+				}
+			
+		} else //select prescription list (Included type check)
+			if (array_key_exists('selectpres', $_POST)) {
+				if (ctype_digit($_POST['CCNpres'])) {
+					
+					$tuple = array (
+						":bind1" => $_POST['CCNpres']
+					);
+					$alltuples = array (
+						$tuple
+					);
+					
+					$result = executeBoundSQL("select p.dateprescribed, d.company, d.name, p.refills, p.totaldays, p.timesperday, p.dose
+											from prescription p, drug d 
+											where p.DIN = d.DIN and p.carecardno = :bind1
+											order by p.dateprescribed desc", $alltuples);
+					printResultPres($result);
+				} else {
+					printIntegerError();
+				}
+	
+		} else //select drugs instock by pharmno (Included type check)
+			if (array_key_exists('selectinstock', $_POST)) {
+				if (ctype_digit($_POST['pharmno'])) {
+					
+					$tuple = array (
+						":bind1" => $_POST['pharmno']
+					);
+					$alltuples = array (
+						$tuple
+					);
+					
+					$result = executeBoundSQL("select d.company, d.name, h.supply
+											from pharmacist p, drug d, hasinstock h
+											where h.DIN = d.DIN and h.licenseno = p.licenseno and h.licenseno = :bind1", $alltuples);
+					printResultInStock($result);
+				} else {
+					printIntegerError();
+				}
+	
+		} else //update number of stock (Included type check)
+			if (array_key_exists('updatenum', $_POST)) {
+				if (ctype_digit($_POST['chpharmno']) && ctype_digit($_POST['chdrugno']) && ctype_digit($_POST['chnum'])) {
+					$tuple = array (
+					":bind1" => $_POST['chpharmno'],
+					":bind2" => $_POST['chdrugno'],
+					":bind3" => $_POST['chnum']
+					);
+					$alltuples = array (
+						$tuple
+					);
+					executeBoundSQL("update hasinstock set supply=:bind3
+											where licenseno=:bind1 
+											and din=:bind2", $alltuples);
+					OCICommit($db_conn);
+					
+					$result = executeBoundSQL("select licenseno, din, supply
+											from hasinstock
+											where licenseno=:bind1 
+											and din=:bind2", $alltuples);
+					printResultDrugUpdate($result);
+				
+				} else {
+					printIntegerError();
+				}
+	
+		} else //get all outstanding prescriptions (No need for type check)
             if (array_key_exists('getAllOutstandingPres', $_POST)) {
                 $tuple = array (
 
@@ -575,7 +612,7 @@
                                         order by p.dateprescribed desc", $alltuples);
                 printResultPres($result);
 
-		} else //find number of pharmacists with each drug
+		} else //find number of pharmacists with each drug (No need for type check)
             if (array_key_exists('findNumPharm', $_POST)) {
                 $tuple = array (
 
@@ -590,22 +627,27 @@
 																		group by d.name", $alltuples);
                 printResultNumPharm($result);
 
-		} else //find drugs that are not in stock
+		} else //find drugs that are not in stock (Included type check)
 			if (array_key_exists('getNotInStock', $_POST)) {
-				$tuple = array (
-					":bind1" => $_POST['pharmno2']
-				);
-				$alltuples = array (
-					$tuple
-				);
-				
-				$result = executeBoundSQL("select d2.name, d2.company
-													from drug d2
-													where d2.din not in (select d.din
-																					from drug d, hasinstock h, pharmacist p
-																					where d.din = h.din and p.licenseno = h.licenseno
-																					and p.licenseno = :bind1)", $alltuples);
-				printResultDrugComp($result);
+				if (ctype_digit($_POST['pharmno2'])) {
+					$tuple = array (
+						":bind1" => $_POST['pharmno2']
+					);
+					$alltuples = array (
+						$tuple
+					);
+					
+					$result = executeBoundSQL("select d2.name, d2.company
+														from drug d2
+														where d2.din not in (select d.din
+																						from drug d, hasinstock h, pharmacist p
+																						where d.din = h.din and p.licenseno = h.licenseno
+																						and p.licenseno = :bind1)", $alltuples);
+					printResultDrugComp($result);
+					
+				} else {
+					printIntegerError();
+				}
 
         }
 			
