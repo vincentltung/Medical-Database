@@ -614,7 +614,7 @@
 			
 	<!--------------------------------------------------------->  
 	<!-- select Form 19 Find drug that is taken by all patients -->		
-	<!--------------------------------------------------------->
+	<!---------------------------------------------------------->
 			
 			<h2 id="query9">Find drug that is taken by all patients:</h2>
             <form class="form-inline" method="POST" action="doctor.php">			
@@ -640,7 +640,7 @@
             //html; it's now parsing PHP
     
                 $success = True; //keep track of errors so it redirects the page only if there are no errors
-				$db_conn = OCILogon("ora_XXXX", "aXXXXXXXX", "ug");
+				$db_conn = OCILogon("ora_z0d9", "a38807129", "ug");
 
                 
                 function executePlainSQL($cmdstr) { //takes a plain (no bound variables) SQL command and executes it
@@ -894,14 +894,14 @@
     function printResult15($result) { 
         echo "<br>Find patients information:<br>";
         echo "<table>";
-        echo "<tr><th>patient name</th><th>patient address</th><th>date of birth</th><th>sex</th><th>doctor name</th></tr>";
+        echo "<tr><th>patient name</th><th>patient address</th><th>date of birth</th><th>sex</th><th>Regular Doctor</th></tr>";
     
         while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
-            echo "<tr><td>" . $row["NAME"] . "</td>
+            echo "<tr><td>" . $row["PNAME"] . "</td>
                     <td>" . $row["ADDRESS"] . "</td>
                     <td>" . $row["DATEOFBIRTH"] . "</td>
                     <td>" . $row["SEX"] . "</td>
-                    <td>" . $row["NAME"] . "</td></tr>";//or just use "echo $row[0]" 
+                    <td>" . $row["MNAME"] . "</td></tr>";//or just use "echo $row[0]" 
         }
         echo "</table>";
     }
@@ -918,6 +918,22 @@
         }
         echo "</table>";
     }	
+    
+
+
+
+    //type-checking
+    function printIntegerError() {
+        echo "<div class='alert alert-danger'>You typed a non-integer where you were supposed to type an integer!</div>";
+    }
+
+    function printStringError() {
+        echo "<div class='alert alert-danger'>Make sure you did not include any integers of symbols</div>";
+    }
+
+    function printStringorIntegerError() {
+        echo "<div class='alert alert-danger'>Make sure that all inputs are correct</div>";
+    }
 
 	
 	// -----------------------------------------------
@@ -932,6 +948,7 @@
 		//-----------
 		
         if (array_key_exists('updateresult', $_POST)) {
+            if (ctype_digit($_POST['carecard1']) && ctype_digit($_POST['doctorid1'] && ctype_print($_POST['resultstatement']))){
             // Update tuple using data from user
             $tuple = array (
                 ":bind1" => $_POST['carecard1'],
@@ -949,11 +966,14 @@
             OCICommit($db_conn);
             $result = executePlainSQL("select FromDate, Result, ExamType, AdministeredBy from TakesMedExam Order by FromDate");
             printResult1($result);
+        }else{
+            printStringorIntegerError();
+        }
     
-        } 
 
-
-        else if (array_key_exists('insertroom', $_POST)) {
+    } else if (array_key_exists('insertroom', $_POST)) {
+            if(ctype_digit($_POST['carecard2']) && ctype_digit($_POST['roomno2'])
+                && ctype_print($_POST['reason2']) && ctype_print($_POST['address2'])) {
             // Insert tuple using date from user
             $tuple = array (
                 ":bind1" => $_POST['carecard2'],
@@ -981,11 +1001,13 @@
                                         " and reason = '" . $tuple[":bind5"] . "'"
                                         );
             printResult2($result);
+        }else {
+            printStringorIntegerError();
+        }
     
-        } 
-        
 
-        else if (array_key_exists('updatedoctor', $_POST)) {
+    } else if (array_key_exists('updatedoctor', $_POST)) {
+        if(ctype_digit($_POST['doctorid3']) && ctype_print($_POST['specialty3'])) {
             // Update tuple using data from user
             $tuple = array (
                 ":bind1" => $_POST['doctorid3'],
@@ -1001,10 +1023,13 @@
                                             where m.healthcareid = d.healthcareid
                                             order by m.name");
             printResult3($result);
+        }else {
+            printStringorIntegerError();
+        }
     
-        } 
 
-        else if (array_key_exists('updatenurse', $_POST)) {
+    } else if (array_key_exists('updatenurse', $_POST)) {
+        if(ctype_digit($_POST['nurseid4']) && ctype_print($_POST['ward4'])) {
             // Update tuple using data from user
                         $tuple = array (
                 ":bind1" => $_POST['nurseid4'],
@@ -1020,14 +1045,21 @@
                                             where m.healthcareid = n.healthcareid
                                             order by m.name");
             printResult4($result);
-    
+        }else {
+            printStringorIntegerError();
         }
+    
+    }
 
 		//----------
         //INSERT   
  		//----------
 		
         else if (array_key_exists('createprescription', $_POST)) {
+            if(ctype_digit($_POST['prescriptionid5']) && ctype_digit($_POST['refills5']) 
+                && ctype_digit($_POST['totaldays5']) && ctype_digit($_POST['timesperday5']) 
+                && ctype_print($_POST['dose5']) && ctype_digit($_POST['din5']) && ctype_digit($_POST['carecard5'])
+                && ctype_digit($_POST['doctorid5']) && ctype_digit($_POST['licenseno5'])) {
             //Getting the values from user and insert data into the table
             $tuple = array (
                 ":bind1" => $_POST['prescriptionid5'],
@@ -1048,9 +1080,13 @@
             OCICommit($db_conn);
             $result = executePlainSQL("select prescriptionid, carecardno, refills from prescription");
             printResult5($result);
-        } 
+        }else {
+            printStringorIntegerError();
+        }
+    
 
-        else if (array_key_exists('createmedexam', $_POST)) {
+    } else if (array_key_exists('createmedexam', $_POST)) {
+        if(ctype_digit($_POST['carecard6']) && ctype_digit($_POST['doctorid6']) && ctype_print($_POST['examtype6'])){
             // Update tuple using data from user
             $tuple = array (
                 ":bind1" => $_POST['examtype6'],
@@ -1073,10 +1109,14 @@
                                         " and AdministeredBy = " . $tuple[":bind4"]
                                         );
             printResult6($result);
+        }else{
+            printStringorIntegerError();
+        }
     
-        }  
-
-        else if (array_key_exists('createpatient', $_POST)) {
+    
+    } else if (array_key_exists('createpatient', $_POST)) {
+        if(ctype_digit($_POST['insCareCardNo']) && ctype_print($_POST['insName'])
+            && ctype_print($_POST['insAddress']) && ctype_alpha($_POST['insSex'])) {
             //Getting the values from user and insert data into the table
             $tuple = array (
                 ":bind1" => $_POST['insName'],
@@ -1092,9 +1132,13 @@
             OCICommit($db_conn);
             $result = executeBoundSQL("select * from patient where carecardno=:bind5", $alltuples);
             printResult7($result);
-        } 
+        } else {
+            printStringorIntegerError();
+        }
+    
 
-        else if (array_key_exists('createseesreg', $_POST)) {
+    } else if (array_key_exists('createseesreg', $_POST)) {
+        if(ctype_digit($_POST['doctorid8']) && ctype_digit($_POST['carecard8'])) {
             // Update tuple using data from user
             $tuple = array (
                 ":bind1" => $_POST['date8'],
@@ -1108,14 +1152,16 @@
             OCICommit($db_conn);
             $result = executePlainSQL("select * from seesregularly");
             printResult8($result);
-    
-        } 
+        } else {
+            printIntegerError();
+        }
 
 		//-------
         //FIND
 		//-------
 
-        else if (array_key_exists('findstays', $_POST)) {
+    } else if (array_key_exists('findstays', $_POST)) {
+        if(ctype_print($_POST['hname14'])) {
             // Update tuple using data from user
             $tuple = array (
                 ":bind1" => $_POST['hname14']
@@ -1128,9 +1174,13 @@
                                             where h.address = sa.address and sa.carecardno= p.carecardno and h.name = :bind1", $alltuples);
             printResult9($result);
     
-        } 
+        } else{
+            printStringError();
+        }
 
-        else if (array_key_exists('findprescriptions', $_POST)) {
+    
+    } else if (array_key_exists('findprescriptions', $_POST)) {
+        if(ctype_digit($_POST['carecard16'])) {
             // Update tuple using data from user
             $tuple = array (
                 ":bind1" => $_POST['carecard16']
@@ -1144,9 +1194,13 @@
                                                  order by dateprescribed DESC", $alltuples);
             printResult10($result);
     
-        } 
+        } else{
+            printIntegerError();
+        }
 
-        else if (array_key_exists('findmedexams', $_POST)) {
+    
+    } else if (array_key_exists('findmedexams', $_POST)) {
+        if(ctype_digit($_POST['carecard16'])) {
             // Update tuple using data from user
             $tuple = array (
                 ":bind1" => $_POST['carecard16']
@@ -1160,9 +1214,12 @@
                                                  order by FromDate DESC", $alltuples);
             printResult11($result);
     
-        } 
+        } else {
+            printIntegerError();
+        }
 
-        else if (array_key_exists('findpplinroom', $_POST)) {
+    } else if (array_key_exists('findpplinroom', $_POST)) {
+        if(ctype_print($_POST['hname12']) && ctype_digit($_POST['roomno12'])) {
             // Update tuple using data from user
             $tuple = array (
                 ":bind1" => substr($_POST['date12'], 0, -6),
@@ -1185,10 +1242,13 @@
                                                         and sa.roomno = :bind5", $alltuples);
             printResult12($result);
     
+        } else {
+            printStringorIntegerError();
         }
 
 
-        else if (array_key_exists('finddoctorsprescription', $_POST)) {
+    } else if (array_key_exists('finddoctorsprescription', $_POST)) {
+        if(ctype_digit($_POST['doctorid13'])) {
             // Update tuple using data from user
             $tuple = array (
                 ":bind1" => $_POST['doctorid13']
@@ -1202,9 +1262,13 @@
                                                         and p.carecardno = pa.carecardno", $alltuples);
             printResult13($result);
     
-        } 
+        } else{
+            printIntegerError();
+        }
 
-        else if (array_key_exists('findmedicalpeople', $_POST)) {
+    
+    } else if (array_key_exists('findmedicalpeople', $_POST)) {
+        if(ctype_print($_POST['hname14'])) {
             // Update tuple using data from user
             $tuple = array (
                 ":bind1" => $_POST['hname14']
@@ -1228,9 +1292,13 @@
             printResult14($result);
             printResult17($result);
     
-        } 
+        } else {
+            printStringError();
+        }
 
-        else if (array_key_exists('findpatientsinfo', $_POST)) {
+    
+    } else if (array_key_exists('findpatientsinfo', $_POST)) {
+        if(ctype_digit($_POST['carecard16'])) {
             // Update tuple using data from user
             $tuple = array (
                 ":bind1" => $_POST['carecard16']
@@ -1238,16 +1306,20 @@
             $alltuples = array (
                 $tuple
             );
-            $result = executeBoundSQL("select p.name, p.address, p.dateofbirth, p.sex, m.name
+            $result = executeBoundSQL("select p.name as pname, p.address, p.dateofbirth, p.sex, m.name as mname
                                             from patient p, seesregularly s, medicalprofessional m
                                                  where p.carecardno=:bind1
                                                     and p.carecardno = s.carecardno
                                                     and s.healthcareid = m.HealthCareID", $alltuples);
             printResult15($result);
     
-        } 
+        } else{
+            printIntegerError();
+        }
 
-        else if (array_key_exists('updatepname', $_POST)) {
+    
+    } else if (array_key_exists('updatepname', $_POST)) {
+        if(ctype_digit($_POST['carecard16']) && ctype_print($_POST['pname16'])) {
             // Update tuple using data from user
                         $tuple = array (
                 ":bind1" => $_POST['carecard16'],
@@ -1262,9 +1334,12 @@
             $result = executeBoundSQL("select * from patient where carecardno=:bind1", $alltuples);
             printResult7($result);
     
+        } else {
+            printStringorIntegerError();
         }
 
-        else if (array_key_exists('updatepaddress', $_POST)) {
+    } else if (array_key_exists('updatepaddress', $_POST)) {
+        if(ctype_digit($_POST['carecard16']) && ctype_print($_POST['paddress16'])) {
             // Update tuple using data from user
                         $tuple = array (
                 ":bind1" => $_POST['carecard16'],
@@ -1279,9 +1354,13 @@
             $result = executeBoundSQL("select * from patient where carecardno=:bind1", $alltuples);
             printResult7($result);
     
+        } else {
+            printStringorIntegerError();
         }
 
-        else if (array_key_exists('updatepbirthdate', $_POST)) {
+    
+    } else if (array_key_exists('updatepbirthdate', $_POST)) {
+        if(ctype_digit($_POST['carecard16'])) {
             // Update tuple using data from user
                         $tuple = array (
                 ":bind1" => $_POST['carecard16'],
@@ -1295,10 +1374,12 @@
             OCICommit($db_conn);
             $result = executeBoundSQL("select * from patient where carecardno=:bind1", $alltuples);
             printResult7($result);
-    
+        }else{
+            printIntegerError();
         }
 
-        else if (array_key_exists('updatepsex', $_POST)) {
+    } else if (array_key_exists('updatepsex', $_POST)) {
+        if(ctype_digit($_POST['carecard16']) && ctype_alpha($_POST['carecard16'])) {
             // Update tuple using data from user
                         $tuple = array (
                 ":bind1" => $_POST['carecard16'],
@@ -1313,9 +1394,12 @@
             $result = executeBoundSQL("select * from patient where carecardno=:bind1", $alltuples);
             printResult7($result);
     
+        }else {
+            printStringorIntegerError();
         }
 
-        else if (array_key_exists('deletepatientinfo', $_POST)) {
+    } else if (array_key_exists('deletepatientinfo', $_POST)) {
+        if(ctype_digit($_POST['carecard16'])) {
              // Delete Patient Query
                         $tuple = array (
                 ":bind1" => $_POST['carecard16'],
@@ -1327,8 +1411,11 @@
             OCICommit($db_conn);
             
             echo "<br>Patient got deleted</br>";
+        }else{
+            printIntegerError();
+        }
    
-		} else 
+	} else 
             if (array_key_exists('finddrugall', $_POST)) {
                 $tuple = array (
 

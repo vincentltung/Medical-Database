@@ -71,7 +71,7 @@
 
 			<!------------------------------------->
 			<!----- Select Name, Address, Sex ----->	
-			<!------------------------------------->
+			<!-------------------------------------->
 
 			<h2 id="query1">See Your Own Information:
                 <br/><small>Please enter your Care Card Number below to view your current info:</small></h2>
@@ -160,7 +160,7 @@
 			
 			<!------------------------------------->
 			<!----- See Doctors in Hospital ------->	
-			<!------------------------------------->
+			<!-------------------------------------->
 
 			<h2 id="query3">Find a doctor at a hospital near you
                 <br/><small>Enter the street address, postal code, or hospital name to see which doctors are available:</small></h2>
@@ -186,7 +186,7 @@
 
 			<!------------------------------------->
 			<!----- See Prescription Record ------->	
-			<!------------------------------------->
+			<!-------------------------------------->
 			
 			<h2 id="query4">Get Prescription History
                 <br/><small>Please Enter your Care Card Number below to view your prescription record:</small></h2>
@@ -211,7 +211,7 @@
 			
 			<!--------------------------------------->
 			<!----- See Detailed Prescription ------->	
-			<!--------------------------------------->
+			<!---------------------------------------->
 			
 			<h2 id="query5">Get Prescription Details
                 <br/><small>Please enter your prescription ID below to view the details and select one additional column to return as well:</small></h2>
@@ -249,7 +249,7 @@
 
 			<!--------------------------------------->
 			<!----- Pharmacy Drug Lookup ------------>	
-			<!--------------------------------------->
+			<!---------------------------------------->
 			
 			<h2 id="query6">Find a Pharmacist that has your prescription in stock
                 <br/><small>Enter your prescription number to find the pharmacies with the drug in stock:</small></h2>
@@ -274,7 +274,7 @@
 			
 			<!----------------------------->
 			<!--------- BEGIN PHP --------->	
-			<!----------------------------->
+			<!------------------------------>
 			
 			<?php
 
