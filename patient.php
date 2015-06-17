@@ -523,7 +523,7 @@
 	
 		} else //select prescription record
 			if (array_key_exists('selectpres', $_POST)) {
-			    if (ctype_digit($_POST['CNNpres'])) {
+			    if (ctype_digit($_POST['CCNpres'])) {
                     $tuple = array (
                         ":bind1" => $_POST['CCNpres']
                     );
