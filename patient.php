@@ -441,7 +441,7 @@
                 executeBoundSQL("update patient set name=:bind2 where carecardno=:bind1", $alltuples);
                 OCICommit($db_conn);
 
-                $result = executeBoundSQL("select name, address from patient where carecardno=:bind1", $alltuples);
+                $result = executeBoundSQL("select name, address, sex from patient where carecardno=:bind1", $alltuples);
 			printResultNameAddSex($result);
             } else {
                 printIntegerError();
@@ -461,7 +461,7 @@
                     executeBoundSQL("update patient set address=:bind2 where carecardno=:bind1", $alltuples);
                     OCICommit($db_conn);
 
-                    $result = executeBoundSQL("select name, address from patient where carecardno=:bind1", $alltuples);
+                    $result = executeBoundSQL("select name, address, sex from patient where carecardno=:bind1", $alltuples);
                     printResultNameAddSex($result);
                 } else {
                     printIntegerError();
@@ -481,7 +481,7 @@
                     executeBoundSQL("update patient set sex=:bind2 where carecardno=:bind1", $alltuples);
                     OCICommit($db_conn);
 
-                    $result = executeBoundSQL("select name, address from patient where carecardno=:bind1", $alltuples);
+                    $result = executeBoundSQL("select name, address, sex from patient where carecardno=:bind1", $alltuples);
                     printResultNameAddSex($result);
                 } else {
                     printIntegerError();

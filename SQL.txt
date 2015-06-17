@@ -31,7 +31,8 @@ CREATE TABLE Patient (
         	DateOfBirth 	DATE,
         	Sex           	CHAR(1),
         	CareCardNo	INTEGER,
-        	PRIMARY KEY (CareCardNo));
+        	PRIMARY KEY (CareCardNo),
+            CONSTRAINT goodlength CHECK (CareCardNo BETWEEN 1000000000 and 100000000000));
 
 CREATE TABLE StaysAt (
         	CareCardNo	INTEGER,
@@ -42,7 +43,7 @@ CREATE TABLE StaysAt (
         	Duration       	INTEGER,
 		PRIMARY KEY (RoomNo, Address, CareCardNo, FromDate),
         	FOREIGN KEY (RoomNo, Address) REFERENCES Room(RoomNo, Address), 
-		FOREIGN KEY (CareCardNo) REFERENCES Patient(CareCardNo));
+		FOREIGN KEY (CareCardNo) REFERENCES Patient(CareCardNo) ON DELETE CASCADE);
 
 CREATE TABLE MedicalProfessional (
         	Name           	VARCHAR(40),
@@ -66,7 +67,7 @@ CREATE TABLE TakesMedExam (
         	FromDate	DATE,
 		AdministeredBy	INTEGER,
 		PRIMARY KEY (CareCardNo, FromDate),
-        	FOREIGN KEY (CareCardNo) REFERENCES Patient(CareCardNo),
+        	FOREIGN KEY (CareCardNo) REFERENCES Patient(CareCardNo) ON DELETE CASCADE,
 		FOREIGN KEY (AdministeredBy) REFERENCES MedicalProfessional(HealthCareID));
 
  CREATE TABLE SeesRegularly (
@@ -74,7 +75,7 @@ CREATE TABLE TakesMedExam (
         	CareCardNo	INTEGER,
         	HealthCareID	INTEGER,
 		PRIMARY KEY (CareCardNo, HealthCareID),
-        	FOREIGN KEY (CareCardNo) REFERENCES Patient(CareCardNo),
+        	FOREIGN KEY (CareCardNo) REFERENCES Patient(CareCardNo) ON DELETE CASCADE,
 		FOREIGN KEY  (HealthCareID) REFERENCES Doctor(HealthCareID));
  
 CREATE TABLE Drug (
@@ -102,7 +103,7 @@ CREATE TABLE Prescription (
         	HealthCareID	INTEGER NOT NULL,
         	LicenseNo     	INTEGER,
         	PRIMARY KEY (PrescriptionID),
-        	FOREIGN KEY (CareCardNo) REFERENCES Patient(CareCardNo),
+        	FOREIGN KEY (CareCardNo) REFERENCES Patient(CareCardNo) ON DELETE CASCADE,
         	FOREIGN KEY (HealthCareID) REFERENCES Doctor(HealthCareID),
 		FOREIGN KEY (DIN) REFERENCES Drug(DIN),
 		FOREIGN KEY (LicenseNo) REFERENCES Pharmacist(LicenseNo));
@@ -300,7 +301,7 @@ INSERT into TakesMedExam VALUES
 INSERT into TakesMedExam VALUES
 ('Fractured Tibia and major contusions on Femur. Patella is dislocated laterally', 'X-RAY', 10892471092, TO_DATE('2015/07/03 6:00', 'yyyy/mm/dd hh24:mi'), 123460);
 INSERT into TakesMedExam VALUES
-('Exam completed but results not ready', 'CT scan', 10892422222, TO_DATE('2015/06/01 6:00', 'yyyy/mm/dd hh24:mi'), 555559);
+('Exam to be completed', 'CT scan', 10892422222, TO_DATE('2015/06/01 6:00', 'yyyy/mm/dd hh24:mi'), 555559);
 INSERT into TakesMedExam VALUES
 ('Iron levels one standard deviation below normal. Hemoglobin at average levels.', 'Iron and Hemoglobin count', 11232471092, TO_DATE('2015/05/03 13:00', 'yyyy/mm/dd hh24:mi'), 123460);
 INSERT into TakesMedExam VALUES
@@ -408,6 +409,8 @@ INSERT into Prescription VALUES
 
 INSERT into HasInStock VALUES
 (123765, 1231111, 12);
+INSERT into HasInStock VALUES
+(123765, 1233333, 4);
 INSERT into HasInStock VALUES
 (234876, 1232222, 7);
 INSERT into HasInStock VALUES
