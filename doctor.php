@@ -1163,8 +1163,8 @@
             // Update tuple using data from user
             $tuple = array (
                 ":bind1" => $_POST['date8'],
-                ":bind2" => $_POST['doctorid8'],
-                ":bind3" => $_POST['carecard8']
+                ":bind2" => $_POST['carecard8'],
+                ":bind3" => $_POST['doctorid8']
             );
             $alltuples = array (
                 $tuple

@@ -54,6 +54,7 @@
                 <li><a href="#query4">Query 4: See Your Prescriptions</a></li>
                 <li><a href="#query5">Query 5: Find info on a Prescription</a></li>
                 <li><a href="#query6">Query 6: Find a Pharmacist that carries your drug</a></li>
+                <li><a href="#query7">Query 7: Find a doctor with the most or the least patients</a></li>
             </ul>
         </div>
     </div>
@@ -271,7 +272,34 @@
             <br/>
             <hr/>
             <br/>
-			
+
+            <!-------------------------------------------------------->
+			<!----- Busiest and Least Busy Doctors ------->
+			<!-------------------------------------------------------->
+
+			<h2 id="query7">Find a doctor with the most or the least patients
+                <br/><small>You might want to find out if a doctor is too busy or has ample room for you!</small></h2>
+                <form class="form-horizontal" method="POST" action="patient.php">
+
+                    <div class="form-group">
+                        <label class="col-xs-2" for="maxOrMin"></label>
+                        <div class="col-xs-10">
+                            <select class="form-control" name="maxOrMin" id="maxOrMin">
+                                <option value="max">Busiest</option>
+                                <option value="min">Least Busy</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!--refresh page when submit-->
+                    <div class="col-xs-10 col-xs-offset-2">
+                        <button type="submit" class="btn btn-primary" name="docmaxmin">Search</button>
+                    </div>
+                </form>
+
+            <br/>
+            <hr/>
+            <br/>
 			<!----------------------------->
 			<!--------- BEGIN PHP --------->	
 			<!------------------------------>
@@ -376,6 +404,18 @@
 		echo "</table>";
 	
 	}
+
+	function printResultDocNumPatients($result) { //prints results from a select statement
+        echo "<br>These are the doctors at the hospital and their specialty:<br>";
+        echo "<table>";
+        echo "<tr><th>Name</th><th>Specialty</th><th>Number of Patients</th></tr>";
+
+        while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
+            echo "<tr><td>" . $row["NAME"] . "</td><td>" . $row["SPECIALTY"] . "</td><td>" . $row["NUMOFPATIENTS"] . "</td></tr>"; //or just use "echo $row[0]"
+        }
+        echo "</table>";
+
+    }
 
 	//Print function for DATEPRESCRIBED, REFILLS, TOTALDAYS, TIMESPERDAY, DOSE, NAME, COMPANY
 	function printResultPres($result) { //prints results from a select statement
@@ -521,7 +561,25 @@
 										h.name like '%" . $_POST['hosPC'] . "%')", $alltuples);
 				printResultDocSpec($result);
 	
-		} else //select prescription record
+		} else //select doctors
+            if (array_key_exists('docmaxmin', $_POST)) {
+                $tuple = array (
+
+                );
+                $alltuples = array (
+                    $tuple
+                );
+
+                executeBoundSQL("CREATE VIEW NumPatients AS
+                                    Select healthcareid, count(*) as numofpatients
+                                    from seesregularly
+                                    group by healthcareid", $alltuples);
+                OCICommit($db_conn);
+
+                $result = executeBoundSQL("select m.name, d.specialty, numofpatients from medicalprofessional m, doctor d, NumPatients n where d.healthcareid = n.healthcareid and d.healthcareid = m.healthcareid and numofpatients = (select " . $_POST['maxOrMin'] . "(numofpatients) from NumPatients)", $alltuples);
+                printResultDocNumPatients($result);
+
+        } else //select prescription record
 			if (array_key_exists('selectpres', $_POST)) {
 			    if (ctype_digit($_POST['CCNpres'])) {
                     $tuple = array (
