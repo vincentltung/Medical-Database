@@ -18,7 +18,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">
+                <a class="navbar-brand" href="index.php">
                     <span class="alert alert-danger" style="background-color: white; padding:5px;">
                         &nbsp;&nbsp;<span class="glyphicon glyphicon-plus"></span>
                     </span>
@@ -30,10 +30,9 @@
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="#">Home</a></li>
                     <li><a style="color:red;">I am a...</a></li>
-                    <li><a href="doctor.html">Doctor</a></li>
-                    <li><a href="nurse.html">Nurse</a></li>
-                    <li><a href="pharmacist.html">Pharmacist</a></li>
-                    <li><a href="patient.html">Patient</a></li>
+                    <li><a href="doctor.php">Medical Professional</a></li>
+                    <li><a href="pharmacist.php">Pharmacist</a></li>
+                    <li><a href="patient.php">Patient</a></li>
                 </ul>
                 <!--<ul class="nav navbar-nav pull-right">-->
                     <!--<li>-->
