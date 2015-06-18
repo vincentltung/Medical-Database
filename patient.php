@@ -576,7 +576,11 @@
                                     group by healthcareid", $alltuples);
                 OCICommit($db_conn);
 
-                $result = executeBoundSQL("select m.name, d.specialty, numofpatients from medicalprofessional m, doctor d, NumPatients n where d.healthcareid = n.healthcareid and d.healthcareid = m.healthcareid and numofpatients = (select " . $_POST['maxOrMin'] . "(numofpatients) from NumPatients)", $alltuples);
+                $result = executeBoundSQL("select m.name, d.specialty, numofpatients
+                                           from medicalprofessional m, doctor d, NumPatients n
+                                           where d.healthcareid = n.healthcareid and d.healthcareid = m.healthcareid
+                                           and numofpatients = (select " . $_POST['maxOrMin'] . "(numofpatients)
+                                                                from NumPatients)", $alltuples);
                 printResultDocNumPatients($result);
 
         } else //select prescription record
