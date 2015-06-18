@@ -626,6 +626,26 @@
             <br/>
             <hr/>
             <br/>
+	
+	<!--------------------------------------------------------->  
+	<!-- select Form 30 delete a hospital (noncascade) -->		
+	<!---------------------------------------------------------->
+			
+			<h2 id="query30">Delete a hospital:</h2>
+            <form class="form-inline" method="POST" action="doctor.php">
+
+            <div class= "form-group">
+                <label class="sr-only" for="hname30">Doctor ID</label>
+                <input type="text" class="form-control" name="hname30" id="hname30" placeholder="Hospital Name">
+            </div>	
+			
+                 <button type="submit" class="btn btn-primary" name="deletehospital">Delete a hospital</button>	
+
+			</form>
+            
+            <br/>
+            <hr/>
+            <br/>
 			
 			
 			<!-------------------------------->		
@@ -940,7 +960,16 @@
         echo "</table>";
     }	
     
-
+    function printResult30($result) { 
+        echo "<br>Hospitals:<br>";
+        echo "<table>";
+    
+        while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
+            echo "<tr><td>" . $row["NAME"] . "</td>
+                    </tr>";//or just use "echo $row[0]" 
+        }
+        echo "</table>";
+    }
 
 
     //type-checking
@@ -1471,6 +1500,22 @@
 																	AND pr.DIN = d.DIN))", $alltuples);
                 printResult16($result);
 
+	} else if (array_key_exists('deletehospital', $_POST)) {
+        if(ctype_print($_POST['hname30'])) {
+             // Delete Patient Query
+                        $tuple = array (
+                ":bind1" => $_POST['hname30'],
+            );
+            $alltuples = array (
+                $tuple
+            );
+            $result = executeBoundSQL("delete from hospital where name = :bind1", $alltuples);
+            OCICommit($db_conn);
+			
+			printResult30($result);
+        }else{
+            printStringError();
+        }
 		}
            
 
