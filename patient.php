@@ -54,7 +54,7 @@
                 <li><a href="#query4">Query 4: See Your Prescriptions</a></li>
                 <li><a href="#query5">Query 5: Find info on a Prescription</a></li>
                 <li><a href="#query6">Query 6: Find a Pharmacist that carries your drug</a></li>
-                <li><a href="#query7">Query 7: Find a doctor with the most or the least patients</a></li>
+                <li><a href="#query7">Query 7: Find a doctor with the most or the least patients</a></li>				
             </ul>
         </div>
     </div>
@@ -272,10 +272,10 @@
             <br/>
             <hr/>
             <br/>
-
-            <!-------------------------------------------------------->
+			
+			<!-------------------------------------------->
 			<!----- Busiest and Least Busy Doctors ------->
-			<!-------------------------------------------------------->
+			<!-------------------------------------------->
 
 			<h2 id="query7">Find a doctor with the most or the least patients
                 <br/><small>You might want to find out if a doctor is too busy or has ample room for you!</small></h2>
@@ -300,6 +300,7 @@
             <br/>
             <hr/>
             <br/>
+			
 			<!----------------------------->
 			<!--------- BEGIN PHP --------->	
 			<!------------------------------>
@@ -310,7 +311,7 @@
 			//html; it's now parsing PHP
 	
 				$success = True; //keep track of errors so it redirects the page only if there are no errors
-				$db_conn = OCILogon("ora_y3w8", "a25976135", "ug");
+				$db_conn = OCILogon("ora_XXXX", "aXXXXXXXX", "ug");
 				
 				function executePlainSQL($cmdstr) { //takes a plain (no bound variables) SQL command and executes it
 					//echo "<br>running ".$cmdstr."<br>";
@@ -405,18 +406,6 @@
 	
 	}
 
-	function printResultDocNumPatients($result) { //prints results from a select statement
-        echo "<br>These are the doctors at the hospital and their specialty:<br>";
-        echo "<table>";
-        echo "<tr><th>Name</th><th>Specialty</th><th>Number of Patients</th></tr>";
-
-        while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
-            echo "<tr><td>" . $row["NAME"] . "</td><td>" . $row["SPECIALTY"] . "</td><td>" . $row["NUMOFPATIENTS"] . "</td></tr>"; //or just use "echo $row[0]"
-        }
-        echo "</table>";
-
-    }
-
 	//Print function for DATEPRESCRIBED, REFILLS, TOTALDAYS, TIMESPERDAY, DOSE, NAME, COMPANY
 	function printResultPres($result) { //prints results from a select statement
 		echo "<br>Successfully fetched prescription record:<br>";
@@ -432,6 +421,16 @@
 
 	}
 
+	function printResultDocNumPatients($result) { //prints results from a select statement
+        echo "<br>These are the doctors at the hospital and their specialty:<br>";
+        echo "<table>";
+        echo "<tr><th>Name</th><th>Specialty</th><th>Number of Patients</th></tr>";
+        while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
+            echo "<tr><td>" . $row["NAME"] . "</td><td>" . $row["SPECIALTY"] . "</td><td>" . $row["NUMOFPATIENTS"] . "</td></tr>"; //or just use "echo $row[0]"
+        }
+        echo "</table>";
+    }
+	
 	//Print function for DATEPRESCRIBED, REFILLS, TOTALDAYS, TIMESPERDAY, DOSE, NAME, COMPANY
     	function printResultPresOption($result, $presOption) { //prints results from a select statement
     		echo "<br>Successfully fetched prescription record:<br>";
@@ -564,12 +563,10 @@
 		} else //select doctors
             if (array_key_exists('docmaxmin', $_POST)) {
                 $tuple = array (
-
                 );
                 $alltuples = array (
                     $tuple
                 );
-
                 executeBoundSQL("CREATE VIEW NumPatients AS
                                     Select healthcareid, count(*) as numofpatients
                                     from seesregularly
@@ -581,8 +578,8 @@
                                            where d.healthcareid = n.healthcareid and d.healthcareid = m.healthcareid
                                            and numofpatients = (select " . $_POST['maxOrMin'] . "(numofpatients)
                                                                 from NumPatients)", $alltuples);
-                printResultDocNumPatients($result);
 
+                printResultDocNumPatients($result);
         } else //select prescription record
 			if (array_key_exists('selectpres', $_POST)) {
 			    if (ctype_digit($_POST['CCNpres'])) {
