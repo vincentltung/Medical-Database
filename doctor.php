@@ -59,7 +59,9 @@
                 <li><a href="#query12">Query 9: Find Patients in a Room</a></li>
                 <li><a href="#query3">Query 10: Change Doctors Specialty</a></li>
                 <li><a href="#query4">Query 11: Change Nurses Ward</a></li>
-                <li><a href="#query9">Query 12: Find Past Prescriptions</a></li>
+                <li><a href="#query13">Query 12: Find Past Prescriptions</a></li>
+                <li><a href="#query19">Query 13: Find Drug Taken By All</a></li>
+                <li><a href="#query30">Query 14: Delete a Hospital</a></li>				
             </ul>
         </div>
     </div>
@@ -616,7 +618,7 @@
 	<!-- select Form 19 Find drug that is taken by all patients -->		
 	<!---------------------------------------------------------->
 			
-			<h2 id="query9">Find drug that is taken by all patients:</h2>
+			<h2 id="query99">Find drug that is taken by all patients:</h2>
             <form class="form-inline" method="POST" action="doctor.php">			
 			
                  <button type="submit" class="btn btn-primary" name="finddrugall">Find</button>	

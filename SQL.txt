@@ -147,6 +147,8 @@ INSERT into Hospital VALUES
 ('Kingston General', '76 Stuart St, Kingston, ON K7L 2V7');
 INSERT into Hospital Values
 ('Foothills', '10403 29 St, Calgary, AB T2N 2T9');
+INSERT into Hospital Values
+('Foothills2', '1144 inlet st, Vancouver, V3B 6E7');
 
 INSERT into Room VALUES
 (1, 5, '250 College St, Toronto, ON M5T 1R8');
