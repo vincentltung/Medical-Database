@@ -660,7 +660,7 @@
             //html; it's now parsing PHP
     
                 $success = True; //keep track of errors so it redirects the page only if there are no errors
-				$db_conn = OCILogon("ora_z0d9", "a38807129", "ug");
+				$db_conn = OCILogon("ora_XXXX", "aXXXXXXXX", "ug");
 
                 
                 function executePlainSQL($cmdstr) { //takes a plain (no bound variables) SQL command and executes it
@@ -1509,9 +1509,10 @@
             $alltuples = array (
                 $tuple
             );
-            $result = executeBoundSQL("delete from hospital where name = :bind1", $alltuples);
+            executeBoundSQL("delete from hospital where name = :bind1", $alltuples);
             OCICommit($db_conn);
 			
+            $result = executeBoundSQL("select name from hospital", $alltuples);
 			printResult30($result);
         }else{
             printStringError();
